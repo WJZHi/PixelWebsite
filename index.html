@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nextious - TeamPixel团队项目</title>
+    <!-- 引入Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入Font Awesome -->
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- 引入KaTeX用于数学公式渲染 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    
+    <!-- 配置Tailwind自定义主题 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4285F4',
+                        secondary: '#DB4437',
+                        accent: '#F4B400',
+                        success: '#0F9D58',
+                        dark: '#1E293B',
+                        light: '#F8FAFC'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <!-- 自定义工具类 -->
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            .transition-custom {
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            .bg-gradient-custom {
+                background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
+            }
+        }
+    </style>
+    
+    <style>
+        /* 基础动画定义 */
+        @keyframes pulse-dot {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.2); opacity: 0.7; }
+        }
+        
+        .pulse-animation {
+            animation: pulse-dot 2s infinite;
+        }
+        
+        .pulse-delay-1 {
+            animation-delay: 0.3s;
+        }
+        
+        .pulse-delay-2 {
+            animation-delay: 0.6s;
+        }
+        
+        /* 平滑滚动 */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* 文档链接悬停效果 */
+        .doc-link {
+            position: relative;
+        }
+        
+        .doc-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #4285F4;
+            transition: width 0.3s ease;
+        }
+        
+        .doc-link:hover::after {
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+    <!-- 导航栏 -->
+    <header class="fixed w-full bg-white/90 backdrop-blur-sm shadow-sm z-50 transition-custom">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-2">
+                    <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-success flex items-center justify-center">
+                        <span class="text-white font-bold text-xl">TP</span>
+                    </div>
+                    <span class="font-bold text-xl tracking-tight">TeamPixel</span>
+                </div>
+                
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#about" class="text-gray-600 hover:text-primary transition-custom">关于项目</a>
+                    <a href="#docs" class="text-gray-600 hover:text-primary transition-custom">技术文档</a>
+                    <a href="#links" class="text-gray-600 hover:text-primary transition-custom">重要链接</a>
+                </nav>
+                
+                <button class="md:hidden text-gray-600 hover:text-primary transition-custom">
+                    <i class="fa fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 英雄区域 -->
+    <section class="pt-32 pb-20 md:pt-40 md:pb-28 bg-gradient-custom text-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mx-auto text-center">
+                <div class="flex items-center justify-center mb-6 space-x-2">
+                    <h2 class="text-2xl md:text-3xl font-semibold">Nextious开发</h2>
+                    <span class="text-primary pulse-animation">●</span>
+                    <span class="text-secondary pulse-animation pulse-delay-1">●</span>
+                    <span class="text-accent pulse-animation pulse-delay-2">●</span>
+                </div>
+                
+                <h1 class="text-4xl md:text-6xl font-bold mb-6 text-shadow">Nextious</h1>
+                
+                <div class="prose prose-invert max-w-none text-lg md:text-xl mb-10">
+                    <p>这个名字来源于拉丁语单词</p>
+                    <p class="my-2 text-xl"><span class="italic">Nexus</span> (意为连接)</p>
+                    <p class="my-2">以及</p>
+                    <p class="my-2 text-xl"><span class="italic">Nuntius</span> (意为信使,信息)</p>
+                </div>
+                
+                <a href="#links" class="inline-flex items-center px-6 py-3 bg-primary hover:bg-primary/90 text-white font-medium rounded-lg shadow-lg hover:shadow-xl transition-custom transform hover:-translate-y-1">
+                    了解开发规范
+                    <i class="fa fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+        
+        <!-- 装饰性波浪 -->
+        <div class="absolute bottom-0 left-0 right-0">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100" class="w-full h-auto fill-gray-50">
+                <path d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,100L1360,100C1280,100,1120,100,960,100C800,100,640,100,480,100C320,100,160,100,80,100L0,100Z"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- 关于项目 -->
+    <section id="about" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">关于 <span class="text-primary">Nextious</span></h2>
+                
+                <div class="bg-white rounded-xl shadow-xl p-8 transform transition-custom hover:shadow-2xl">
+                    <p class="text-lg text-gray-700 mb-6">
+                        Nextious是TeamPixel团队正在开发的一个项目，名称融合了拉丁语中"连接"与"信使"的含义，体现了项目在信息传递与连接方面的核心价值。
+                    </p>
+                    
+                    <p class="text-lg text-gray-700 mb-6">
+                        项目专注于局域网内的信息与文件传输技术，深入研究TCP与UDP协议的应用与实现，旨在打造高效、可靠的本地网络通信解决方案。
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-4 mt-8">
+                        <div class="flex items-center px-4 py-2 bg-blue-50 text-primary rounded-lg">
+                            <i class="fa fa-code mr-2"></i>
+                            <span>C++ 开发</span>
+                        </div>
+                        <div class="flex items-center px-4 py-2 bg-green-50 text-success rounded-lg">
+                            <i class="fa fa-exchange mr-2"></i>
+                            <span>网络传输</span>
+                        </div>
+                        <div class="flex items-center px-4 py-2 bg-yellow-50 text-accent rounded-lg">
+                            <i class="fa fa-file-text mr-2"></i>
+                            <span>文件共享</span>
+                        </div>
+                        <div class="flex items-center px-4 py-2 bg-red-50 text-secondary rounded-lg">
+                            <i class="fa fa-wifi mr-2"></i>
+                            <span>局域网</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 重要链接 -->
+    <section id="links" class="py-20 bg-gray-100">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">重要 <span class="text-primary">链接</span></h2>
+            
+            <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
+                <!-- 开发规范链接卡片 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-custom hover:shadow-xl transform hover:-translate-y-1">
+                    <div class="h-40 bg-primary/10 flex items-center justify-center">
+                        <i class="fa fa-book text-primary text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-3">开发规范与团队分工</h3>
+                        <p class="text-gray-600 mb-4">了解Nextious项目的开发规范、代码标准和团队成员分工情况。</p>
+                        <a href="https://gitee.com/wjzhi/article/blob/master/Nextious%20%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83%E4%B8%8E%E5%9B%A2%E9%98%9F%E5%88%86%E5%B7%A5.md" 
+                           target="_blank" 
+                           class="doc-link inline-flex items-center text-primary font-medium">
+                            查看文档
+                            <i class="fa fa-external-link ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 传输原理链接卡片 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-custom hover:shadow-xl transform hover:-translate-y-1">
+                    <div class="h-40 bg-success/10 flex items-center justify-center">
+                        <i class="fa fa-sitemap text-success text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-3">局域网传输原理</h3>
+                        <p class="text-gray-600 mb-4">深入理解TCP与UDP协议，以及如何在C++中实现局域网内的文件传输。</p>
+                        <a href="https://gitee.com/wjzhi/article/blob/master/%E5%B1%80%E5%9F%9F%E7%BD%91%E5%86%85%E6%96%87%E4%BB%B6%E4%BC%A0%E8%BE%93%E5%8E%9F%E7%90%86%EF%BC%9ATCP%20%E4%B8%8E%20UDP%20%E8%AF%A6%E8%A7%A3%E5%8F%8A%20C++%20%E5%AE%9E%E7%8E%B0.md" 
+                           target="_blank" 
+                           class="doc-link inline-flex items-center text-success font-medium">
+                            查看文档
+                            <i class="fa fa-external-link ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 技术文档 -->
+    <section id="docs" class="py-20 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">技术 <span class="text-primary">文档</span></h2>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-gray-50 rounded-xl shadow-sm p-6 md:p-8">
+                    <ul class="space-y-6">
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-primary">
+                                <i class="fa fa-gamepad"></i>
+                            </div>
+                            <div class="ml-4">
+                                <a href="https://gitee.com/wjzhi/article/blob/master/SFML%20tutorial.md" 
+                                   target="_blank" 
+                                   class="doc-link text-lg font-medium text-gray-900 hover:text-primary">
+                                    SFML tutorial.md
+                                </a>
+                                <p class="text-gray-600 mt-1">SFML库的使用教程文档</p>
+                            </div>
+                        </li>
+                        
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-600">
+                                <i class="fa fa-cube"></i>
+                            </div>
+                            <div class="ml-4">
+                                <a href="https://blog.csdn.net/wangyuhan2010/article/details/130477415" 
+                                   target="_blank" 
+                                   class="doc-link text-lg font-medium text-gray-900 hover:text-purple-600">
+                                    用c++实现3d引擎-超详细(附源码)
+                                </a>
+                                <p class="text-gray-600 mt-1">C++实现3D引擎的详细教程及源代码</p>
+                            </div>
+                        </li>
+                        
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-green-100 flex items-center justify-center text-green-600">
+                                <i class="fa fa-exchange"></i>
+                            </div>
+                            <div class="ml-4">
+                                <a href="https://gitee.com/wjzhi/article/blob/master/%E5%B1%80%E5%9F%9F%E7%BD%91%E5%86%85%E6%96%87%E4%BB%B6%E4%BC%A0%E8%BE%93%E5%8E%9F%E7%90%86%EF%BC%9ATCP%20%E4%B8%8E%20UDP%20%E8%AF%A6%E8%A7%A3%E5%8F%8A%20C++%20%E5%AE%9E%E7%8E%B0.md" 
+                                   target="_blank" 
+                                   class="doc-link text-lg font-medium text-gray-900 hover:text-green-600">
+                                    局域网内文件传输原理：TCP 与 UDP 详解及 C++ 实现
+                                </a>
+                                <p class="text-gray-600 mt-1">详细解析TCP与UDP协议在局域网文件传输中的应用</p>
+                            </div>
+                        </li>
+                        
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-yellow-100 flex items-center justify-center text-yellow-600">
+                                <i class="fa fa-file-text"></i>
+                            </div>
+                            <div class="ml-4">
+                                <a href="https://gitee.com/wjzhi/article/blob/master/C++%20%E5%B1%80%E5%9F%9F%E7%BD%91%E4%BC%A0%E8%BE%93%E6%96%87%E4%BB%B6%E3%80%81%E5%AD%97%E7%AC%A6%E7%9A%84%E5%8E%9F%E7%90%86%E8%AF%A6%E8%A7%A3.md" 
+                                   target="_blank" 
+                                   class="doc-link text-lg font-medium text-gray-900 hover:text-yellow-600">
+                                    C++ 局域网传输文件、字符的原理详解
+                                </a>
+                                <p class="text-gray-600 mt-1">C++实现局域网内文件和字符传输的原理分析</p>
+                            </div>
+                        </li>
+                        
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-red-100 flex items-center justify-center text-red-600">
+                                <i class="fa fa-keyboard-o"></i>
+                            </div>
+                            <div class="ml-4">
+                                <a href="https://www.runoob.com/w3cnote/c-get-keycode.html" 
+                                   target="_blank" 
+                                   class="doc-link text-lg font-medium text-gray-900 hover:text-red-600">
+                                    C/C++ 获取键盘事件
+                                </a>
+                                <p class="text-gray-600 mt-1">关于C/C++如何获取键盘事件的教程</p>
+                            </div>
+                        </li>
+                        
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600">
+                                <i class="fa fa-markdown"></i>
+                            </div>
+                            <div class="ml-4">
+                                <a href="https://markdown.com.cn/" 
+                                   target="_blank" 
+                                   class="doc-link text-lg font-medium text-gray-900 hover:text-indigo-600">
+                                    Marddown语法
+                                </a>
+                                <p class="text-gray-600 mt-1">Markdown标记语言的语法参考</p>
+                            </div>
+                        </li>
+                        
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-pink-100 flex items-center justify-center text-pink-600">
+                                <i class="fa fa-calculator"></i>
+                            </div>
+                            <div class="ml-4">
+                                <a href="https://katex.org/" 
+                                   target="_blank" 
+                                   class="doc-link text-lg font-medium text-gray-900 hover:text-pink-600">
+                                    KaTeX语法
+                                </a>
+                                <p class="text-gray-600 mt-1">KaTeX数学公式渲染库的语法文档</p>
+                            </div>
+                        </li>
+                        
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-teal-100 flex items-center justify-center text-teal-600">
+                                <i class="fa fa-sitemap"></i>
+                            </div>
+                            <div class="ml-4">
+                                <a href="https://mermaid.js.org/" 
+                                   target="_blank" 
+                                   class="doc-link text-lg font-medium text-gray-900 hover:text-teal-600">
+                                    Mermaid语法
+                                </a>
+                                <p class="text-gray-600 mt-1">Mermaid图表绘制工具的语法文档</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-dark text-white py-12">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl mx-auto">
+                <div class="flex flex-col md:flex-row justify-between items-center mb-8">
+                    <div class="flex items-center space-x-2 mb-6 md:mb-0">
+                        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-success flex items-center justify-center">
+                            <span class="text-white font-bold text-xl">TP</span>
+                        </div>
+                        <span class="font-bold text-xl tracking-tight">TeamPixel</span>
+                    </div>
+                    
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-gray-400 hover:text-white transition-custom">
+                            <i class="fa fa-github text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-custom">
+                            <i class="fa fa-gitee text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-custom">
+                            <i class="fa fa-envelope text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <hr class="border-gray-700 mb-8">
+                
+                <div class="text-center text-gray-400">
+                    <p>© 2023 TeamPixel团队. Nextious项目开发中.</p>
+                    <p class="mt-2 text-sm">本网站展示项目相关信息与技术文档</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('py-2', 'shadow');
+                header.classList.remove('py-4');
+            } else {
+                header.classList.add('py-4');
+                header.classList.remove('py-2', 'shadow');
+            }
+        });
+        
+        // 页面加载完成后执行
+        document.addEventListener('DOMContentLoaded', function() {
+            // 平滑滚动到锚点
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // 初始化KaTeX渲染
+            const mathElements = document.querySelectorAll('.katex-math');
+            mathElements.forEach(el => {
+                katex.render(el.textContent, el, {
+                    throwOnError: false
+                });
+            });
+        });
+    </script>
+</body>
+</html>
