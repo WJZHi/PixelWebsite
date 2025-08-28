@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nextious - TeamPixel团队项目</title>
+    <title>TeamPixel - Nextious项目</title>
     <!-- 引入Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- 引入Font Awesome -->
@@ -107,7 +107,8 @@
                 </div>
                 
                 <nav class="hidden md:flex space-x-8">
-                    <a href="#about" class="text-gray-600 hover:text-primary transition-custom">关于项目</a>
+                    <a href="#about" class="text-gray-600 hover:text-primary transition-custom">关于团队</a>
+                    <a href="#project" class="text-gray-600 hover:text-primary transition-custom">Nextious项目</a>
                     <a href="#docs" class="text-gray-600 hover:text-primary transition-custom">技术文档</a>
                     <a href="#links" class="text-gray-600 hover:text-primary transition-custom">重要链接</a>
                 </nav>
@@ -123,6 +124,10 @@
     <section class="pt-32 pb-20 md:pt-40 md:pb-28 bg-gradient-custom text-white">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="max-w-3xl mx-auto text-center">
+                <!-- 团队名称 - 最突出的位置 -->
+                <h1 class="text-5xl md:text-7xl font-bold mb-6 text-shadow">TeamPixel</h1>
+                
+                <!-- 项目信息 -->
                 <div class="flex items-center justify-center mb-6 space-x-2">
                     <h2 class="text-2xl md:text-3xl font-semibold">Nextious开发</h2>
                     <span class="text-primary pulse-animation">●</span>
@@ -130,7 +135,7 @@
                     <span class="text-accent pulse-animation pulse-delay-2">●</span>
                 </div>
                 
-                <h1 class="text-4xl md:text-6xl font-bold mb-6 text-shadow">Nextious</h1>
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 text-shadow">Nextious</h2>
                 
                 <div class="prose prose-invert max-w-none text-lg md:text-xl mb-10">
                     <p>这个名字来源于拉丁语单词</p>
@@ -139,8 +144,8 @@
                     <p class="my-2 text-xl"><span class="italic">Nuntius</span> (意为信使,信息)</p>
                 </div>
                 
-                <a href="#links" class="inline-flex items-center px-6 py-3 bg-primary hover:bg-primary/90 text-white font-medium rounded-lg shadow-lg hover:shadow-xl transition-custom transform hover:-translate-y-1">
-                    了解开发规范
+                <a href="#about" class="inline-flex items-center px-6 py-3 bg-primary hover:bg-primary/90 text-white font-medium rounded-lg shadow-lg hover:shadow-xl transition-custom transform hover:-translate-y-1">
+                    了解我们的团队
                     <i class="fa fa-arrow-right ml-2"></i>
                 </a>
             </div>
@@ -154,15 +159,53 @@
         </div>
     </section>
 
-    <!-- 关于项目 -->
+    <!-- 关于团队 -->
     <section id="about" class="py-20 bg-gray-50">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="max-w-3xl mx-auto">
-                <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">关于 <span class="text-primary">Nextious</span></h2>
+                <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">关于 <span class="text-primary">TeamPixel</span></h2>
                 
                 <div class="bg-white rounded-xl shadow-xl p-8 transform transition-custom hover:shadow-2xl">
                     <p class="text-lg text-gray-700 mb-6">
-                        Nextious是TeamPixel团队正在开发的一个项目，名称融合了拉丁语中"连接"与"信使"的含义，体现了项目在信息传递与连接方面的核心价值。
+                        TeamPixel是一个专注于软件开发与技术研究的团队，我们致力于通过创新的技术解决方案解决实际问题。团队成员拥有丰富的开发经验和强烈的探索精神。
+                    </p>
+                    
+                    <p class="text-lg text-gray-700 mb-6">
+                        我们注重技术积累与知识分享，坚持高标准的开发规范，追求代码质量与用户体验的平衡。通过协作开发，我们不断提升团队能力，完成一个又一个具有挑战性的项目。
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-4 mt-8">
+                        <div class="flex items-center px-4 py-2 bg-blue-50 text-primary rounded-lg">
+                            <i class="fa fa-code mr-2"></i>
+                            <span>专业开发</span>
+                        </div>
+                        <div class="flex items-center px-4 py-2 bg-purple-50 text-purple-600 rounded-lg">
+                            <i class="fa fa-users mr-2"></i>
+                            <span>团队协作</span>
+                        </div>
+                        <div class="flex items-center px-4 py-2 bg-green-50 text-success rounded-lg">
+                            <i class="fa fa-lightbulb-o mr-2"></i>
+                            <span>技术创新</span>
+                        </div>
+                        <div class="flex items-center px-4 py-2 bg-yellow-50 text-accent rounded-lg">
+                            <i class="fa fa-book mr-2"></i>
+                            <span>知识分享</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 项目介绍 -->
+    <section id="project" class="py-20 bg-gray-100">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">我们的项目: <span class="text-primary">Nextious</span></h2>
+                
+                <div class="bg-white rounded-xl shadow-xl p-8 transform transition-custom hover:shadow-2xl">
+                    <p class="text-lg text-gray-700 mb-6">
+                        Nextious是TeamPixel团队正在开发的核心项目，名称融合了拉丁语中"连接"(Nexus)与"信使"(Nuntius)的含义，体现了项目在信息传递与连接方面的核心价值。
                     </p>
                     
                     <p class="text-lg text-gray-700 mb-6">
@@ -193,13 +236,13 @@
     </section>
 
     <!-- 重要链接 -->
-    <section id="links" class="py-20 bg-gray-100">
+    <section id="links" class="py-20 bg-white">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">重要 <span class="text-primary">链接</span></h2>
             
             <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
                 <!-- 开发规范链接卡片 -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-custom hover:shadow-xl transform hover:-translate-y-1">
+                <div class="bg-gray-50 rounded-xl shadow-lg overflow-hidden transition-custom hover:shadow-xl transform hover:-translate-y-1">
                     <div class="h-40 bg-primary/10 flex items-center justify-center">
                         <i class="fa fa-book text-primary text-6xl"></i>
                     </div>
@@ -216,7 +259,7 @@
                 </div>
                 
                 <!-- 传输原理链接卡片 -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-custom hover:shadow-xl transform hover:-translate-y-1">
+                <div class="bg-gray-50 rounded-xl shadow-lg overflow-hidden transition-custom hover:shadow-xl transform hover:-translate-y-1">
                     <div class="h-40 bg-success/10 flex items-center justify-center">
                         <i class="fa fa-sitemap text-success text-6xl"></i>
                     </div>
@@ -236,12 +279,12 @@
     </section>
 
     <!-- 技术文档 -->
-    <section id="docs" class="py-20 bg-white">
+    <section id="docs" class="py-20 bg-gray-50">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">技术 <span class="text-primary">文档</span></h2>
             
             <div class="max-w-4xl mx-auto">
-                <div class="bg-gray-50 rounded-xl shadow-sm p-6 md:p-8">
+                <div class="bg-white rounded-xl shadow-sm p-6 md:p-8">
                     <ul class="space-y-6">
                         <li class="flex items-start">
                             <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-primary">
@@ -389,7 +432,7 @@
                 
                 <div class="text-center text-gray-400">
                     <p>© 2023 TeamPixel团队. Nextious项目开发中.</p>
-                    <p class="mt-2 text-sm">本网站展示项目相关信息与技术文档</p>
+                    <p class="mt-2 text-sm">本网站展示团队及项目相关信息与技术文档</p>
                 </div>
             </div>
         </div>
