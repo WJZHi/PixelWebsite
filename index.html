@@ -1,9 +1,13 @@
-<!DOCTYPE html>
+<doubaocanvas type="webview" identifier="nextious-team-page-with-favicon" title="添加网站图标的TeamPixel页面" genre="">
+    <doubaocanvas-part path="index.html" language="html" description="已添加logo.ico网站图标的TeamPixel团队主页"><!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TeamPixel - Nextious项目</title>
+    <!-- 新增：网站图标（logo.ico） -->
+    <link rel="icon" href="logo.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="logo.ico" type="image/x-icon">
     <!-- 引入Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- 引入Font Awesome -->
@@ -49,7 +53,7 @@
                 text-wrap: balance;
             }
             .glass-effect {
-                background: rgba(240, 240, 240, 0.6); /* 改为淡灰色背景 */
+                background: rgba(240, 240, 240, 0.6); /* 淡灰色背景 */
                 backdrop-filter: blur(12px);
                 -webkit-backdrop-filter: blur(12px);
                 border: 1px solid rgba(220, 220, 220, 0.3); /* 调整边框颜色 */
@@ -71,7 +75,7 @@
                 transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             }
             
-            /* 核心玻璃按钮样式 - 改为淡灰色基调 */
+            /* 核心玻璃按钮样式 - 淡灰色基调 */
             .glass-btn {
                 position: relative;
                 overflow: hidden;
@@ -166,22 +170,7 @@
             scroll-behavior: smooth;
         }
         
-        .link-underlined {
-            position: relative;
-        }
-        .link-underlined::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: #165DFF;
-            transition: width 0.2s ease;
-        }
-        .link-underlined:hover::after {
-            width: 100%;
-        }
+        /* 已移除链接悬停的蓝色线条效果 */
         
         @keyframes pulse-dot {
             0%, 100% { opacity: 1; }
@@ -212,6 +201,49 @@
         .nav-scrolled a {
             font-size: 0.875rem !important;
         }
+        
+        /* 移动端菜单样式 */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: white;
+            z-index: 999;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+        
+        .mobile-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 4rem 0 0 0;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .mobile-menu li a {
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: #1D2939;
+        }
+        
+        .close-menu {
+            align-self: flex-end;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body class="bg-white text-dark">
@@ -219,13 +251,26 @@
     <div class="fixed -top-40 -right-40 w-96 h-96 bg-primary/5 liquid-shape float-animation z-0"></div>
     <div class="fixed -bottom-20 -left-20 w-72 h-72 bg-primary/5 liquid-shape-2 float-animation-delay z-0"></div>
     
+    <!-- 移动端菜单 -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="close-menu" id="closeMenu">
+            <i class="fa fa-times"></i>
+        </button>
+        <ul>
+            <li><a href="#about" class="mobile-link">关于团队</a></li>
+            <li><a href="#project" class="mobile-link">Nextious项目</a></li>
+            <li><a href="#docs" class="mobile-link">技术文档</a></li>
+            <li><a href="#links" class="mobile-link">重要链接</a></li>
+        </ul>
+    </div>
+    
     <!-- 导航栏 -->
     <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center">
                 <!-- 左侧：Logo + 团队名 -->
                 <div class="flex items-center gap-2">
-                    <img src="https://cdn.luogu.com.cn/upload/image_hosting/pejqi2ov.png" alt="TeamPixel团队标志" class="w-8 h-8 sm:w-10 sm:h-10 rounded object-cover transition-all duration-300" id="logo">
+                    <img src="https://cdn.luogu.com.cn/upload/image_hosting/vy6i8dsm.png" alt="TeamPixel团队标志" class="w-8 h-8 sm:w-10 sm:h-10 rounded object-cover transition-all duration-300" id="logo">
                     <span class="font-semibold text-lg sm:text-xl transition-all duration-300" id="team-name">TeamPixel</span>
                 </div>
                 
@@ -242,7 +287,7 @@
                 </div>
                 
                 <!-- 移动端菜单按钮 -->
-                <button class="md:hidden glass-btn w-10 h-10 flex items-center justify-center text-gray-600 hover:text-primary">
+                <button class="md:hidden glass-btn w-10 h-10 flex items-center justify-center text-gray-600 hover:text-primary" id="openMenu">
                     <i class="fa fa-bars text-lg"></i>
                 </button>
             </div>
@@ -254,11 +299,11 @@
         <div class="container mx-auto max-w-4xl text-center relative z-10">
             <!-- Logo + 团队名 -->
             <div class="glass-effect rounded-2xl p-6 sm:p-8 inline-block mb-10 shadow-glass">
-                <img src="https://cdn.luogu.com.cn/upload/image_hosting/pejqi2ov.png" alt="TeamPixel团队标志" class="w-20 h-20 sm:w-24 sm:h-24 rounded object-cover mx-auto mb-4">
+                <img src="https://cdn.luogu.com.cn/upload/image_hosting/vy6i8dsm.png" alt="TeamPixel团队标志" class="w-20 h-20 sm:w-24 sm:h-24 rounded object-cover mx-auto mb-4">
                 <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight">TeamPixel</h1>
             </div>
             
-            <!-- 项目状态 + 名称 -->
+            <!-- 项目状态 -->
             <div class="flex items-center justify-center gap-2 mb-6 text-lg sm:text-xl text-gray-600">
                 <span>Nextious开发</span>
                 <span class="w-2 h-2 rounded-full bg-primary pulse-dot"></span>
@@ -266,19 +311,11 @@
                 <span class="w-2 h-2 rounded-full bg-primary pulse-dot pulse-delay-2"></span>
             </div>
             
-            <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-8">Nextious</h2>
-            
-            <!-- 项目名称释义 -->
-            <div class="glass-effect rounded-xl p-6 sm:p-8 max-w-2xl mx-auto text-gray-600 text-base sm:text-lg mb-12 leading-relaxed text-balance shadow-glass">
-                <p class="mb-3">这个名字来源于拉丁语单词</p>
-                <p class="text-xl sm:text-2xl font-medium text-dark my-2"><span class="italic">Nexus</span> (意为连接)</p>
-                <p class="my-2">以及</p>
-                <p class="text-xl sm:text-2xl font-medium text-dark my-2"><span class="italic">Nuntius</span> (意为信使,信息)</p>
-            </div>
+            <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-12">Nextious</h2>
             
             <!-- 行动按钮 -->
-            <a href="#about" class="glass-btn glass-btn-primary inline-flex items-center px-8 py-3.5 text-white font-medium">
-                了解我们的团队
+            <a href="#project" class="glass-btn glass-btn-primary inline-flex items-center px-8 py-3.5 text-white font-medium">
+                了解项目详情
                 <i class="fa fa-arrow-right ml-2"></i>
             </a>
         </div>
@@ -291,7 +328,7 @@
             
             <!-- 玻璃态主卡片 -->
             <div class="glass-effect rounded-2xl p-6 sm:p-10 shadow-glass max-w-3xl mx-auto">
-                <img src="https://cdn.luogu.com.cn/upload/image_hosting/pejqi2ov.png" alt="TeamPixel团队标志" class="w-24 h-24 sm:w-32 sm:h-32 rounded object-cover mx-auto mb-8">
+                <img src="https://cdn.luogu.com.cn/upload/image_hosting/vy6i8dsm.png" alt="TeamPixel团队标志" class="w-24 h-24 sm:w-32 sm:h-32 rounded object-cover mx-auto mb-8">
                 
                 <div class="text-gray-600 text-base sm:text-lg leading-relaxed">
                     <p class="mb-6">
@@ -326,14 +363,21 @@
         <div class="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 relative z-10">
             <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-12 sm:mb-16 text-center">我们的项目: <span class="text-primary">Nextious</span></h2>
             
+            <!-- Nextious名称释义 -->
+            <div class="glass-effect rounded-xl p-6 sm:p-8 max-w-3xl mx-auto text-gray-600 text-base sm:text-lg mb-12 leading-relaxed text-balance shadow-glass">
+                <h3 class="text-xl sm:text-2xl font-semibold mb-4 text-dark text-center">项目名称释义</h3>
+                <p class="mb-3 text-center">这个名字来源于拉丁语单词</p>
+                <p class="text-xl sm:text-2xl font-medium text-dark my-3 text-center"><span class="italic">Nexus</span> (意为连接)</p>
+                <p class="my-3 text-center">以及</p>
+                <p class="text-xl sm:text-2xl font-medium text-dark my-3 text-center"><span class="italic">Nuntius</span> (意为信使,信息)</p>
+                <p class="text-center mt-4">体现了项目在信息传递与连接方面的核心价值</p>
+            </div>
+            
             <!-- 玻璃态项目卡片 -->
             <div class="glass-effect rounded-2xl p-6 sm:p-10 shadow-glass max-w-3xl mx-auto mb-16">
                 <div class="text-gray-600 text-base sm:text-lg leading-relaxed">
                     <p class="mb-6">
-                        Nextious是TeamPixel团队正在开发的核心项目，名称融合了拉丁语中"连接"(Nexus)与"信使"(Nuntius)的含义，体现了项目在信息传递与连接方面的核心价值。
-                    </p>
-                    <p class="mb-8">
-                        项目专注于局域网内的信息与文件传输技术，深入研究TCP与UDP协议的应用与实现，旨在打造高效、可靠的本地网络通信解决方案。
+                        Nextious是TeamPixel团队正在开发的核心项目，专注于局域网内的信息与文件传输技术，深入研究TCP与UDP协议的应用与实现，旨在打造高效、可靠的本地网络通信解决方案。
                     </p>
                     
                     <!-- 项目特点标签 -->
@@ -403,10 +447,10 @@
                         </div>
                     </div>
                     
-                    <!-- 右侧：图片（已调整为2350*1225比例） -->
+                    <!-- 右侧：图片 -->
                     <div class="md:w-1/2">
                         <div class="glass-effect rounded-xl overflow-hidden border border-white/30 h-full flex items-center justify-center min-h-[240px]">
-                            <img src="https://cdn.luogu.com.cn/upload/image_hosting/e5kgjab4.png?x-oss-process=image/resize,m_lfit,h_490,w_940" alt="围棋软件界面截图" class="w-full h-full object-contain p-4">
+                            <img src="https://cdn.luogu.com.cn/upload/image_hosting/e5kgjab4.png" alt="围棋软件界面截图" class="w-full h-full object-contain p-4">
                         </div>
                         <p class="text-center text-sm text-gray-500 mt-3">围棋软件界面截图 (2350×1225比例)</p>
                     </div>
@@ -463,30 +507,30 @@
         <div class="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 relative z-10">
             <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-12 sm:mb-16 text-center">重要 <span class="text-primary">链接</span></h2>
             
-            <!-- 玻璃态卡片容器 -->
+            <!-- 非玻璃态卡片容器 -->
             <div class="grid md:grid-cols-2 gap-6 sm:gap-8">
                 <!-- 卡片1：开发规范 -->
                 <a href="https://gitee.com/wjzhi/article/blob/master/Nextious%20%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83%E4%B8%8E%E5%9B%A2%E9%98%9F%E5%88%86%E5%B7%A5.md" 
                    target="_blank" 
-                   class="glass-btn block glass-effect rounded-xl p-6 sm:p-8 h-full shadow-glass hover:shadow-glass-hover">
+                   class="block bg-white rounded-xl p-6 sm:p-8 h-full shadow-md hover:shadow-lg transition-all">
                     <div class="w-12 h-12 bg-primary/10 rounded-md flex items-center justify-center mb-4">
                         <i class="fa fa-book text-primary text-xl"></i>
                     </div>
                     <h3 class="text-xl font-semibold mb-3 text-dark">开发规范与团队分工</h3>
                     <p class="text-gray-600 mb-4">了解Nextious项目的开发规范、代码标准和团队成员分工情况。</p>
-                    <span class="text-primary font-medium link-underlined">查看文档 <i class="fa fa-external-link ml-1"></i></span>
+                    <span class="text-primary font-medium">查看文档 <i class="fa fa-external-link ml-1"></i></span>
                 </a>
                 
                 <!-- 卡片2：传输原理 -->
                 <a href="https://gitee.com/wjzhi/article/blob/master/%E5%B1%80%E5%9F%9F%E7%BD%91%E5%86%85%E6%96%87%E4%BB%B6%E4%BC%A0%E8%BE%93%E5%8E%9F%E7%90%86%EF%BC%9ATCP%20%E4%B8%8E%20UDP%20%E8%AF%A6%E8%A7%A3%E5%8F%8A%20C++%20%E5%AE%9E%E7%8E%B0.md" 
                    target="_blank" 
-                   class="glass-btn block glass-effect rounded-xl p-6 sm:p-8 h-full shadow-glass hover:shadow-glass-hover">
+                   class="block bg-white rounded-xl p-6 sm:p-8 h-full shadow-md hover:shadow-lg transition-all">
                     <div class="w-12 h-12 bg-primary/10 rounded-md flex items-center justify-center mb-4">
                         <i class="fa fa-sitemap text-primary text-xl"></i>
                     </div>
                     <h3 class="text-xl font-semibold mb-3 text-dark">局域网传输原理</h3>
                     <p class="text-gray-600 mb-4">深入理解TCP与UDP协议，以及如何在C++中实现局域网内的文件传输。</p>
-                    <span class="text-primary font-medium link-underlined">查看文档 <i class="fa fa-external-link ml-1"></i></span>
+                    <span class="text-primary font-medium">查看文档 <i class="fa fa-external-link ml-1"></i></span>
                 </a>
             </div>
         </div>
@@ -509,7 +553,7 @@
                                 <i class="fa fa-gamepad"></i>
                             </div>
                             <div class="ml-4">
-                                <span class="text-lg font-medium text-dark link-underlined">SFML tutorial.md</span>
+                                <span class="text-lg font-medium text-dark">SFML tutorial.md</span>
                                 <p class="text-gray-600 mt-1 text-sm sm:text-base">SFML库的使用教程文档</p>
                             </div>
                         </a>
@@ -524,7 +568,7 @@
                                 <i class="fa fa-cube"></i>
                             </div>
                             <div class="ml-4">
-                                <span class="text-lg font-medium text-dark link-underlined">用c++实现3d引擎-超详细(附源码)</span>
+                                <span class="text-lg font-medium text-dark">用c++实现3d引擎-超详细(附源码)</span>
                                 <p class="text-gray-600 mt-1 text-sm sm:text-base">C++实现3D引擎的详细教程及源代码</p>
                             </div>
                         </a>
@@ -539,7 +583,7 @@
                                 <i class="fa fa-exchange"></i>
                             </div>
                             <div class="ml-4">
-                                <span class="text-lg font-medium text-dark link-underlined">局域网内文件传输原理：TCP 与 UDP 详解及 C++ 实现</span>
+                                <span class="text-lg font-medium text-dark">局域网内文件传输原理：TCP 与 UDP 详解及 C++ 实现</span>
                                 <p class="text-gray-600 mt-1 text-sm sm:text-base">详细解析TCP与UDP协议在局域网文件传输中的应用</p>
                             </div>
                         </a>
@@ -554,7 +598,7 @@
                                 <i class="fa fa-file-text"></i>
                             </div>
                             <div class="ml-4">
-                                <span class="text-lg font-medium text-dark link-underlined">C++ 局域网传输文件、字符的原理详解</span>
+                                <span class="text-lg font-medium text-dark">C++ 局域网传输文件、字符的原理详解</span>
                                 <p class="text-gray-600 mt-1 text-sm sm:text-base">C++实现局域网内文件和字符传输的原理分析</p>
                             </div>
                         </a>
@@ -570,27 +614,39 @@
             <div class="flex flex-col md:flex-row justify-between items-center mb-8 sm:mb-12">
                 <!-- 左侧：Logo + 团队名 -->
                 <div class="flex items-center gap-2 mb-6 md:mb-0">
-                    <img src="https://cdn.luogu.com.cn/upload/image_hosting/pejqi2ov.png" alt="TeamPixel团队标志" class="w-8 h-8 rounded object-cover">
+                    <img src="https://cdn.luogu.com.cn/upload/image_hosting/vy6i8dsm.png" alt="TeamPixel团队标志" class="w-8 h-8 rounded object-cover">
                     <span class="font-semibold text-lg">TeamPixel</span>
                 </div>
                 
                 <!-- 右侧：社交链接 -->
-                <div class="flex gap-4">
-                    <a href="#" class="glass-btn w-10 h-10 flex items-center justify-center text-gray-400 hover:text-primary">
-                        <i class="fa fa-github text-xl"></i>
-                    </a>
-                    <a href="#" class="glass-btn w-10 h-10 flex items-center justify-center text-gray-400 hover:text-primary">
-                        <i class="fa fa-gitee text-xl"></i>
-                    </a>
-                    <a href="#" class="glass-btn w-10 h-10 flex items-center justify-center text-gray-400 hover:text-primary">
-                        <i class="fa fa-envelope text-xl"></i>
-                    </a>
+                <div class="flex gap-6 sm:gap-8">
+                    <!-- 团队洛谷主页 -->
+                    <div class="flex flex-col items-center">
+                        <a href="https://www.luogu.com.cn/team/112080" target="_blank" class="glass-btn w-10 h-10 flex items-center justify-center text-gray-400 hover:text-primary">
+                            <i class="fa fa-users text-xl"></i>
+                        </a>
+                        <span class="text-xs text-gray-500 mt-1">团队洛谷主页</span>
+                    </div>
+                    <!-- wujz洛谷主页 -->
+                    <div class="flex flex-col items-center">
+                        <a href="https://www.luogu.com.cn/user/1017957" target="_blank" class="glass-btn w-10 h-10 flex items-center justify-center text-gray-400 hover:text-primary">
+                            <i class="fa fa-user text-xl"></i>
+                        </a>
+                        <span class="text-xs text-gray-500 mt-1">wujz的洛谷主页</span>
+                    </div>
+                    <!-- Teddyzhi0815洛谷主页 -->
+                    <div class="flex flex-col items-center">
+                        <a href="https://www.luogu.com.cn/user/1513356" target="_blank" class="glass-btn w-10 h-10 flex items-center justify-center text-gray-400 hover:text-primary">
+                            <i class="fa fa-user text-xl"></i>
+                        </a>
+                        <span class="text-xs text-gray-500 mt-1">Teddyzhi0815的洛谷主页</span>
+                    </div>
                 </div>
             </div>
             
             <!-- 版权信息 -->
             <div class="text-center text-gray-400 text-sm sm:text-base">
-                <p>© 2023 TeamPixel团队. Nextious项目开发中.</p>
+                <p>© 2025 TeamPixel团队. Nextious项目开发中.</p>
                 <p class="mt-2">本网站展示团队及项目相关信息与技术文档</p>
             </div>
         </div>
@@ -624,9 +680,49 @@
             }
         });
         
-        // 平滑滚动
+        // 移动端菜单功能
         document.addEventListener('DOMContentLoaded', function() {
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            const openMenuBtn = document.getElementById('openMenu');
+            const closeMenuBtn = document.getElementById('closeMenu');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+            
+            // 打开菜单
+            openMenuBtn.addEventListener('click', function() {
+                mobileMenu.classList.add('active');
+                document.body.style.overflow = 'hidden'; // 防止背景滚动
+            });
+            
+            // 关闭菜单
+            function closeMenu() {
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = ''; // 恢复滚动
+            }
+            
+            closeMenuBtn.addEventListener('click', closeMenu);
+            
+            // 点击菜单项后关闭菜单
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    closeMenu();
+                    
+                    // 平滑滚动到目标位置
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        setTimeout(() => { // 等待菜单关闭动画完成
+                            window.scrollTo({
+                                top: targetElement.offsetTop - 80,
+                                behavior: 'smooth'
+                            });
+                        }, 300);
+                    }
+                });
+            });
+            
+            // 平滑滚动
+            document.querySelectorAll('a[href^="#"]:not(.mobile-link)').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
                     e.preventDefault();
                     const targetId = this.getAttribute('href');
@@ -652,3 +748,4 @@
     </script>
 </body>
 </html>
+</doubaocanvas-part></doubaocanvas>
