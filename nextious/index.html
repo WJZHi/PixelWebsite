@@ -1,0 +1,451 @@
+<doubaocanvas type="webview" identifier="nextious-intro-page" title="Nextious软件介绍页面" genre="">
+    <doubaocanvas-part path="nextious-intro.html" language="html" description="与TeamPixel主页风格一致的Nextious软件介绍页面，含返回主页功能"><!DOCTYPE html>
+<html lang="zh-CN" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nextious - 局域网通信与文件传输工具</title>
+    <!-- 网站图标 -->
+    <link rel="icon" href="logo.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="logo.ico" type="image/x-icon">
+    <!-- 引入Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入Font Awesome -->
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    
+    <!-- 配置Tailwind：沿用主页深色模式颜色系统 -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#165DFF',
+                        secondary: '#36465D',
+                        light: {
+                            bg: '#FFFFFF',
+                            text: '#1D2939',
+                            gray: '#F5F7FA',
+                            glass: 'rgba(240, 240, 240, 0.6)',
+                            glassBorder: 'rgba(220, 220, 220, 0.3)',
+                        },
+                        dark: {
+                            bg: '#121826',
+                            text: '#F9FAFB',
+                            gray: '#1E293B',
+                            glass: 'rgba(30, 41, 59, 0.7)',
+                            glassBorder: 'rgba(71, 85, 105, 0.3)',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'glass': '0 8px 32px rgba(0, 0, 0, 0.08)',
+                        'glass-hover': '0 12px 40px rgba(0, 0, 0, 0.12)',
+                        'dark-glass': '0 8px 32px rgba(0, 0, 0, 0.25)',
+                        'dark-glass-hover': '0 12px 40px rgba(0, 0, 0, 0.35)',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- 自定义工具类：复用主页玻璃态样式 -->
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-balance {
+                text-wrap: balance;
+            }
+            .glass-effect {
+                @apply bg-light-glass backdrop-blur-xl border border-light-glassBorder transition-all duration-300;
+            }
+            .dark .glass-effect {
+                @apply bg-dark-glass border border-dark-glassBorder;
+            }
+            .glass-btn {
+                @apply relative overflow-hidden rounded-full bg-light-glass border border-light-glassBorder transition-all duration-400 z-10;
+            }
+            .glass-btn:hover {
+                @apply transform -translate-y-1 bg-light-glass/90 border-light-glassBorder/80 shadow-glass-hover;
+            }
+            .dark .glass-btn {
+                @apply bg-dark-glass border border-dark-glassBorder;
+            }
+            .dark .glass-btn:hover {
+                @apply bg-dark-glass/90 border-dark-glassBorder/80 shadow-dark-glass-hover;
+            }
+            .glass-btn-primary {
+                @apply bg-primary/90 border border-white/30 text-white;
+            }
+            .glass-btn-primary:hover {
+                @apply bg-primary border-white/50;
+            }
+            .liquid-shape {
+                border-radius: 28% 72% 55% 45% / 42% 45% 55% 58%;
+            }
+            .liquid-shape-2 {
+                border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%;
+            }
+        }
+    </style>
+    
+    <style>
+        /* 基础主题切换样式 */
+        body {
+            @apply bg-light-bg text-light-text transition-colors duration-300 font-sans;
+        }
+        .dark body {
+            @apply bg-dark-bg text-dark-text;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* 玻璃按钮折射效果 */
+        .glass-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            opacity: 0;
+            transition: opacity 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            z-index: -1;
+            border-radius: 50rem;
+        }
+        .glass-btn:hover::before {
+            opacity: 1;
+        }
+        .glass-btn::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            border-radius: 50rem;
+            background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 50%, rgba(255,255,255,0.2) 100%);
+            opacity: 0;
+            transition: opacity 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            z-index: -1;
+            filter: blur(2px);
+        }
+        .glass-btn:hover::after {
+            opacity: 1;
+        }
+        .dark .glass-btn::after {
+            background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 50%, rgba(255,255,255,0.1) 100%);
+        }
+        
+        /* 液态形状动画 */
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+        .float-animation {
+            animation: float 8s ease-in-out infinite;
+        }
+        .float-animation-delay {
+            animation: float 10s ease-in-out infinite 1s;
+        }
+        .dark .float-animation,
+        .dark .float-animation-delay {
+            @apply bg-primary/10;
+        }
+        
+        /* 主题切换按钮动画 */
+        .theme-toggle {
+            @apply transition-all duration-300 ease-in-out;
+        }
+        .theme-toggle:hover {
+            @apply rotate-15;
+        }
+        
+        /* 功能卡片悬停效果 */
+        .feature-card {
+            @apply transition-all duration-300 hover:shadow-glass-hover dark:hover:shadow-dark-glass-hover hover:-translate-y-1;
+        }
+    </style>
+</head>
+<body>
+    <!-- 背景装饰：复用主页液态形状设计 -->
+    <div class="fixed -top-40 -right-40 w-96 h-96 bg-primary/5 liquid-shape float-animation z-0"></div>
+    <div class="fixed -bottom-20 -left-20 w-72 h-72 bg-primary/5 liquid-shape-2 float-animation-delay z-0"></div>
+    
+    <!-- 导航栏：简化设计，突出返回主页功能 -->
+    <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center">
+                <!-- 左侧：Logo + 软件名 -->
+                <div class="flex items-center gap-2">
+                    <img src="https://cdn.luogu.com.cn/upload/image_hosting/vy6i8dsm.png" alt="Nextious标志" class="w-8 h-8 sm:w-10 sm:h-10 rounded object-cover">
+                    <span class="font-semibold text-lg sm:text-xl">Nextious</span>
+                </div>
+                
+                <!-- 右侧：主题切换 + 返回主页按钮 -->
+                <div class="flex items-center gap-4">
+                    <!-- 主题切换按钮 -->
+                    <button class="glass-btn w-10 h-10 flex items-center justify-center text-light-text dark:text-dark-text theme-toggle" id="themeToggle">
+                        <i class="fa fa-moon-o dark:hidden"></i>
+                        <i class="fa fa-sun-o hidden dark:block"></i>
+                    </button>
+                    
+                    <!-- 返回主页按钮：突出显示 -->
+                    <a href="https://tpixel.qzz.io" class="glass-btn glass-btn-primary px-4 py-1.5 text-sm sm:text-base flex items-center">
+                        <i class="fa fa-home mr-2"></i>
+                        返回主页
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 英雄区域：突出软件名称与核心定位 -->
+    <section class="pt-32 pb-20 sm:pt-40 sm:pb-28 px-4 sm:px-6 lg:px-8 relative">
+        <div class="container mx-auto max-w-4xl text-center relative z-10">
+            <!-- 软件名称与定位 -->
+            <div class="glass-effect rounded-2xl p-6 sm:p-8 inline-block mb-10 shadow-glass">
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-4">Nextious</h1>
+                <p class="text-lg sm:text-xl text-light-text/80 dark:text-dark-text/80">局域网通信与文件传输解决方案</p>
+            </div>
+            
+            <!-- 名称释义：复用原文内容 -->
+            <div class="glass-effect rounded-xl p-6 sm:p-8 max-w-3xl mx-auto text-light-text/90 dark:text-dark-text/90 text-base sm:text-lg mb-12 leading-relaxed text-balance shadow-glass">
+                <p class="mb-3">名称来源于拉丁语单词</p>
+                <div class="flex flex-col sm:flex-row justify-center gap-8 my-4">
+                    <p class="text-xl sm:text-2xl font-medium"><span class="italic">Nexus</span> (意为连接)</p>
+                    <p class="text-xl sm:text-2xl font-medium"><span class="italic">Nuntius</span> (意为信使,信息)</p>
+                </div>
+                <p>融合连接与信息传递的核心价值，打造高效局域网工具</p>
+            </div>
+            
+            <!-- 核心定位标签 -->
+            <div class="flex flex-wrap gap-3 sm:gap-4 justify-center max-w-2xl mx-auto">
+                <span class="glass-btn px-4 py-2.5 text-light-text dark:text-dark-text text-sm sm:text-base">
+                    <i class="fa fa-users mr-2 text-primary"></i>学生/企业适用
+                </span>
+                <span class="glass-btn px-4 py-2.5 text-light-text dark:text-dark-text text-sm sm:text-base">
+                    <i class="fa fa-wifi mr-2 text-primary"></i>局域网通信
+                </span>
+                <span class="glass-btn px-4 py-2.5 text-light-text dark:text-dark-text text-sm sm:text-base">
+                    <i class="fa fa-shield mr-2 text-primary"></i>安全加密
+                </span>
+            </div>
+        </div>
+    </section>
+
+    <!-- 核心功能区：分模块展示功能，搭配图标增强直观性 -->
+    <section class="py-16 sm:py-24 bg-light-gray dark:bg-dark-gray relative">
+        <div class="container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 relative z-10">
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-12 sm:mb-16 text-center">核心 <span class="text-primary">功能</span></h2>
+            
+            <!-- 功能卡片网格：响应式布局 -->
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                <!-- 功能1：图形化界面 -->
+                <div class="glass-effect rounded-2xl p-6 sm:p-8 shadow-glass feature-card">
+                    <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fa fa-desktop text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 text-center">友好图形化界面</h3>
+                    <p class="text-light-text/90 dark:text-dark-text/90 text-center">告别复杂命令行，直观操作界面，新手也能快速上手</p>
+                </div>
+                
+                <!-- 功能2：文字语音聊天 -->
+                <div class="glass-effect rounded-2xl p-6 sm:p-8 shadow-glass feature-card">
+                    <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fa fa-comments text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 text-center">文字语音聊天</h3>
+                    <p class="text-light-text/90 dark:text-dark-text/90 text-center">局域网内实时沟通，支持文字消息与语音通话，沟通更高效</p>
+                </div>
+                
+                <!-- 功能3：全类型文件发送 -->
+                <div class="glass-effect rounded-2xl p-6 sm:p-8 shadow-glass feature-card">
+                    <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fa fa-file-text-o text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 text-center">全类型文件发送</h3>
+                    <p class="text-light-text/90 dark:text-dark-text/90 text-center">支持所有格式文件传输，无需担心文件类型限制，传输速度快</p>
+                </div>
+                
+                <!-- 功能4：实时屏幕镜像 -->
+                <div class="glass-effect rounded-2xl p-6 sm:p-8 shadow-glass feature-card">
+                    <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fa fa-desktop text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 text-center">实时屏幕镜像</h3>
+                    <p class="text-light-text/90 dark:text-dark-text/90 text-center">远程共享屏幕内容，适用于教学演示、会议汇报等场景</p>
+                </div>
+                
+                <!-- 功能5：非对称加密 -->
+                <div class="glass-effect rounded-2xl p-6 sm:p-8 shadow-glass feature-card">
+                    <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fa fa-lock text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 text-center">非对称加密技术</h3>
+                    <p class="text-light-text/90 dark:text-dark-text/90 text-center">采用高强度非对称加密算法，确保通信内容与文件传输安全</p>
+                </div>
+                
+                <!-- 功能6：去中心化管理 -->
+                <div class="glass-effect rounded-2xl p-6 sm:p-8 shadow-glass feature-card">
+                    <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fa fa-random text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 text-center">去中心化管理</h3>
+                    <p class="text-light-text/90 dark:text-dark-text/90 text-center">无需中心服务器，数据直接点对点传输，你的数据从不经过第三方服务器</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 适用人群区：针对学生和企业场景 -->
+    <section class="py-16 sm:py-24 relative">
+        <div class="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 relative z-10">
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-12 sm:mb-16 text-center">适用 <span class="text-primary">人群</span></h2>
+            
+            <div class="grid sm:grid-cols-2 gap-8">
+                <!-- 学生场景 -->
+                <div class="glass-effect rounded-2xl p-6 sm:p-10 shadow-glass feature-card">
+                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fa fa-graduation-cap text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl sm:text-2xl font-semibold mb-6 text-center">学生群体</h3>
+                    <ul class="space-y-4 text-light-text/90 dark:text-dark-text/90">
+                        <li class="flex items-start">
+                            <i class="fa fa-check-circle text-primary mt-1 mr-3 text-lg"></i>
+                            <span>机房无网环境下，同学间实时聊天沟通</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-check-circle text-primary mt-1 mr-3 text-lg"></i>
+                            <span>快速传输学习资料、作业文件，无需U盘</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-check-circle text-primary mt-1 mr-3 text-lg"></i>
+                            <span>小组项目协作时，屏幕镜像共享思路与成果</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- 企业场景 -->
+                <div class="glass-effect rounded-2xl p-6 sm:p-10 shadow-glass feature-card">
+                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fa fa-briefcase text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl sm:text-2xl font-semibold mb-6 text-center">企业用户</h3>
+                    <ul class="space-y-4 text-light-text/90 dark:text-dark-text/90">
+                        <li class="flex items-start">
+                            <i class="fa fa-check-circle text-primary mt-1 mr-3 text-lg"></i>
+                            <span>内网安全聊天，避免外部网络监控风险</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-check-circle text-primary mt-1 mr-3 text-lg"></i>
+                            <span>传输敏感业务文件，加密技术保障数据安全</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-check-circle text-primary mt-1 mr-3 text-lg"></i>
+                            <span>去中心化架构，无需维护中心服务器，降低IT成本</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 安全优势区：强调数据安全 -->
+    <section class="py-16 sm:py-24 bg-light-gray dark:bg-dark-gray relative">
+        <div class="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 relative z-10">
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-12 sm:mb-16 text-center">安全 <span class="text-primary">优势</span></h2>
+            
+            <div class="glass-effect rounded-2xl p-8 sm:p-12 shadow-glass max-w-3xl mx-auto">
+                <div class="flex flex-col md:flex-row items-center gap-8">
+                    <!-- 左侧图标 -->
+                    <div class="w-24 h-24 bg-primary/10 rounded-full flex items-center justify-center">
+                        <i class="fa fa-shield text-primary text-4xl"></i>
+                    </div>
+                    
+                    <!-- 右侧文字：突出数据安全 -->
+                    <div class="text-light-text/90 dark:text-dark-text/90 text-base sm:text-lg">
+                        <h3 class="text-xl sm:text-2xl font-semibold mb-4">你的数据，绝对安全</h3>
+                        <p class="mb-4">Nextious采用去中心化架构，所有数据均通过局域网点对点直接传输，<span class="text-primary font-medium">从不经过任何第三方服务器</span>，彻底杜绝数据泄露风险。</p>
+                        <p>配合非对称加密技术，即使在公共局域网环境下，也能确保你的聊天内容和文件传输不被窃取或篡改，为学生学习和企业办公提供绝对安全的通信保障。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚：再次强调返回主页功能 -->
+    <footer class="py-12 sm:py-16 glass-effect border-t border-light-glassBorder dark:border-dark-glassBorder relative z-10">
+        <div class="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col sm:flex-row justify-between items-center mb-8 sm:mb-12">
+                <!-- 左侧：Logo + 软件名 -->
+                <div class="flex items-center gap-2 mb-6 sm:mb-0">
+                    <img src="https://cdn.luogu.com.cn/upload/image_hosting/vy6i8dsm.png" alt="Nextious标志" class="w-8 h-8 rounded object-cover">
+                    <span class="font-semibold text-lg">Nextious</span>
+                </div>
+                
+                <!-- 右侧：返回主页按钮（重复放置，方便用户） -->
+                <a href="https://tpixel.qzz.io" class="glass-btn glass-btn-primary px-6 py-3 text-base flex items-center">
+                    <i class="fa fa-home mr-2"></i>
+                    返回TeamPixel主页
+                </a>
+            </div>
+            
+            <!-- 版权信息 -->
+            <div class="text-center text-light-text/60 dark:text-dark-text/60 text-sm sm:text-base">
+                <p>© 2025 TeamPixel团队. Nextious软件介绍页面.</p>
+                <p class="mt-2">专注于局域网通信与文件传输的安全解决方案</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript：主题切换与基础交互 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const html = document.documentElement;
+            const themeToggle = document.getElementById('themeToggle');
+            
+            // 初始化主题：跟随本地存储或系统设置
+            function initTheme() {
+                const savedTheme = localStorage.getItem('theme');
+                if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                    html.classList.add('dark');
+                } else {
+                    html.classList.remove('dark');
+                }
+            }
+            
+            // 切换主题
+            function toggleTheme() {
+                html.classList.toggle('dark');
+                localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+            }
+            
+            // 绑定事件
+            themeToggle?.addEventListener('click', toggleTheme);
+            initTheme();
+            
+            // 导航栏滚动效果
+            window.addEventListener('scroll', function() {
+                const header = document.querySelector('header');
+                if (window.scrollY > 50) {
+                    header.classList.add('py-2');
+                    header.classList.remove('py-4');
+                } else {
+                    header.classList.remove('py-2');
+                    header.classList.add('py-4');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+</doubaocanvas-part></doubaocanvas>
