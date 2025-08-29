@@ -1,5 +1,4 @@
-<doubaocanvas type="webview" identifier="nextious-team-page-openai-style" title="TeamPixel - Nextious项目（OpenAI风格）" genre="">
-    <doubaocanvas-part path="index.html" language="html" description="遵循OpenAI官网极简风格，保留原有内容结构的TeamPixel团队主页"><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -13,32 +12,34 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
     
-    <!-- 配置Tailwind：匹配OpenAI极简风格（白+深蓝主色，低饱和辅助色） -->
+    <!-- 配置Tailwind -->
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        // OpenAI风格主色：深蓝+低饱和灰
                         primary: '#165DFF',
                         secondary: '#36465D',
                         neutral: '#F5F7FA',
                         dark: '#1D2939',
+                        glass: 'rgba(255, 255, 255, 0.85)',
+                        glass-dark: 'rgba(29, 41, 57, 0.75)',
                     },
                     fontFamily: {
-                        sans: ['Inter', 'system-ui', 'sans-serif'], // OpenAI常用无衬线字体
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
                     },
                     boxShadow: {
-                        // 弱化阴影，贴合OpenAI极简质感
-                        'openai': '0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.1)',
-                        'openai-hover': '0 4px 12px rgba(0,0,0,0.08)',
+                        'glass': '0 8px 32px rgba(0, 0, 0, 0.08)',
+                        'glass-hover': '0 12px 40px rgba(0, 0, 0, 0.12)',
+                        'refract': '0 0 15px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.3)',
+                        'refract-primary': '0 0 15px rgba(22, 93, 255, 0.3), 0 0 30px rgba(22, 93, 255, 0.15)',
                     }
                 }
             }
         }
     </script>
     
-    <!-- 自定义工具类：贴合OpenAI简洁调性 -->
+    <!-- 自定义工具类：玻璃按钮核心样式 -->
     <style type="text/tailwindcss">
         @layer utilities {
             .content-auto {
@@ -47,24 +48,124 @@
             .text-balance {
                 text-wrap: balance;
             }
-            .transition-openai {
-                transition: all 0.25s ease-in-out;
+            .glass-effect {
+                background: rgba(240, 240, 240, 0.6); /* 改为淡灰色背景 */
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
+                border: 1px solid rgba(220, 220, 220, 0.3); /* 调整边框颜色 */
+            }
+            .glass-effect-dark {
+                background: rgba(29, 41, 57, 0.7);
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
+                border: 1px solid rgba(255, 255, 255, 0.08);
+            }
+            .liquid-shape {
+                border-radius: 28% 72% 55% 45% / 42% 45% 55% 58%;
+            }
+            .liquid-shape-2 {
+                border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%;
+            }
+            .nav-ellipse {
+                border-radius: 50rem;
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            
+            /* 核心玻璃按钮样式 - 改为淡灰色基调 */
+            .glass-btn {
+                position: relative;
+                overflow: hidden;
+                border-radius: 50rem; /* 椭圆形 */
+                background: rgba(240, 240, 240, 0.6); /* 淡灰色背景 */
+                border: 1px solid rgba(220, 220, 220, 0.4); /* 淡灰色边框 */
+                transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+                z-index: 1;
+            }
+            
+            /* 悬停时的玻璃效果 */
+            .glass-btn:hover {
+                transform: translateY(-2px);
+                background: rgba(230, 230, 230, 0.8); /* 稍深的灰色 */
+                border-color: rgba(200, 200, 200, 0.6); /* 边框颜色加深 */
+            }
+            
+            /* 玻璃按钮背景模糊层 */
+            .glass-btn::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+                opacity: 0;
+                transition: opacity 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+                z-index: -1;
+                border-radius: 50rem;
+            }
+            
+            .glass-btn:hover::before {
+                opacity: 1;
+            }
+            
+            /* 光线折射效果 - 使用多层阴影模拟 */
+            .glass-btn::after {
+                content: '';
+                position: absolute;
+                top: -2px;
+                left: -2px;
+                right: -2px;
+                bottom: -2px;
+                border-radius: 50rem;
+                background: linear-gradient(
+                    135deg,
+                    rgba(255, 255, 255, 0.3) 0%,
+                    rgba(255, 255, 255, 0) 50%,
+                    rgba(255, 255, 255, 0.2) 100%
+                );
+                opacity: 0;
+                transition: opacity 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+                z-index: -1;
+                filter: blur(2px);
+            }
+            
+            .glass-btn:hover::after {
+                opacity: 1;
+            }
+            
+            /* 主色按钮的玻璃变体 */
+            .glass-btn-primary {
+                background: rgba(22, 93, 255, 0.8);
+                border: 1px solid rgba(255, 255, 255, 0.3);
+            }
+            
+            .glass-btn-primary:hover {
+                background: rgba(22, 93, 255, 0.9);
+                border-color: rgba(255, 255, 255, 0.5);
+            }
+            
+            .glass-btn-primary::after {
+                background: linear-gradient(
+                    135deg,
+                    rgba(255, 255, 255, 0.3) 0%,
+                    rgba(255, 255, 255, 0) 50%,
+                    rgba(255, 255, 255, 0.2) 100%
+                );
             }
         }
     </style>
     
     <style>
-        /* 基础样式：极简、高可读性 */
         body {
             font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+            overflow-x: hidden;
         }
         
-        /* 平滑滚动 */
         html {
             scroll-behavior: smooth;
         }
         
-        /* 链接 hover 效果：OpenAI式淡入下划线 */
         .link-underlined {
             position: relative;
         }
@@ -82,7 +183,6 @@
             width: 100%;
         }
         
-        /* 开发状态点动画：弱化节奏，贴合极简 */
         @keyframes pulse-dot {
             0%, 100% { opacity: 1; }
             50% { opacity: 0.5; }
@@ -92,42 +192,70 @@
         }
         .pulse-delay-1 { animation-delay: 0.5s; }
         .pulse-delay-2 { animation-delay: 1s; }
+        
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+        .float-animation {
+            animation: float 8s ease-in-out infinite;
+        }
+        .float-animation-delay {
+            animation: float 10s ease-in-out infinite 1s;
+        }
+        
+        .nav-scrolled {
+            padding-top: 0.5rem !important;
+            padding-bottom: 0.5rem !important;
+        }
+        .nav-scrolled a {
+            font-size: 0.875rem !important;
+        }
     </style>
 </head>
 <body class="bg-white text-dark">
-    <!-- 导航栏：OpenAI式极简固定导航，无多余装饰 -->
-    <header class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm border-b border-gray-100 z-50">
+    <!-- 背景装饰 -->
+    <div class="fixed -top-40 -right-40 w-96 h-96 bg-primary/5 liquid-shape float-animation z-0"></div>
+    <div class="fixed -bottom-20 -left-20 w-72 h-72 bg-primary/5 liquid-shape-2 float-animation-delay z-0"></div>
+    
+    <!-- 导航栏 -->
+    <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16 sm:h-20">
+            <div class="flex justify-between items-center">
                 <!-- 左侧：Logo + 团队名 -->
                 <div class="flex items-center gap-2">
-                    <img src="logo.jpeg" alt="TeamPixel团队标志" class="w-8 h-8 sm:w-10 sm:h-10 rounded object-cover">
-                    <span class="font-semibold text-lg sm:text-xl">TeamPixel</span>
+                    <img src="https://cdn.luogu.com.cn/upload/image_hosting/pejqi2ov.png" alt="TeamPixel团队标志" class="w-8 h-8 sm:w-10 sm:h-10 rounded object-cover transition-all duration-300" id="logo">
+                    <span class="font-semibold text-lg sm:text-xl transition-all duration-300" id="team-name">TeamPixel</span>
                 </div>
                 
-                <!-- 右侧：导航链接（桌面端） -->
-                <nav class="hidden md:flex items-center gap-8">
-                    <a href="#about" class="text-gray-600 hover:text-primary text-sm sm:text-base transition-openai">关于团队</a>
-                    <a href="#project" class="text-gray-600 hover:text-primary text-sm sm:text-base transition-openai">Nextious项目</a>
-                    <a href="#docs" class="text-gray-600 hover:text-primary text-sm sm:text-base transition-openai">技术文档</a>
-                    <a href="#links" class="text-gray-600 hover:text-primary text-sm sm:text-base transition-openai">重要链接</a>
-                </nav>
+                <!-- 右侧：导航链接 -->
+                <div class="hidden md:block">
+                    <nav class="nav-ellipse glass-effect shadow-glass px-8 py-3 hover:shadow-glass-hover transition-all">
+                        <ul class="flex items-center gap-6 sm:gap-8">
+                            <li><a href="#about" class="glass-btn px-3 py-1.5 text-gray-600 hover:text-primary text-sm sm:text-base">关于团队</a></li>
+                            <li><a href="#project" class="glass-btn px-3 py-1.5 text-gray-600 hover:text-primary text-sm sm:text-base">Nextious项目</a></li>
+                            <li><a href="#docs" class="glass-btn px-3 py-1.5 text-gray-600 hover:text-primary text-sm sm:text-base">技术文档</a></li>
+                            <li><a href="#links" class="glass-btn px-3 py-1.5 text-gray-600 hover:text-primary text-sm sm:text-base">重要链接</a></li>
+                        </ul>
+                    </nav>
+                </div>
                 
                 <!-- 移动端菜单按钮 -->
-                <button class="md:hidden text-gray-600 hover:text-primary transition-openai">
+                <button class="md:hidden glass-btn w-10 h-10 flex items-center justify-center text-gray-600 hover:text-primary">
                     <i class="fa fa-bars text-lg"></i>
                 </button>
             </div>
         </div>
     </header>
 
-    <!-- 英雄区域：OpenAI式大留白、大标题、简洁排版 -->
-    <section class="pt-32 pb-20 sm:pt-40 sm:pb-28 px-4 sm:px-6 lg:px-8">
-        <div class="container mx-auto max-w-4xl text-center">
-            <!-- Logo + 团队名：居中突出 -->
-            <div class="flex flex-col items-center mb-8">
-                <img src="logo.jpeg" alt="TeamPixel团队标志" class="w-20 h-20 sm:w-24 sm:h-24 rounded object-cover mb-4">
-                <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-2">TeamPixel</h1>
+    <!-- 英雄区域 -->
+    <section class="pt-32 pb-20 sm:pt-40 sm:pb-28 px-4 sm:px-6 lg:px-8 relative">
+        <div class="container mx-auto max-w-4xl text-center relative z-10">
+            <!-- Logo + 团队名 -->
+            <div class="glass-effect rounded-2xl p-6 sm:p-8 inline-block mb-10 shadow-glass">
+                <img src="https://cdn.luogu.com.cn/upload/image_hosting/pejqi2ov.png" alt="TeamPixel团队标志" class="w-20 h-20 sm:w-24 sm:h-24 rounded object-cover mx-auto mb-4">
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight">TeamPixel</h1>
             </div>
             
             <!-- 项目状态 + 名称 -->
@@ -140,32 +268,32 @@
             
             <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-8">Nextious</h2>
             
-            <!-- 项目名称释义：简洁段落，高可读性 -->
-            <div class="max-w-2xl mx-auto text-gray-600 text-base sm:text-lg mb-12 leading-relaxed text-balance">
+            <!-- 项目名称释义 -->
+            <div class="glass-effect rounded-xl p-6 sm:p-8 max-w-2xl mx-auto text-gray-600 text-base sm:text-lg mb-12 leading-relaxed text-balance shadow-glass">
                 <p class="mb-3">这个名字来源于拉丁语单词</p>
                 <p class="text-xl sm:text-2xl font-medium text-dark my-2"><span class="italic">Nexus</span> (意为连接)</p>
                 <p class="my-2">以及</p>
                 <p class="text-xl sm:text-2xl font-medium text-dark my-2"><span class="italic">Nuntius</span> (意为信使,信息)</p>
             </div>
             
-            <!-- 行动按钮：OpenAI式简约按钮 -->
-            <a href="#about" class="inline-flex items-center px-6 py-3 bg-primary text-white font-medium rounded-md hover:bg-primary/90 transition-openai">
+            <!-- 行动按钮 -->
+            <a href="#about" class="glass-btn glass-btn-primary inline-flex items-center px-8 py-3.5 text-white font-medium">
                 了解我们的团队
                 <i class="fa fa-arrow-right ml-2"></i>
             </a>
         </div>
     </section>
 
-    <!-- 关于团队：OpenAI式卡片布局，淡色背景，低饱和 -->
-    <section id="about" class="py-16 sm:py-24 bg-neutral">
-        <div class="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+    <!-- 关于团队 -->
+    <section id="about" class="py-16 sm:py-24 bg-neutral relative">
+        <div class="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 relative z-10">
             <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-12 sm:mb-16 text-center">关于 <span class="text-primary">TeamPixel</span></h2>
             
-            <div class="flex flex-col items-center mb-12">
-                <img src="logo.jpeg" alt="TeamPixel团队标志" class="w-24 h-24 sm:w-32 sm:h-32 rounded object-cover mb-8">
+            <!-- 玻璃态主卡片 -->
+            <div class="glass-effect rounded-2xl p-6 sm:p-10 shadow-glass max-w-3xl mx-auto">
+                <img src="https://cdn.luogu.com.cn/upload/image_hosting/pejqi2ov.png" alt="TeamPixel团队标志" class="w-24 h-24 sm:w-32 sm:h-32 rounded object-cover mx-auto mb-8">
                 
-                <!-- 团队介绍：分段落，清晰易读 -->
-                <div class="max-w-3xl text-gray-600 text-base sm:text-lg leading-relaxed">
+                <div class="text-gray-600 text-base sm:text-lg leading-relaxed">
                     <p class="mb-6">
                         TeamPixel是一个专注于软件开发与技术研究的团队，我们致力于通过创新的技术解决方案解决实际问题。团队成员拥有丰富的开发经验和强烈的探索精神。
                     </p>
@@ -173,18 +301,18 @@
                         我们注重技术积累与知识分享，坚持高标准的开发规范，追求代码质量与用户体验的平衡。通过协作开发，我们不断提升团队能力，完成一个又一个具有挑战性的项目。
                     </p>
                     
-                    <!-- 团队特点：OpenAI式标签布局 -->
+                    <!-- 团队特点标签 -->
                     <div class="flex flex-wrap gap-3 sm:gap-4 justify-center">
-                        <span class="px-4 py-2 bg-white border border-gray-200 rounded-md text-sm sm:text-base text-gray-700">
+                        <span class="glass-btn px-4 py-2.5 text-gray-700 text-sm sm:text-base">
                             <i class="fa fa-code mr-2 text-primary"></i>专业开发
                         </span>
-                        <span class="px-4 py-2 bg-white border border-gray-200 rounded-md text-sm sm:text-base text-gray-700">
+                        <span class="glass-btn px-4 py-2.5 text-gray-700 text-sm sm:text-base">
                             <i class="fa fa-users mr-2 text-primary"></i>团队协作
                         </span>
-                        <span class="px-4 py-2 bg-white border border-gray-200 rounded-md text-sm sm:text-base text-gray-700">
+                        <span class="glass-btn px-4 py-2.5 text-gray-700 text-sm sm:text-base">
                             <i class="fa fa-lightbulb-o mr-2 text-primary"></i>技术创新
                         </span>
-                        <span class="px-4 py-2 bg-white border border-gray-200 rounded-md text-sm sm:text-base text-gray-700">
+                        <span class="glass-btn px-4 py-2.5 text-gray-700 text-sm sm:text-base">
                             <i class="fa fa-book mr-2 text-primary"></i>知识分享
                         </span>
                     </div>
@@ -193,13 +321,13 @@
         </div>
     </section>
 
-    <!-- 项目介绍：白色背景，简洁卡片 -->
-    <section id="project" class="py-16 sm:py-24">
-        <div class="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+    <!-- 项目介绍 -->
+    <section id="project" class="py-16 sm:py-24 relative">
+        <div class="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 relative z-10">
             <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-12 sm:mb-16 text-center">我们的项目: <span class="text-primary">Nextious</span></h2>
             
-            <!-- 项目卡片：OpenAI式浅阴影，hover弱化效果 -->
-            <div class="bg-white border border-gray-100 rounded-lg shadow-openai hover:shadow-openai-hover transition-openai p-6 sm:p-8 max-w-3xl mx-auto">
+            <!-- 玻璃态项目卡片 -->
+            <div class="glass-effect rounded-2xl p-6 sm:p-10 shadow-glass max-w-3xl mx-auto mb-16">
                 <div class="text-gray-600 text-base sm:text-lg leading-relaxed">
                     <p class="mb-6">
                         Nextious是TeamPixel团队正在开发的核心项目，名称融合了拉丁语中"连接"(Nexus)与"信使"(Nuntius)的含义，体现了项目在信息传递与连接方面的核心价值。
@@ -208,37 +336,139 @@
                         项目专注于局域网内的信息与文件传输技术，深入研究TCP与UDP协议的应用与实现，旨在打造高效、可靠的本地网络通信解决方案。
                     </p>
                     
-                    <!-- 项目特点：同团队标签风格 -->
+                    <!-- 项目特点标签 -->
                     <div class="flex flex-wrap gap-3 sm:gap-4 justify-center">
-                        <span class="px-4 py-2 bg-neutral border border-gray-200 rounded-md text-sm sm:text-base text-gray-700">
+                        <span class="glass-btn px-4 py-2.5 text-gray-700 text-sm sm:text-base">
                             <i class="fa fa-code mr-2 text-primary"></i>C++ 开发
                         </span>
-                        <span class="px-4 py-2 bg-neutral border border-gray-200 rounded-md text-sm sm:text-base text-gray-700">
+                        <span class="glass-btn px-4 py-2.5 text-gray-700 text-sm sm:text-base">
                             <i class="fa fa-exchange mr-2 text-primary"></i>网络传输
                         </span>
-                        <span class="px-4 py-2 bg-neutral border border-gray-200 rounded-md text-sm sm:text-base text-gray-700">
+                        <span class="glass-btn px-4 py-2.5 text-gray-700 text-sm sm:text-base">
                             <i class="fa fa-file-text mr-2 text-primary"></i>文件共享
                         </span>
-                        <span class="px-4 py-2 bg-neutral border border-gray-200 rounded-md text-sm sm:text-base text-gray-700">
+                        <span class="glass-btn px-4 py-2.5 text-gray-700 text-sm sm:text-base">
                             <i class="fa fa-wifi mr-2 text-primary"></i>局域网
                         </span>
                     </div>
                 </div>
             </div>
+            
+            <!-- 命令行软件介绍 -->
+            <h3 class="text-xl sm:text-2xl font-bold mb-8 text-center">已完成的命令行软件</h3>
+            
+            <!-- 围棋软件 (go.cpp) -->
+            <div class="glass-effect rounded-2xl p-6 sm:p-10 shadow-glass max-w-3xl mx-auto mb-12">
+                <div class="flex flex-col md:flex-row gap-8">
+                    <!-- 左侧：软件信息 -->
+                    <div class="md:w-1/2">
+                        <h4 class="text-xl sm:text-2xl font-semibold mb-4 flex items-center">
+                            <i class="fa fa-chess-board text-primary mr-3"></i>
+                            围棋软件 (go.cpp)
+                        </h4>
+                        
+                        <p class="text-gray-600 mb-6">
+                            一款功能完善的命令行围棋软件，支持标准围棋规则，为用户提供纯粹的围棋对弈体验。
+                        </p>
+                        
+                        <h5 class="font-medium text-dark mb-3">核心功能：</h5>
+                        <ul class="space-y-2 text-gray-600 mb-6">
+                            <li class="flex items-start">
+                                <i class="fa fa-check text-primary mt-1 mr-2"></i>
+                                <span>围棋双人对战模式</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-check text-primary mt-1 mr-2"></i>
+                                <span>自动判断棋局胜负</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-check text-primary mt-1 mr-2"></i>
+                                <span>智能计算并显示得分</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-check text-primary mt-1 mr-2"></i>
+                                <span>自动识别并提出死棋</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-check text-primary mt-1 mr-2"></i>
+                                <span>支持悔棋和重新开始</span>
+                            </li>
+                        </ul>
+                        
+                        <!-- 仅保留源代码链接 -->
+                        <div class="flex flex-wrap gap-3">
+                            <a href="#" class="glass-btn px-4 py-2 text-primary font-medium">
+                                <i class="fa fa-code mr-2"></i>源代码
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- 右侧：图片（已调整为2350*1225比例） -->
+                    <div class="md:w-1/2">
+                        <div class="glass-effect rounded-xl overflow-hidden border border-white/30 h-full flex items-center justify-center min-h-[240px]">
+                            <img src="https://cdn.luogu.com.cn/upload/image_hosting/e5kgjab4.png?x-oss-process=image/resize,m_lfit,h_490,w_940" alt="围棋软件界面截图" class="w-full h-full object-contain p-4">
+                        </div>
+                        <p class="text-center text-sm text-gray-500 mt-3">围棋软件界面截图 (2350×1225比例)</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 五子棋软件 (five-in-a-row.cpp) -->
+            <div class="glass-effect rounded-2xl p-6 sm:p-10 shadow-glass max-w-3xl mx-auto">
+                <h4 class="text-xl sm:text-2xl font-semibold mb-4 flex items-center">
+                    <i class="fa fa-th text-primary mr-3"></i>
+                    五子棋软件 (five-in-a-row.cpp)
+                </h4>
+                
+                <p class="text-gray-600 mb-6">
+                    一款简洁高效的命令行五子棋软件，专注于提供流畅的对弈体验和准确的胜负判断。
+                </p>
+                
+                <h5 class="font-medium text-dark mb-3">核心功能：</h5>
+                <ul class="space-y-2 text-gray-600 mb-6 max-w-xl">
+                    <li class="flex items-start">
+                        <i class="fa fa-check text-primary mt-1 mr-2"></i>
+                        <span>五子棋双人对战模式</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fa fa-check text-primary mt-1 mr-2"></i>
+                        <span>实时检测横、竖、斜向五子连珠</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fa fa-check text-primary mt-1 mr-2"></i>
+                        <span>自动判断胜负并结束游戏</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fa fa-check text-primary mt-1 mr-2"></i>
+                        <span>简洁直观的棋盘显示</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fa fa-check text-primary mt-1 mr-2"></i>
+                        <span>支持重新开始游戏</span>
+                    </li>
+                </ul>
+                
+                <!-- 仅保留源代码链接 -->
+                <div class="flex flex-wrap gap-3">
+                    <a href="#" class="glass-btn px-4 py-2 text-primary font-medium">
+                        <i class="fa fa-code mr-2"></i>源代码
+                    </a>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- 重要链接：OpenAI式双列卡片，极简设计 -->
-    <section id="links" class="py-16 sm:py-24 bg-neutral">
-        <div class="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+    <!-- 重要链接 -->
+    <section id="links" class="py-16 sm:py-24 bg-neutral relative">
+        <div class="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 relative z-10">
             <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-12 sm:mb-16 text-center">重要 <span class="text-primary">链接</span></h2>
             
-            <!-- 卡片容器：响应式双列 -->
+            <!-- 玻璃态卡片容器 -->
             <div class="grid md:grid-cols-2 gap-6 sm:gap-8">
                 <!-- 卡片1：开发规范 -->
                 <a href="https://gitee.com/wjzhi/article/blob/master/Nextious%20%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83%E4%B8%8E%E5%9B%A2%E9%98%9F%E5%88%86%E5%B7%A5.md" 
                    target="_blank" 
-                   class="block bg-white border border-gray-100 rounded-lg shadow-openai hover:shadow-openai-hover transition-openai p-6 sm:p-8 h-full">
+                   class="glass-btn block glass-effect rounded-xl p-6 sm:p-8 h-full shadow-glass hover:shadow-glass-hover">
                     <div class="w-12 h-12 bg-primary/10 rounded-md flex items-center justify-center mb-4">
                         <i class="fa fa-book text-primary text-xl"></i>
                     </div>
@@ -250,7 +480,7 @@
                 <!-- 卡片2：传输原理 -->
                 <a href="https://gitee.com/wjzhi/article/blob/master/%E5%B1%80%E5%9F%9F%E7%BD%91%E5%86%85%E6%96%87%E4%BB%B6%E4%BC%A0%E8%BE%93%E5%8E%9F%E7%90%86%EF%BC%9ATCP%20%E4%B8%8E%20UDP%20%E8%AF%A6%E8%A7%A3%E5%8F%8A%20C++%20%E5%AE%9E%E7%8E%B0.md" 
                    target="_blank" 
-                   class="block bg-white border border-gray-100 rounded-lg shadow-openai hover:shadow-openai-hover transition-openai p-6 sm:p-8 h-full">
+                   class="glass-btn block glass-effect rounded-xl p-6 sm:p-8 h-full shadow-glass hover:shadow-glass-hover">
                     <div class="w-12 h-12 bg-primary/10 rounded-md flex items-center justify-center mb-4">
                         <i class="fa fa-sitemap text-primary text-xl"></i>
                     </div>
@@ -262,163 +492,103 @@
         </div>
     </section>
 
-    <!-- 技术文档：OpenAI式列表，清晰层级 -->
-    <section id="docs" class="py-16 sm:py-24">
-        <div class="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+    <!-- 技术文档 -->
+    <section id="docs" class="py-16 sm:py-24 relative">
+        <div class="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 relative z-10">
             <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-12 sm:mb-16 text-center">技术 <span class="text-primary">文档</span></h2>
             
-            <!-- 文档列表容器：白色背景，简约边框 -->
-            <div class="bg-white border border-gray-100 rounded-lg shadow-openai p-4 sm:p-6 max-w-3xl mx-auto">
+            <!-- 玻璃态文档列表容器 -->
+            <div class="glass-effect rounded-xl shadow-glass p-4 sm:p-6 max-w-3xl mx-auto">
                 <ul class="space-y-5 sm:space-y-6">
                     <!-- 文档项1 -->
-                    <li class="flex items-start p-3 sm:p-4 rounded-md hover:bg-neutral transition-openai">
-                        <div class="flex-shrink-0 w-8 h-8 bg-primary/10 rounded-md flex items-center justify-center text-primary mt-0.5">
-                            <i class="fa fa-gamepad"></i>
-                        </div>
-                        <div class="ml-4">
-                            <a href="https://gitee.com/wjzhi/article/blob/master/SFML%20tutorial.md" 
-                               target="_blank" 
-                               class="text-lg font-medium text-dark link-underlined">
-                                SFML tutorial.md
-                            </a>
-                            <p class="text-gray-600 mt-1 text-sm sm:text-base">SFML库的使用教程文档</p>
-                        </div>
+                    <li class="flex items-start">
+                        <a href="https://gitee.com/wjzhi/article/blob/master/SFML%20tutorial.md" 
+                           target="_blank" 
+                           class="glass-btn flex items-start w-full p-3 sm:p-4 rounded-md hover:bg-white/50">
+                            <div class="flex-shrink-0 w-8 h-8 bg-primary/10 rounded-md flex items-center justify-center text-primary mt-0.5">
+                                <i class="fa fa-gamepad"></i>
+                            </div>
+                            <div class="ml-4">
+                                <span class="text-lg font-medium text-dark link-underlined">SFML tutorial.md</span>
+                                <p class="text-gray-600 mt-1 text-sm sm:text-base">SFML库的使用教程文档</p>
+                            </div>
+                        </a>
                     </li>
                     
                     <!-- 文档项2 -->
-                    <li class="flex items-start p-3 sm:p-4 rounded-md hover:bg-neutral transition-openai">
-                        <div class="flex-shrink-0 w-8 h-8 bg-primary/10 rounded-md flex items-center justify-center text-primary mt-0.5">
-                            <i class="fa fa-cube"></i>
-                        </div>
-                        <div class="ml-4">
-                            <a href="https://blog.csdn.net/wangyuhan2010/article/details/130477415" 
-                               target="_blank" 
-                               class="text-lg font-medium text-dark link-underlined">
-                                用c++实现3d引擎-超详细(附源码)
-                            </a>
-                            <p class="text-gray-600 mt-1 text-sm sm:text-base">C++实现3D引擎的详细教程及源代码</p>
-                        </div>
+                    <li class="flex items-start">
+                        <a href="https://blog.csdn.net/wangyuhan2010/article/details/130477415" 
+                           target="_blank" 
+                           class="glass-btn flex items-start w-full p-3 sm:p-4 rounded-md hover:bg-white/50">
+                            <div class="flex-shrink-0 w-8 h-8 bg-primary/10 rounded-md flex items-center justify-center text-primary mt-0.5">
+                                <i class="fa fa-cube"></i>
+                            </div>
+                            <div class="ml-4">
+                                <span class="text-lg font-medium text-dark link-underlined">用c++实现3d引擎-超详细(附源码)</span>
+                                <p class="text-gray-600 mt-1 text-sm sm:text-base">C++实现3D引擎的详细教程及源代码</p>
+                            </div>
+                        </a>
                     </li>
                     
                     <!-- 文档项3 -->
-                    <li class="flex items-start p-3 sm:p-4 rounded-md hover:bg-neutral transition-openai">
-                        <div class="flex-shrink-0 w-8 h-8 bg-primary/10 rounded-md flex items-center justify-center text-primary mt-0.5">
-                            <i class="fa fa-exchange"></i>
-                        </div>
-                        <div class="ml-4">
-                            <a href="https://gitee.com/wjzhi/article/blob/master/%E5%B1%80%E5%9F%9F%E7%BD%91%E5%86%85%E6%96%87%E4%BB%B6%E4%BC%A0%E8%BE%93%E5%8E%9F%E7%90%86%EF%BC%9ATCP%20%E4%B8%8E%20UDP%20%E8%AF%A6%E8%A7%A3%E5%8F%8A%20C++%20%E5%AE%9E%E7%8E%B0.md" 
-                               target="_blank" 
-                               class="text-lg font-medium text-dark link-underlined">
-                                局域网内文件传输原理：TCP 与 UDP 详解及 C++ 实现
-                            </a>
-                            <p class="text-gray-600 mt-1 text-sm sm:text-base">详细解析TCP与UDP协议在局域网文件传输中的应用</p>
-                        </div>
+                    <li class="flex items-start">
+                        <a href="https://gitee.com/wjzhi/article/blob/master/%E5%B1%80%E5%9F%9F%E7%BD%91%E5%86%85%E6%96%87%E4%BB%B6%E4%BC%A0%E8%BE%93%E5%8E%9F%E7%90%86%EF%BC%9ATCP%20%E4%B8%8E%20UDP%20%E8%AF%A6%E8%A7%A3%E5%8F%8A%20C++%20%E5%AE%9E%E7%8E%B0.md" 
+                           target="_blank" 
+                           class="glass-btn flex items-start w-full p-3 sm:p-4 rounded-md hover:bg-white/50">
+                            <div class="flex-shrink-0 w-8 h-8 bg-primary/10 rounded-md flex items-center justify-center text-primary mt-0.5">
+                                <i class="fa fa-exchange"></i>
+                            </div>
+                            <div class="ml-4">
+                                <span class="text-lg font-medium text-dark link-underlined">局域网内文件传输原理：TCP 与 UDP 详解及 C++ 实现</span>
+                                <p class="text-gray-600 mt-1 text-sm sm:text-base">详细解析TCP与UDP协议在局域网文件传输中的应用</p>
+                            </div>
+                        </a>
                     </li>
                     
                     <!-- 文档项4 -->
-                    <li class="flex items-start p-3 sm:p-4 rounded-md hover:bg-neutral transition-openai">
-                        <div class="flex-shrink-0 w-8 h-8 bg-primary/10 rounded-md flex items-center justify-center text-primary mt-0.5">
-                            <i class="fa fa-file-text"></i>
-                        </div>
-                        <div class="ml-4">
-                            <a href="https://gitee.com/wjzhi/article/blob/master/C++%20%E5%B1%80%E5%9F%9F%E7%BD%91%E4%BC%A0%E8%BE%93%E6%96%87%E4%BB%B6%E3%80%81%E5%AD%97%E7%AC%A6%E7%9A%84%E5%8E%9F%E7%90%86%E8%AF%A6%E8%A7%A3.md" 
-                               target="_blank" 
-                               class="text-lg font-medium text-dark link-underlined">
-                                C++ 局域网传输文件、字符的原理详解
-                            </a>
-                            <p class="text-gray-600 mt-1 text-sm sm:text-base">C++实现局域网内文件和字符传输的原理分析</p>
-                        </div>
-                    </li>
-                    
-                    <!-- 文档项5 -->
-                    <li class="flex items-start p-3 sm:p-4 rounded-md hover:bg-neutral transition-openai">
-                        <div class="flex-shrink-0 w-8 h-8 bg-primary/10 rounded-md flex items-center justify-center text-primary mt-0.5">
-                            <i class="fa fa-keyboard-o"></i>
-                        </div>
-                        <div class="ml-4">
-                            <a href="https://www.runoob.com/w3cnote/c-get-keycode.html" 
-                               target="_blank" 
-                               class="text-lg font-medium text-dark link-underlined">
-                                C/C++ 获取键盘事件
-                            </a>
-                            <p class="text-gray-600 mt-1 text-sm sm:text-base">关于C/C++如何获取键盘事件的教程</p>
-                        </div>
-                    </li>
-                    
-                    <!-- 文档项6 -->
-                    <li class="flex items-start p-3 sm:p-4 rounded-md hover:bg-neutral transition-openai">
-                        <div class="flex-shrink-0 w-8 h-8 bg-primary/10 rounded-md flex items-center justify-center text-primary mt-0.5">
-                            <i class="fa fa-markdown"></i>
-                        </div>
-                        <div class="ml-4">
-                            <a href="https://markdown.com.cn/" 
-                               target="_blank" 
-                               class="text-lg font-medium text-dark link-underlined">
-                                Marddown语法
-                            </a>
-                            <p class="text-gray-600 mt-1 text-sm sm:text-base">Markdown标记语言的语法参考</p>
-                        </div>
-                    </li>
-                    
-                    <!-- 文档项7 -->
-                    <li class="flex items-start p-3 sm:p-4 rounded-md hover:bg-neutral transition-openai">
-                        <div class="flex-shrink-0 w-8 h-8 bg-primary/10 rounded-md flex items-center justify-center text-primary mt-0.5">
-                            <i class="fa fa-calculator"></i>
-                        </div>
-                        <div class="ml-4">
-                            <a href="https://katex.org/" 
-                               target="_blank" 
-                               class="text-lg font-medium text-dark link-underlined">
-                                KaTeX语法
-                            </a>
-                            <p class="text-gray-600 mt-1 text-sm sm:text-base">KaTeX数学公式渲染库的语法文档</p>
-                        </div>
-                    </li>
-                    
-                    <!-- 文档项8 -->
-                    <li class="flex items-start p-3 sm:p-4 rounded-md hover:bg-neutral transition-openai">
-                        <div class="flex-shrink-0 w-8 h-8 bg-primary/10 rounded-md flex items-center justify-center text-primary mt-0.5">
-                            <i class="fa fa-sitemap"></i>
-                        </div>
-                        <div class="ml-4">
-                            <a href="https://mermaid.js.org/" 
-                               target="_blank" 
-                               class="text-lg font-medium text-dark link-underlined">
-                                Mermaid语法
-                            </a>
-                            <p class="text-gray-600 mt-1 text-sm sm:text-base">Mermaid图表绘制工具的语法文档</p>
-                        </div>
+                    <li class="flex items-start">
+                        <a href="https://gitee.com/wjzhi/article/blob/master/C++%20%E5%B1%80%E5%9F%9F%E7%BD%91%E4%BC%A0%E8%BE%93%E6%96%87%E4%BB%B6%E3%80%81%E5%AD%97%E7%AC%A6%E7%9A%84%E5%8E%9F%E7%90%86%E8%AF%A6%E8%A7%A3.md" 
+                           target="_blank" 
+                           class="glass-btn flex items-start w-full p-3 sm:p-4 rounded-md hover:bg-white/50">
+                            <div class="flex-shrink-0 w-8 h-8 bg-primary/10 rounded-md flex items-center justify-center text-primary mt-0.5">
+                                <i class="fa fa-file-text"></i>
+                            </div>
+                            <div class="ml-4">
+                                <span class="text-lg font-medium text-dark link-underlined">C++ 局域网传输文件、字符的原理详解</span>
+                                <p class="text-gray-600 mt-1 text-sm sm:text-base">C++实现局域网内文件和字符传输的原理分析</p>
+                            </div>
+                        </a>
                     </li>
                 </ul>
             </div>
         </div>
     </section>
 
-    <!-- 页脚：OpenAI式极简底部，低饱和文字 -->
-    <footer class="py-12 sm:py-16 border-t border-gray-100">
+    <!-- 页脚 -->
+    <footer class="py-12 sm:py-16 glass-effect border-t border-white/10 relative z-10">
         <div class="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row justify-between items-center mb-8 sm:mb-12">
                 <!-- 左侧：Logo + 团队名 -->
                 <div class="flex items-center gap-2 mb-6 md:mb-0">
-                    <img src="logo.jpeg" alt="TeamPixel团队标志" class="w-8 h-8 rounded object-cover">
+                    <img src="https://cdn.luogu.com.cn/upload/image_hosting/pejqi2ov.png" alt="TeamPixel团队标志" class="w-8 h-8 rounded object-cover">
                     <span class="font-semibold text-lg">TeamPixel</span>
                 </div>
                 
                 <!-- 右侧：社交链接 -->
-                <div class="flex gap-6">
-                    <a href="#" class="text-gray-400 hover:text-primary transition-openai">
+                <div class="flex gap-4">
+                    <a href="#" class="glass-btn w-10 h-10 flex items-center justify-center text-gray-400 hover:text-primary">
                         <i class="fa fa-github text-xl"></i>
                     </a>
-                    <a href="#" class="text-gray-400 hover:text-primary transition-openai">
+                    <a href="#" class="glass-btn w-10 h-10 flex items-center justify-center text-gray-400 hover:text-primary">
                         <i class="fa fa-gitee text-xl"></i>
                     </a>
-                    <a href="#" class="text-gray-400 hover:text-primary transition-openai">
+                    <a href="#" class="glass-btn w-10 h-10 flex items-center justify-center text-gray-400 hover:text-primary">
                         <i class="fa fa-envelope text-xl"></i>
                     </a>
                 </div>
             </div>
             
-            <!-- 版权信息：低饱和文字 -->
+            <!-- 版权信息 -->
             <div class="text-center text-gray-400 text-sm sm:text-base">
                 <p>© 2023 TeamPixel团队. Nextious项目开发中.</p>
                 <p class="mt-2">本网站展示团队及项目相关信息与技术文档</p>
@@ -426,23 +596,36 @@
         </div>
     </footer>
 
-    <!-- JavaScript：保留必要交互，贴合极简风格 -->
+    <!-- JavaScript -->
     <script>
-        // 导航栏滚动效果：仅轻微调整高度，无多余装饰
+        // 导航栏滚动效果
         window.addEventListener('scroll', function() {
+            const navEllipse = document.querySelector('.nav-ellipse');
+            const logo = document.getElementById('logo');
+            const teamName = document.getElementById('team-name');
             const header = document.querySelector('header');
-            if (window.scrollY > 20) {
-                header.classList.add('h-14');
-                header.classList.remove('h-16', 'sm:h-20');
+            
+            if (window.scrollY > 50) {
+                navEllipse.classList.add('nav-scrolled');
+                logo.classList.add('w-7', 'h-7');
+                logo.classList.remove('w-8', 'h-8', 'sm:w-10', 'sm:h-10');
+                teamName.classList.add('text-base');
+                teamName.classList.remove('text-lg', 'sm:text-xl');
+                header.classList.add('py-2');
+                header.classList.remove('py-4');
             } else {
-                header.classList.add('h-16', 'sm:h-20');
-                header.classList.remove('h-14');
+                navEllipse.classList.remove('nav-scrolled');
+                logo.classList.remove('w-7', 'h-7');
+                logo.classList.add('w-8', 'h-8', 'sm:w-10', 'sm:h-10');
+                teamName.classList.remove('text-base');
+                teamName.classList.add('text-lg', 'sm:text-xl');
+                header.classList.remove('py-2');
+                header.classList.add('py-4');
             }
         });
         
-        // 页面加载完成后执行
+        // 平滑滚动
         document.addEventListener('DOMContentLoaded', function() {
-            // 平滑滚动到锚点（已通过CSS实现，此处保留兼容性处理）
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
                     e.preventDefault();
@@ -469,4 +652,3 @@
     </script>
 </body>
 </html>
-</doubaocanvas-part></doubaocanvas>
