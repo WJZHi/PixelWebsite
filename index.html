@@ -123,6 +123,22 @@
                 position: relative;
                 overflow: hidden;
             }
+            /* 菜单按钮统一样式 */
+            .menu-button {
+                display: flex;
+                align-items: center;
+                padding: 0.65rem 0.75rem;
+                width: 100%;
+                text-align: left;
+                flex-shrink: 1;
+                white-space: nowrap;
+            }
+            .menu-icon {
+                width: 1.25rem;
+                margin-right: 0.75rem;
+                flex-shrink: 0;
+                text-align: center;
+            }
         }
     </style>
     
@@ -225,44 +241,47 @@
             visibility: visible;
         }
         
-        /* 菜单面板的玻璃效果 - 关键修改：使用高斯模糊而非白色半透明 */
+        /* 菜单面板 - 紧凑设计 */
         .mobile-menu {
             position: fixed;
-            top: 3.5rem;
-            right: 1rem;
-            width: calc(100% - 2rem);
-            max-width: 300px;
+            top: 0;
+            right: 0;
+            width: 240px;
             border-radius: 1.5rem;
             z-index: 999;
-            transform: translateY(-10px) scale(0.95);
+            transform-origin: top right;
+            transform: scale(0.1);
             opacity: 0;
             visibility: hidden;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            max-height: calc(100vh - 10rem);
+            transition: all 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+            max-height: calc(100vh - 2rem);
             overflow-y: auto;
             
-            /* 增强的高斯模糊背景 - 移除了白色半透明背景 */
+            /* 优化的高斯模糊背景 */
             backdrop-filter: blur(20px) saturate(120%);
             -webkit-backdrop-filter: blur(20px) saturate(120%);
+            
+            /* 基础背景 - 确保内容可读性 */
+            background: rgba(255, 255, 255, 0.1);
             
             /* 边框和阴影增强玻璃质感 */
             border: 1px solid rgba(255, 255, 255, 0.15);
             box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
             
-            /* 内部边距调整 */
-            padding: clamp(1rem, 5vw, 1.5rem);
+            /* 紧凑的内部边距 */
+            padding: 1rem;
         }
         
-        /* 深色模式下的菜单玻璃效果 */
+        /* 深色模式下的菜单面板 */
         body.dark-mode .mobile-menu {
-            /* 仅保留模糊效果，不添加额外背景色 */
-            backdrop-filter: blur(20px) saturate(120%);
-            -webkit-backdrop-filter: blur(20px) saturate(120%);
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(20px) saturate(140%);
+            -webkit-backdrop-filter: blur(20px) saturate(140%);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
         }
         
-        /* 玻璃折射边缘效果 - 保持不变 */
+        /* 玻璃折射边缘效果 */
         .mobile-menu::before,
         .mobile-menu::after,
         .mobile-menu .refraction-left,
@@ -324,14 +343,14 @@
         body.dark-mode .mobile-menu::before {
             background: linear-gradient(90deg, 
                 transparent, 
-                rgba(255, 255, 255, 0.1), 
+                rgba(255, 255, 255, 0.12), 
                 transparent);
         }
         
         body.dark-mode .mobile-menu::after {
             background: linear-gradient(90deg, 
                 transparent, 
-                rgba(255, 255, 255, 0.05), 
+                rgba(255, 255, 255, 0.07), 
                 transparent);
         }
         
@@ -339,27 +358,32 @@
         body.dark-mode .mobile-menu .refraction-right {
             background: linear-gradient(0deg, 
                 transparent, 
-                rgba(255, 255, 255, 0.08), 
+                rgba(255, 255, 255, 0.1), 
                 transparent);
         }
         
-        /* 菜单激活状态 */
+        /* 菜单激活状态 - 变形动画 */
         .mobile-menu.active {
-            transform: translateY(0) scale(1);
+            transform: scale(1);
             opacity: 1;
             visibility: visible;
         }
         
-        /* 菜单按钮样式与动画 */
+        /* 菜单按钮样式与变形动画 */
         #openMenu {
-            position: relative;
+            position: fixed;
+            top: 1.5rem;
+            right: 1rem;
             z-index: 1000;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+            transform-origin: center;
+            width: 40px;
+            height: 40px;
         }
         
         #openMenu.hidden {
             opacity: 0;
-            transform: scale(0.8);
+            transform: scale(0);
             pointer-events: none;
         }
         
@@ -458,7 +482,7 @@
         
         /* 主题切换平滑过渡 */
         .glass-effect, .glass-btn, .glass-btn-primary, 
-        img, a, .border-t {
+        img, a, .border-t, .mobile-menu {
             transition: all 0.4s ease;
         }
         
@@ -491,6 +515,17 @@
         .mouse-reflector:hover .mouse-light {
             opacity: 1;
         }
+        
+        /* 菜单内文本在深色模式下的颜色 */
+        body.dark-mode .mobile-menu a,
+        body.dark-mode .mobile-menu span {
+            color: #E2E8F0 !important;
+        }
+        
+        /* 深色模式下菜单图标的颜色 */
+        body.dark-mode .mobile-menu i {
+            color: #93C5FD !important;
+        }
     </style>
 </head>
 <body class="bg-white text-dark">
@@ -501,7 +536,7 @@
     <!-- 移动端菜单覆盖层 -->
     <div class="menu-overlay" id="menuOverlay"></div>
     
-    <!-- 移动端菜单 - 高斯模糊背景，保留边缘光线效果 -->
+    <!-- 移动端菜单 - 紧凑设计 -->
     <div class="mobile-menu shadow-glass refraction-edge mouse-reflector" id="mobileMenu">
         <!-- 鼠标反光效果元素 -->
         <div class="mouse-light"></div>
@@ -510,29 +545,34 @@
         <div class="refraction-left"></div>
         <div class="refraction-right"></div>
         
-        <ul class="pt-2 pb-2 space-y-4 relative z-10">
-            <li><a href="#about" class="mobile-link glass-btn w-full text-left px-4 py-3 rounded-full mouse-reflector">
+        <!-- 统一对齐的菜单按钮布局 -->
+        <ul class="pt-1 pb-1 space-y-2 relative z-10">
+            <li><a href="#about" class="mobile-link glass-btn menu-button text-sm rounded-full mouse-reflector">
                 <div class="mouse-light"></div>
+                <i class="fa fa-users menu-icon text-primary"></i>
                 关于团队
             </a></li>
-            <li><a href="#project" class="mobile-link glass-btn w-full text-left px-4 py-3 rounded-full mouse-reflector">
+            <li><a href="#project" class="mobile-link glass-btn menu-button text-sm rounded-full mouse-reflector">
                 <div class="mouse-light"></div>
+                <i class="fa fa-cube menu-icon text-primary"></i>
                 Nextious项目
             </a></li>
-            <li><a href="#docs" class="mobile-link glass-btn w-full text-left px-4 py-3 rounded-full mouse-reflector">
+            <li><a href="#docs" class="mobile-link glass-btn menu-button text-sm rounded-full mouse-reflector">
                 <div class="mouse-light"></div>
+                <i class="fa fa-book menu-icon text-primary"></i>
                 技术文档
             </a></li>
-            <li><a href="#links" class="mobile-link glass-btn w-full text-left px-4 py-3 rounded-full mouse-reflector">
+            <li><a href="#links" class="mobile-link glass-btn menu-button text-sm rounded-full mouse-reflector">
                 <div class="mouse-light"></div>
+                <i class="fa fa-link menu-icon text-primary"></i>
                 重要链接
             </a></li>
-            <!-- 移动端深色模式切换 -->
+            <!-- 移动端深色模式切换 - 与其他按钮对齐 -->
             <li>
-                <button class="glass-btn w-full text-left px-4 py-3 flex items-center rounded-full mouse-reflector">
+                <button id="mobileThemeToggle" class="glass-btn menu-button text-sm rounded-full mouse-reflector">
                     <div class="mouse-light"></div>
-                    <i class="fa fa-moon-o mr-3 theme-toggle"></i>
-                    <span id="mobileThemeText">切换深色模式</span>
+                    <i class="fa fa-moon-o menu-icon text-primary theme-toggle"></i>
+                    <span id="mobileThemeText">浅色模式</span>
                 </button>
             </li>
         </ul>
@@ -960,12 +1000,16 @@
             const mobileThemeToggle = document.getElementById('mobileThemeToggle');
             const mobileThemeText = document.getElementById('mobileThemeText');
             const themeIcon = document.querySelector('.theme-toggle');
+            const mobileThemeIcon = document.querySelector('#mobileThemeToggle .theme-toggle');
+            const mobileMenu = document.getElementById('mobileMenu');
             
+            // 初始化主题
             if (localStorage.getItem('darkMode') === 'true' || 
                 (!localStorage.getItem('darkMode') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
                 enableDarkMode();
             }
             
+            // 绑定主题切换事件
             themeToggle.addEventListener('click', toggleDarkMode);
             if (mobileThemeToggle) {
                 mobileThemeToggle.addEventListener('click', toggleDarkMode);
@@ -977,18 +1021,59 @@
             
             function enableDarkMode() {
                 document.body.classList.add('dark-mode');
-                themeIcon.classList.remove('fa-moon-o');
-                themeIcon.classList.add('fa-sun-o', 'dark');
-                if (mobileThemeText) mobileThemeText.textContent = '切换浅色模式';
+                
+                // 更新所有主题图标
+                if (themeIcon) {
+                    themeIcon.classList.remove('fa-moon-o');
+                    themeIcon.classList.add('fa-sun-o', 'dark');
+                }
+                if (mobileThemeIcon) {
+                    mobileThemeIcon.classList.remove('fa-moon-o');
+                    mobileThemeIcon.classList.add('fa-sun-o', 'dark');
+                }
+                
+                // 切换按钮文本
+                if (mobileThemeText) mobileThemeText.textContent = '浅色模式';
                 localStorage.setItem('darkMode', 'true');
+                
+                // 确保菜单面板在深色模式下正确显示
+                updateMenuDarkMode(true);
             }
             
             function disableDarkMode() {
                 document.body.classList.remove('dark-mode');
-                themeIcon.classList.remove('fa-sun-o', 'dark');
-                themeIcon.classList.add('fa-moon-o');
-                if (mobileThemeText) mobileThemeText.textContent = '切换深色模式';
+                
+                // 更新所有主题图标
+                if (themeIcon) {
+                    themeIcon.classList.remove('fa-sun-o', 'dark');
+                    themeIcon.classList.add('fa-moon-o');
+                }
+                if (mobileThemeIcon) {
+                    mobileThemeIcon.classList.remove('fa-sun-o', 'dark');
+                    mobileThemeIcon.classList.add('fa-moon-o');
+                }
+                
+                // 切换按钮文本
+                if (mobileThemeText) mobileThemeText.textContent = '深色模式';
                 localStorage.setItem('darkMode', 'false');
+                
+                // 确保菜单面板在浅色模式下正确显示
+                updateMenuDarkMode(false);
+            }
+            
+            // 专门用于更新菜单面板深色模式的函数
+            function updateMenuDarkMode(isDark) {
+                if (!mobileMenu) return;
+                
+                // 强制更新菜单面板的样式，确保深色/浅色模式正确应用
+                if (isDark) {
+                    mobileMenu.classList.add('dark-mode');
+                } else {
+                    mobileMenu.classList.remove('dark-mode');
+                }
+                
+                // 触发重绘以确保样式立即更新
+                void mobileMenu.offsetWidth;
             }
             
             // 导航栏滚动效果
@@ -1017,25 +1102,31 @@
                 }
             });
             
-            // 移动端菜单逻辑
+            // 移动端菜单逻辑 - 变形动画实现
             const openMenuBtn = document.getElementById('openMenu');
-            const mobileMenu = document.getElementById('mobileMenu');
             const menuOverlay = document.getElementById('menuOverlay');
             const mobileLinks = document.querySelectorAll('.mobile-link');
             
             if (openMenuBtn && mobileMenu && menuOverlay) {
-                // 计算菜单与按钮的精确对齐
+                // 菜单按钮与面板对齐
                 function positionMenu() {
                     if (!openMenuBtn) return;
                     
+                    // 获取按钮的位置信息
                     const btnRect = openMenuBtn.getBoundingClientRect();
-                    mobileMenu.style.top = `${btnRect.top + window.scrollY}px`;
-                    mobileMenu.style.right = `${window.innerWidth - btnRect.right + window.scrollX}px`;
+                    
+                    // 菜单右上角与按钮对齐
+                    mobileMenu.style.top = `${btnRect.top}px`;
+                    mobileMenu.style.right = `${window.innerWidth - btnRect.right}px`;
                 }
                 
+                // 初始定位
                 positionMenu();
+                
+                // 监听窗口大小变化，更新位置
                 window.addEventListener('resize', positionMenu);
                 
+                // 菜单按钮点击处理 - 变形动画
                 function toggleMenu() {
                     if (mobileMenu.classList.contains('active')) {
                         closeMenu();
@@ -1045,13 +1136,21 @@
                 }
                 
                 function openMenu() {
+                    // 先更新位置再显示
+                    positionMenu();
+                    
+                    // 按钮放大变形为菜单面板的动画
                     mobileMenu.classList.add('active');
                     menuOverlay.classList.add('active');
                     document.body.style.overflow = 'hidden';
                     
+                    // 隐藏原按钮
                     setTimeout(() => {
                         openMenuBtn.classList.add('hidden');
-                    }, 150);
+                    }, 200);
+                    
+                    // 确保菜单打开时应用正确的主题样式
+                    updateMenuDarkMode(document.body.classList.contains('dark-mode'));
                 }
                 
                 function closeMenu() {
@@ -1059,16 +1158,18 @@
                     menuOverlay.classList.remove('active');
                     document.body.style.overflow = '';
                     openMenuBtn.classList.remove('hidden');
-                    openMenuBtn.innerHTML = '<i class="fa fa-bars text-lg"></i>';
                 }
                 
+                // 绑定按钮点击事件
                 openMenuBtn.addEventListener('click', function(e) {
                     e.stopPropagation();
                     toggleMenu();
                 });
                 
+                // 点击遮罩关闭菜单
                 menuOverlay.addEventListener('click', closeMenu);
                 
+                // 点击菜单项关闭菜单并跳转
                 mobileLinks.forEach(link => {
                     link.addEventListener('click', function() {
                         closeMenu();
@@ -1087,6 +1188,7 @@
                     });
                 });
                 
+                // 防止点击菜单内部关闭菜单
                 mobileMenu.addEventListener('click', function(e) {
                     e.stopPropagation();
                 });
@@ -1127,6 +1229,13 @@
                         mouseLight.style.left = `${x}px`;
                         mouseLight.style.top = `${y}px`;
                     });
+                }
+            });
+            
+            // 当主题切换时，确保菜单面板样式正确更新
+            document.addEventListener('darkModeToggled', function() {
+                if (mobileMenu && mobileMenu.classList.contains('active')) {
+                    updateMenuDarkMode(document.body.classList.contains('dark-mode'));
                 }
             });
         });

@@ -1,41 +1,26 @@
-<doubaocanvas type="webview" identifier="nextious-intro-page" title="Nextiousè½¯ä»¶ä»‹ç»é¡µé¢" genre="">
-    <doubaocanvas-part path="nextious-intro.html" language="html" description="ä¸TeamPixelä¸»é¡µé£æ ¼ä¸€è‡´çš„Nextiousè½¯ä»¶ä»‹ç»é¡µé¢ï¼Œå«è¿”å›ä¸»é¡µåŠŸèƒ½"><!DOCTYPE html>
-<html lang="zh-CN" class="light">
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nextious - å±€åŸŸç½‘é€šä¿¡ä¸æ–‡ä»¶ä¼ è¾“å·¥å…·</title>
-    <!-- ç½‘ç«™å›¾æ ‡ -->
-    <link rel="icon" href="logo.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="logo.ico" type="image/x-icon">
-    <!-- å¼•å…¥Tailwind CSS -->
+    <title>Nextious - ¾ÖÓòÍøÍ¨ĞÅÓëÎÄ¼ş´«Êä½â¾ö·½°¸</title>
+    <!-- ÒıÈëÍâ²¿×ÊÔ´ -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- å¼•å…¥Font Awesome -->
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
     
-    <!-- é…ç½®Tailwindï¼šæ²¿ç”¨ä¸»é¡µæ·±è‰²æ¨¡å¼é¢œè‰²ç³»ç»Ÿ -->
+    <!-- ÅäÖÃTailwind -->
     <script>
         tailwind.config = {
             darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
-                        primary: '#165DFF',
-                        secondary: '#36465D',
-                        light: {
-                            bg: '#FFFFFF',
-                            text: '#1D2939',
-                            gray: '#F5F7FA',
-                            glass: 'rgba(240, 240, 240, 0.6)',
-                            glassBorder: 'rgba(220, 220, 220, 0.3)',
-                        },
-                        dark: {
-                            bg: '#121826',
-                            text: '#F9FAFB',
-                            gray: '#1E293B',
-                            glass: 'rgba(30, 41, 59, 0.7)',
-                            glassBorder: 'rgba(71, 85, 105, 0.3)',
-                        }
+                        primary: '#3B82F6',
+                        secondary: '#94A3B8',
+                        dark: '#1E293B',
+                        'dark-bg': '#0F172A',
+                        'dark-card': '#1E293B',
+                        'dark-hover': '#334155',
                     },
                     fontFamily: {
                         sans: ['Inter', 'system-ui', 'sans-serif'],
@@ -43,46 +28,34 @@
                     boxShadow: {
                         'glass': '0 8px 32px rgba(0, 0, 0, 0.08)',
                         'glass-hover': '0 12px 40px rgba(0, 0, 0, 0.12)',
-                        'dark-glass': '0 8px 32px rgba(0, 0, 0, 0.25)',
-                        'dark-glass-hover': '0 12px 40px rgba(0, 0, 0, 0.35)',
+                        'glass-btn': '0 4px 15px rgba(0, 0, 0, 0.05)',
+                        'glass-btn-hover': '0 8px 25px rgba(0, 0, 0, 0.1)',
+                        'glass-primary': '0 4px 20px rgba(59, 130, 246, 0.3)',
+                        'dark-glass': '0 8px 32px rgba(0, 0, 0, 0.4)',
+                        'refraction': '0 0 20px rgba(255, 255, 255, 0.15)',
                     }
                 }
             }
         }
     </script>
     
-    <!-- è‡ªå®šä¹‰å·¥å…·ç±»ï¼šå¤ç”¨ä¸»é¡µç»ç’ƒæ€æ ·å¼ -->
+    <!-- ×Ô¶¨Òå¹¤¾ßÀà -->
     <style type="text/tailwindcss">
         @layer utilities {
             .content-auto {
                 content-visibility: auto;
             }
-            .text-balance {
-                text-wrap: balance;
-            }
             .glass-effect {
-                @apply bg-light-glass backdrop-blur-xl border border-light-glassBorder transition-all duration-300;
+                background: rgba(240, 240, 240, 0.6);
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
+                border: 1px solid rgba(220, 220, 220, 0.3);
             }
-            .dark .glass-effect {
-                @apply bg-dark-glass border border-dark-glassBorder;
-            }
-            .glass-btn {
-                @apply relative overflow-hidden rounded-full bg-light-glass border border-light-glassBorder transition-all duration-400 z-10;
-            }
-            .glass-btn:hover {
-                @apply transform -translate-y-1 bg-light-glass/90 border-light-glassBorder/80 shadow-glass-hover;
-            }
-            .dark .glass-btn {
-                @apply bg-dark-glass border border-dark-glassBorder;
-            }
-            .dark .glass-btn:hover {
-                @apply bg-dark-glass/90 border-dark-glassBorder/80 shadow-dark-glass-hover;
-            }
-            .glass-btn-primary {
-                @apply bg-primary/90 border border-white/30 text-white;
-            }
-            .glass-btn-primary:hover {
-                @apply bg-primary border-white/50;
+            .glass-effect-dark {
+                background: rgba(30, 41, 59, 0.8);
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
+                border: 1px solid rgba(255, 255, 255, 0.1);
             }
             .liquid-shape {
                 border-radius: 28% 72% 55% 45% / 42% 45% 55% 58%;
@@ -90,61 +63,140 @@
             .liquid-shape-2 {
                 border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%;
             }
+            .glass-btn {
+                position: relative;
+                overflow: hidden;
+                transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+                z-index: 1;
+            }
+            .glass-btn::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(255, 255, 255, 0.2);
+                transform: translateX(-100%);
+                transition: transform 0.5s ease;
+                z-index: -1;
+            }
+            .glass-btn:hover::before {
+                transform: translateX(100%);
+            }
+            .glass-btn-primary {
+                position: relative;
+                overflow: hidden;
+                z-index: 1;
+            }
+            .glass-btn-primary::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+                transform: translateX(-100%);
+                transition: transform 0.6s ease;
+                z-index: -1;
+            }
+            .glass-btn-primary:hover::before {
+                transform: translateX(100%);
+            }
+            .refraction-edge {
+                position: relative;
+            }
+            .refraction-top {
+                background: linear-gradient(0deg, transparent, rgba(255, 255, 255, 0.1));
+            }
+            .refraction-bottom {
+                background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.05));
+            }
+            .refraction-left {
+                background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.07));
+            }
+            .refraction-right {
+                background: linear-gradient(270deg, transparent, rgba(255, 255, 255, 0.07));
+            }
+            .mouse-reflector {
+                position: relative;
+                overflow: hidden;
+            }
+            /* ²Ëµ¥°´Å¥Í³Ò»ÑùÊ½ */
+            .menu-button {
+                display: flex;
+                align-items: center;
+                padding: 0.65rem 0.75rem;
+                width: 100%;
+                text-align: left;
+                flex-shrink: 1;
+                white-space: nowrap;
+            }
+            .menu-icon {
+                width: 1.25rem;
+                margin-right: 0.75rem;
+                flex-shrink: 0;
+                text-align: center;
+            }
+            /* ÌØĞÔ¿¨Æ¬ÑùÊ½ */
+            .feature-card {
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+            .feature-card:hover {
+                transform: translateY(-5px);
+            }
         }
     </style>
     
     <style>
-        /* åŸºç¡€ä¸»é¢˜åˆ‡æ¢æ ·å¼ */
+        /* »ù´¡ÑùÊ½ */
         body {
-            @apply bg-light-bg text-light-text transition-colors duration-300 font-sans;
+            overflow-x: hidden;
+            transition: background-color 0.4s ease, color 0.4s ease;
         }
-        .dark body {
-            @apply bg-dark-bg text-dark-text;
-        }
+        
         html {
             scroll-behavior: smooth;
         }
         
-        /* ç»ç’ƒæŒ‰é’®æŠ˜å°„æ•ˆæœ */
-        .glass-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            opacity: 0;
-            transition: opacity 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-            z-index: -1;
-            border-radius: 50rem;
-        }
-        .glass-btn:hover::before {
-            opacity: 1;
-        }
-        .glass-btn::after {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            border-radius: 50rem;
-            background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 50%, rgba(255,255,255,0.2) 100%);
-            opacity: 0;
-            transition: opacity 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-            z-index: -1;
-            filter: blur(2px);
-        }
-        .glass-btn:hover::after {
-            opacity: 1;
-        }
-        .dark .glass-btn::after {
-            background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 50%, rgba(255,255,255,0.1) 100%);
+        /* ÉîÉ«Ä£Ê½ÑùÊ½ */
+        body.dark-mode {
+            background-color: #0F172A;
+            color: #E2E8F0;
         }
         
-        /* æ¶²æ€å½¢çŠ¶åŠ¨ç”» */
+        body.dark-mode .bg-neutral {
+            background-color: #1E293B;
+        }
+        
+        body.dark-mode .text-gray-600 {
+            color: #94A3B8 !important;
+        }
+        
+        body.dark-mode .text-gray-500 {
+            color: #94A3B8 !important;
+        }
+        
+        body.dark-mode .text-gray-400 {
+            color: #94A3B8 !important;
+        }
+        
+        body.dark-mode .text-dark {
+            color: #F8FAFC !important;
+        }
+        
+        /* ¶¯»­Ğ§¹û */
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        .pulse-dot {
+            animation: pulse-dot 2.5s infinite;
+        }
+        .pulse-delay-1 { animation-delay: 0.5s; }
+        .pulse-delay-2 { animation-delay: 1s; }
+        
         @keyframes float {
             0% { transform: translateY(0px) rotate(0deg); }
             50% { transform: translateY(-20px) rotate(5deg); }
@@ -156,202 +208,611 @@
         .float-animation-delay {
             animation: float 10s ease-in-out infinite 1s;
         }
-        .dark .float-animation,
-        .dark .float-animation-delay {
-            @apply bg-primary/10;
+        
+        body.dark-mode .float-animation,
+        body.dark-mode .float-animation-delay {
+            background-color: rgba(59, 130, 246, 0.1);
         }
         
-        /* ä¸»é¢˜åˆ‡æ¢æŒ‰é’®åŠ¨ç”» */
+        /* µ¼º½À¸¹ö¶¯Ğ§¹û */
+        .nav-scrolled {
+            padding-top: 0.5rem !important;
+            padding-bottom: 0.5rem !important;
+        }
+        .nav-scrolled a {
+            font-size: 0.875rem !important;
+        }
+        
+        /* ÒÆ¶¯¶Ë²Ëµ¥ÑùÊ½ */
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        
+        body.dark-mode .menu-overlay {
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+        
+        .menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* ²Ëµ¥Ãæ°å - ½ô´ÕÉè¼Æ */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 240px;
+            border-radius: 1.5rem;
+            z-index: 999;
+            transform-origin: top right;
+            transform: scale(0.1);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+            max-height: calc(100vh - 2rem);
+            overflow-y: auto;
+            
+            /* ÓÅ»¯µÄ¸ßË¹Ä£ºı±³¾° */
+            backdrop-filter: blur(20px) saturate(120%);
+            -webkit-backdrop-filter: blur(20px) saturate(120%);
+            
+            /* »ù´¡±³¾° - È·±£ÄÚÈİ¿É¶ÁĞÔ */
+            background: rgba(255, 255, 255, 0.1);
+            
+            /* ±ß¿òºÍÒõÓ°ÔöÇ¿²£Á§ÖÊ¸Ğ */
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+            
+            /* ½ô´ÕµÄÄÚ²¿±ß¾à */
+            padding: 1rem;
+        }
+        
+        /* ÉîÉ«Ä£Ê½ÏÂµÄ²Ëµ¥Ãæ°å */
+        body.dark-mode .mobile-menu {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(20px) saturate(140%);
+            -webkit-backdrop-filter: blur(20px) saturate(140%);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+        
+        /* ²£Á§ÕÛÉä±ßÔµĞ§¹û */
+        .mobile-menu::before,
+        .mobile-menu::after,
+        .mobile-menu .refraction-left,
+        .mobile-menu .refraction-right {
+            content: '';
+            position: absolute;
+            pointer-events: none;
+        }
+        
+        /* ÉÏ±ßÔµÕÛÉä */
+        .mobile-menu::before {
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.2), 
+                transparent);
+        }
+        
+        /* ÏÂ±ßÔµÕÛÉä */
+        .mobile-menu::after {
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.1), 
+                transparent);
+        }
+        
+        /* ×ó±ßÔµÕÛÉä */
+        .mobile-menu .refraction-left {
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 1px;
+            background: linear-gradient(0deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.15), 
+                transparent);
+        }
+        
+        /* ÓÒ±ßÔµÕÛÉä */
+        .mobile-menu .refraction-right {
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 1px;
+            background: linear-gradient(0deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.15), 
+                transparent);
+        }
+        
+        /* ÉîÉ«Ä£Ê½ÏÂµÄ±ßÔµÕÛÉäµ÷Õû */
+        body.dark-mode .mobile-menu::before {
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.12), 
+                transparent);
+        }
+        
+        body.dark-mode .mobile-menu::after {
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.07), 
+                transparent);
+        }
+        
+        body.dark-mode .mobile-menu .refraction-left,
+        body.dark-mode .mobile-menu .refraction-right {
+            background: linear-gradient(0deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.1), 
+                transparent);
+        }
+        
+        /* ²Ëµ¥¼¤»î×´Ì¬ - ±äĞÎ¶¯»­ */
+        .mobile-menu.active {
+            transform: scale(1);
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* ²Ëµ¥°´Å¥ÑùÊ½Óë±äĞÎ¶¯»­ */
+        #openMenu {
+            position: fixed;
+            top: 1.5rem;
+            right: 1rem;
+            z-index: 1000;
+            transition: all 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+            transform-origin: center;
+            width: 40px;
+            height: 40px;
+        }
+        
+        #openMenu.hidden {
+            opacity: 0;
+            transform: scale(0);
+            pointer-events: none;
+        }
+        
+        /* ÉîÉ«Ä£Ê½ÇĞ»»°´Å¥¶¯»­ */
         .theme-toggle {
-            @apply transition-all duration-300 ease-in-out;
-        }
-        .theme-toggle:hover {
-            @apply rotate-15;
+            transition: transform 0.3s ease;
         }
         
-        /* åŠŸèƒ½å¡ç‰‡æ‚¬åœæ•ˆæœ */
-        .feature-card {
-            @apply transition-all duration-300 hover:shadow-glass-hover dark:hover:shadow-dark-glass-hover hover:-translate-y-1;
+        .theme-toggle.dark {
+            transform: rotate(180deg);
+        }
+        
+        /* ÒºÌ¬²£Á§°´Å¥µÄÌØÊâÑùÊ½ */
+        .glass-btn {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .glass-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.8);
+        }
+        
+        .glass-btn-primary {
+            background: rgba(59, 130, 246, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .glass-btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(59, 130, 246, 0.4);
+            background: rgba(59, 130, 246, 0.9);
+        }
+        
+        /* ÉîÉ«Ä£Ê½ÏÂµÄ°´Å¥ÑùÊ½ */
+        body.dark-mode .glass-btn {
+            background: rgba(30, 41, 59, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            color: #F8FAFC;
+        }
+        
+        body.dark-mode .glass-btn:hover {
+            background: rgba(51, 65, 85, 0.9);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+            color: #FFFFFF;
+        }
+        
+        body.dark-mode .glass-btn::before {
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        body.dark-mode .glass-btn-primary {
+            background: rgba(59, 130, 246, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.25);
+        }
+        
+        body.dark-mode .glass-btn-primary:hover {
+            background: rgba(59, 130, 246, 0.9);
+            box-shadow: 0 8px 30px rgba(59, 130, 246, 0.35);
+        }
+        
+        /* ÉîÉ«Ä£Ê½ÏÂµÄ²£Á§Ğ§¹û¿¨Æ¬ */
+        body.dark-mode .glass-effect {
+            background: rgba(30, 41, 59, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        
+        body.dark-mode .glass-effect img {
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        /* ÉîÉ«Ä£Ê½ÏÂµÄÁ´½ÓÑÕÉ« */
+        body.dark-mode a {
+            color: #93C5FD;
+        }
+        
+        body.dark-mode a:hover {
+            color: #BFDBFE;
+        }
+        
+        body.dark-mode .border-t {
+            border-top-color: rgba(255, 255, 255, 0.08);
+        }
+        
+        /* Ö÷ÌâÇĞ»»Æ½»¬¹ı¶É */
+        .glass-effect, .glass-btn, .glass-btn-primary, 
+        img, a, .border-t, .mobile-menu {
+            transition: all 0.4s ease;
+        }
+        
+        /* Êó±êĞüÍ£·´¹âĞ§¹û */
+        .mouse-light {
+            position: absolute;
+            pointer-events: none;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle, 
+                rgba(255, 255, 255, 0.3) 0%, 
+                rgba(255, 255, 255, 0.05) 70%, 
+                rgba(255, 255, 255, 0) 100%);
+            opacity: 0;
+            transition: opacity 0.2s ease;
+            z-index: 50;
+        }
+        
+        /* ÉîÉ«Ä£Ê½ÏÂµÄÊó±ê·´¹âµ÷Õû */
+        body.dark-mode .mouse-light {
+            background: radial-gradient(circle, 
+                rgba(255, 255, 255, 0.2) 0%, 
+                rgba(255, 255, 255, 0.03) 70%, 
+                rgba(255, 255, 255, 0) 100%);
+        }
+        
+        /* µ±Êó±êÔÚÔªËØÉÏÊ±ÏÔÊ¾·´¹â */
+        .mouse-reflector:hover .mouse-light {
+            opacity: 1;
+        }
+        
+        /* ²Ëµ¥ÄÚÎÄ±¾ÔÚÉîÉ«Ä£Ê½ÏÂµÄÑÕÉ« */
+        body.dark-mode .mobile-menu a,
+        body.dark-mode .mobile-menu span {
+            color: #E2E8F0 !important;
+        }
+        
+        /* ÉîÉ«Ä£Ê½ÏÂ²Ëµ¥Í¼±êµÄÑÕÉ« */
+        body.dark-mode .mobile-menu i {
+            color: #93C5FD !important;
         }
     </style>
 </head>
-<body>
-    <!-- èƒŒæ™¯è£…é¥°ï¼šå¤ç”¨ä¸»é¡µæ¶²æ€å½¢çŠ¶è®¾è®¡ -->
+<body class="bg-white text-dark">
+    <!-- ±³¾°×°ÊÎ -->
     <div class="fixed -top-40 -right-40 w-96 h-96 bg-primary/5 liquid-shape float-animation z-0"></div>
     <div class="fixed -bottom-20 -left-20 w-72 h-72 bg-primary/5 liquid-shape-2 float-animation-delay z-0"></div>
     
-    <!-- å¯¼èˆªæ ï¼šç®€åŒ–è®¾è®¡ï¼Œçªå‡ºè¿”å›ä¸»é¡µåŠŸèƒ½ -->
+    <!-- ÒÆ¶¯¶Ë²Ëµ¥¸²¸Ç²ã -->
+    <div class="menu-overlay" id="menuOverlay"></div>
+    
+    <!-- ÒÆ¶¯¶Ë²Ëµ¥ - ½ô´ÕÉè¼Æ -->
+    <div class="mobile-menu shadow-glass refraction-edge mouse-reflector" id="mobileMenu">
+        <!-- Êó±ê·´¹âĞ§¹ûÔªËØ -->
+        <div class="mouse-light"></div>
+        
+        <!-- ×óÓÒÕÛÉä±ßÔµ -->
+        <div class="refraction-left"></div>
+        <div class="refraction-right"></div>
+        
+        <!-- Í³Ò»¶ÔÆëµÄ²Ëµ¥°´Å¥²¼¾Ö -->
+        <ul class="pt-1 pb-1 space-y-2 relative z-10">
+            <li><a href="index.html#about" class="mobile-link glass-btn menu-button text-sm rounded-full mouse-reflector">
+                <div class="mouse-light"></div>
+                <i class="fa fa-users menu-icon text-primary"></i>
+                ¹ØÓÚÍÅ¶Ó
+            </a></li>
+            <li><a href="index.html#project" class="mobile-link glass-btn menu-button text-sm rounded-full mouse-reflector">
+                <div class="mouse-light"></div>
+                <i class="fa fa-cube menu-icon text-primary"></i>
+                ÏîÄ¿½éÉÜ
+            </a></li>
+            <li><a href="index.html#docs" class="mobile-link glass-btn menu-button text-sm rounded-full mouse-reflector">
+                <div class="mouse-light"></div>
+                <i class="fa fa-book menu-icon text-primary"></i>
+                ¼¼ÊõÎÄµµ
+            </a></li>
+            <li><a href="index.html#links" class="mobile-link glass-btn menu-button text-sm rounded-full mouse-reflector">
+                <div class="mouse-light"></div>
+                <i class="fa fa-link menu-icon text-primary"></i>
+                ÖØÒªÁ´½Ó
+            </a></li>
+            <!-- ÒÆ¶¯¶ËÉîÉ«Ä£Ê½ÇĞ»» - ÓëÆäËû°´Å¥¶ÔÆë -->
+            <li>
+                <button id="mobileThemeToggle" class="glass-btn menu-button text-sm rounded-full mouse-reflector">
+                    <div class="mouse-light"></div>
+                    <i class="fa fa-moon-o menu-icon text-primary theme-toggle"></i>
+                    <span id="mobileThemeText">Ç³É«Ä£Ê½</span>
+                </button>
+            </li>
+        </ul>
+    </div>
+    
+    <!-- µ¼º½À¸ -->
     <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center">
-                <!-- å·¦ä¾§ï¼šLogo + è½¯ä»¶å -->
+                <!-- ×ó²à£ºLogo + ÍÅ¶ÓÃû -->
                 <div class="flex items-center gap-2">
-                    <img src="https://cdn.luogu.com.cn/upload/image_hosting/vy6i8dsm.png" alt="Nextiousæ ‡å¿—" class="w-8 h-8 sm:w-10 sm:h-10 rounded object-cover">
-                    <span class="font-semibold text-lg sm:text-xl">Nextious</span>
+                    <img src="https://cdn.luogu.com.cn/upload/image_hosting/vy6i8dsm.png" alt="TeamPixelÍÅ¶Ó±êÖ¾" class="w-8 h-8 sm:w-10 sm:h-10 rounded object-cover transition-all duration-300" id="logo">
+                    <span class="font-semibold text-lg sm:text-xl transition-all duration-300" id="team-name">
+                        <a href="index.html">TeamPixel</a>
+                    </span>
                 </div>
                 
-                <!-- å³ä¾§ï¼šä¸»é¢˜åˆ‡æ¢ + è¿”å›ä¸»é¡µæŒ‰é’® -->
-                <div class="flex items-center gap-4">
-                    <!-- ä¸»é¢˜åˆ‡æ¢æŒ‰é’® -->
-                    <button class="glass-btn w-10 h-10 flex items-center justify-center text-light-text dark:text-dark-text theme-toggle" id="themeToggle">
-                        <i class="fa fa-moon-o dark:hidden"></i>
-                        <i class="fa fa-sun-o hidden dark:block"></i>
-                    </button>
+                <!-- ÓÒ²à£ºµ¼º½Á´½ÓºÍÉîÉ«Ä£Ê½ÇĞ»» -->
+                <div class="hidden md:flex items-center gap-4">
+                    <nav class="glass-effect shadow-glass px-8 py-3 hover:shadow-glass-hover transition-all rounded-full mouse-reflector">
+                        <div class="mouse-light"></div>
+                        <ul class="flex items-center gap-6 sm:gap-8">
+                            <li><a href="index.html#about" class="glass-btn px-3 py-1.5 text-gray-600 hover:text-primary text-sm sm:text-base rounded-full mouse-reflector">
+                                <div class="mouse-light"></div>
+                                ¹ØÓÚÍÅ¶Ó
+                            </a></li>
+                            <li><a href="index.html#project" class="glass-btn px-3 py-1.5 text-gray-600 hover:text-primary text-sm sm:text-base rounded-full mouse-reflector">
+                                <div class="mouse-light"></div>
+                                ÏîÄ¿½éÉÜ
+                            </a></li>
+                            <li><a href="nextious.html" class="glass-btn glass-btn-primary px-3 py-1.5 text-white font-medium text-sm sm:text-base rounded-full mouse-reflector">
+                                <div class="mouse-light"></div>
+                                Nextious
+                            </a></li>
+                            <li><a href="index.html#docs" class="glass-btn px-3 py-1.5 text-gray-600 hover:text-primary text-sm sm:text-base rounded-full mouse-reflector">
+                                <div class="mouse-light"></div>
+                                ¼¼ÊõÎÄµµ
+                            </a></li>
+                        </ul>
+                    </nav>
                     
-                    <!-- è¿”å›ä¸»é¡µæŒ‰é’®ï¼šçªå‡ºæ˜¾ç¤º -->
-                    <a href="https://tpixel.qzz.io" class="glass-btn glass-btn-primary px-4 py-1.5 text-sm sm:text-base flex items-center">
-                        <i class="fa fa-home mr-2"></i>
-                        è¿”å›ä¸»é¡µ
-                    </a>
+                    <!-- ÉîÉ«Ä£Ê½ÇĞ»»°´Å¥ -->
+                    <button class="glass-btn w-10 h-10 flex items-center justify-center text-gray-600 hover:text-primary rounded-full mouse-reflector" id="themeToggle">
+                        <div class="mouse-light"></div>
+                        <i class="fa fa-moon-o text-lg theme-toggle"></i>
+                    </button>
                 </div>
+                
+                <!-- ÒÆ¶¯¶Ë²Ëµ¥°´Å¥ -->
+                <button class="md:hidden glass-btn w-10 h-10 flex items-center justify-center text-gray-600 hover:text-primary focus:outline-none rounded-full transition-all duration-300 mouse-reflector" id="openMenu">
+                    <div class="mouse-light"></div>
+                    <i class="fa fa-bars text-lg"></i>
+                </button>
             </div>
         </div>
     </header>
 
-    <!-- è‹±é›„åŒºåŸŸï¼šçªå‡ºè½¯ä»¶åç§°ä¸æ ¸å¿ƒå®šä½ -->
+    <!-- Ó¢ĞÛÇøÓò -->
     <section class="pt-32 pb-20 sm:pt-40 sm:pb-28 px-4 sm:px-6 lg:px-8 relative">
         <div class="container mx-auto max-w-4xl text-center relative z-10">
-            <!-- è½¯ä»¶åç§°ä¸å®šä½ -->
-            <div class="glass-effect rounded-2xl p-6 sm:p-8 inline-block mb-10 shadow-glass">
-                <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-4">Nextious</h1>
-                <p class="text-lg sm:text-xl text-light-text/80 dark:text-dark-text/80">å±€åŸŸç½‘é€šä¿¡ä¸æ–‡ä»¶ä¼ è¾“è§£å†³æ–¹æ¡ˆ</p>
+            <div class="glass-effect rounded-2xl p-6 sm:p-8 inline-block mb-10 shadow-glass mouse-reflector">
+                <div class="mouse-light"></div>
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight">Nextious</h1>
+                <p class="text-xl sm:text-2xl text-gray-600 mt-4">¾ÖÓòÍøÍ¨ĞÅÓëÎÄ¼ş´«Êä½â¾ö·½°¸</p>
             </div>
             
-            <!-- åç§°é‡Šä¹‰ï¼šå¤ç”¨åŸæ–‡å†…å®¹ -->
-            <div class="glass-effect rounded-xl p-6 sm:p-8 max-w-3xl mx-auto text-light-text/90 dark:text-dark-text/90 text-base sm:text-lg mb-12 leading-relaxed text-balance shadow-glass">
-                <p class="mb-3">åç§°æ¥æºäºæ‹‰ä¸è¯­å•è¯</p>
-                <div class="flex flex-col sm:flex-row justify-center gap-8 my-4">
-                    <p class="text-xl sm:text-2xl font-medium"><span class="italic">Nexus</span> (æ„ä¸ºè¿æ¥)</p>
-                    <p class="text-xl sm:text-2xl font-medium"><span class="italic">Nuntius</span> (æ„ä¸ºä¿¡ä½¿,ä¿¡æ¯)</p>
+            <div class="glass-effect rounded-xl p-6 sm:p-8 max-w-2xl mx-auto shadow-glass mb-12 mouse-reflector">
+                <div class="mouse-light"></div>
+                <h3 class="text-xl sm:text-2xl font-semibold mb-4 text-dark">Ãû³ÆÀ´Ô´</h3>
+                <p class="text-gray-600 mb-3">ÈÚºÏÁËÁ½¸öÀ­¶¡Óïµ¥´ÊµÄºËĞÄº¬Òå£º</p>
+                
+                <div class="grid md:grid-cols-2 gap-6 mt-6">
+                    <div class="glass-btn p-4 rounded-xl mouse-reflector">
+                        <div class="mouse-light"></div>
+                        <p class="text-2xl font-medium text-primary italic">Nexus</p>
+                        <p class="text-gray-600 mt-2">ÒâÎª"Á¬½Ó"</p>
+                    </div>
+                    <div class="glass-btn p-4 rounded-xl mouse-reflector">
+                        <div class="mouse-light"></div>
+                        <p class="text-2xl font-medium text-primary italic">Nuntius</p>
+                        <p class="text-gray-600 mt-2">ÒâÎª"ĞÅÊ¹£¬ĞÅÏ¢"</p>
+                    </div>
                 </div>
-                <p>èåˆè¿æ¥ä¸ä¿¡æ¯ä¼ é€’çš„æ ¸å¿ƒä»·å€¼ï¼Œæ‰“é€ é«˜æ•ˆå±€åŸŸç½‘å·¥å…·</p>
+                
+                <p class="text-gray-600 mt-6 text-lg">ÈÚºÏÁ¬½ÓÓëĞÅÏ¢´«µİµÄºËĞÄ¼ÛÖµ£¬´òÔì¸ßĞ§¾ÖÓòÍø¹¤¾ß</p>
+                
+                <div class="flex flex-wrap justify-center gap-3 sm:gap-4 mt-8">
+                    <span class="glass-btn px-4 py-2.5 text-gray-700 text-sm sm:text-base rounded-full mouse-reflector">
+                        <div class="mouse-light"></div>
+                        <i class="fa fa-graduation-cap mr-2 text-primary"></i>Ñ§ÉúÊÊÓÃ
+                    </span>
+                    <span class="glass-btn px-4 py-2.5 text-gray-700 text-sm sm:text-base rounded-full mouse-reflector">
+                        <div class="mouse-light"></div>
+                        <i class="fa fa-building mr-2 text-primary"></i>ÆóÒµÊÊÓÃ
+                    </span>
+                    <span class="glass-btn px-4 py-2.5 text-gray-700 text-sm sm:text-base rounded-full mouse-reflector">
+                        <div class="mouse-light"></div>
+                        <i class="fa fa-wifi mr-2 text-primary"></i>¾ÖÓòÍøÍ¨ĞÅ
+                    </span>
+                    <span class="glass-btn px-4 py-2.5 text-gray-700 text-sm sm:text-base rounded-full mouse-reflector">
+                        <div class="mouse-light"></div>
+                        <i class="fa fa-lock mr-2 text-primary"></i>°²È«¼ÓÃÜ
+                    </span>
+                </div>
             </div>
             
-            <!-- æ ¸å¿ƒå®šä½æ ‡ç­¾ -->
-            <div class="flex flex-wrap gap-3 sm:gap-4 justify-center max-w-2xl mx-auto">
-                <span class="glass-btn px-4 py-2.5 text-light-text dark:text-dark-text text-sm sm:text-base">
-                    <i class="fa fa-users mr-2 text-primary"></i>å­¦ç”Ÿ/ä¼ä¸šé€‚ç”¨
-                </span>
-                <span class="glass-btn px-4 py-2.5 text-light-text dark:text-dark-text text-sm sm:text-base">
-                    <i class="fa fa-wifi mr-2 text-primary"></i>å±€åŸŸç½‘é€šä¿¡
-                </span>
-                <span class="glass-btn px-4 py-2.5 text-light-text dark:text-dark-text text-sm sm:text-base">
-                    <i class="fa fa-shield mr-2 text-primary"></i>å®‰å…¨åŠ å¯†
-                </span>
-            </div>
+            <a href="#features" class="glass-btn glass-btn-primary inline-flex items-center px-8 py-3.5 text-white font-medium rounded-full mouse-reflector">
+                <div class="mouse-light"></div>
+                Ì½Ë÷ºËĞÄ¹¦ÄÜ
+                <i class="fa fa-arrow-down ml-2"></i>
+            </a>
         </div>
     </section>
 
-    <!-- æ ¸å¿ƒåŠŸèƒ½åŒºï¼šåˆ†æ¨¡å—å±•ç¤ºåŠŸèƒ½ï¼Œæ­é…å›¾æ ‡å¢å¼ºç›´è§‚æ€§ -->
-    <section class="py-16 sm:py-24 bg-light-gray dark:bg-dark-gray relative">
+    <!-- ºËĞÄ¹¦ÄÜ -->
+    <section id="features" class="py-16 sm:py-24 bg-neutral relative">
         <div class="container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 relative z-10">
-            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-12 sm:mb-16 text-center">æ ¸å¿ƒ <span class="text-primary">åŠŸèƒ½</span></h2>
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-12 sm:mb-16 text-center">ºËĞÄ <span class="text-primary">¹¦ÄÜ</span></h2>
             
-            <!-- åŠŸèƒ½å¡ç‰‡ç½‘æ ¼ï¼šå“åº”å¼å¸ƒå±€ -->
-            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-                <!-- åŠŸèƒ½1ï¼šå›¾å½¢åŒ–ç•Œé¢ -->
-                <div class="glass-effect rounded-2xl p-6 sm:p-8 shadow-glass feature-card">
-                    <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-6 mx-auto">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                <!-- ¹¦ÄÜ¿¨Æ¬ 1 -->
+                <div class="glass-effect rounded-2xl p-6 sm:p-8 shadow-glass feature-card mouse-reflector">
+                    <div class="mouse-light"></div>
+                    <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
                         <i class="fa fa-desktop text-primary text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-semibold mb-4 text-center">å‹å¥½å›¾å½¢åŒ–ç•Œé¢</h3>
-                    <p class="text-light-text/90 dark:text-dark-text/90 text-center">å‘Šåˆ«å¤æ‚å‘½ä»¤è¡Œï¼Œç›´è§‚æ“ä½œç•Œé¢ï¼Œæ–°æ‰‹ä¹Ÿèƒ½å¿«é€Ÿä¸Šæ‰‹</p>
+                    <h3 class="text-xl font-semibold mb-4 text-dark">ÓÑºÃÍ¼ĞÎ»¯½çÃæ</h3>
+                    <p class="text-gray-600">¸æ±ğ¸´ÔÓÃüÁîĞĞ£¬Ö±¹Û²Ù×÷½çÃæ£¬ĞÂÊÖÒ²ÄÜ¿ìËÙÉÏÊÖ£¬½µµÍÊ¹ÓÃÃÅ¼÷¡£</p>
                 </div>
                 
-                <!-- åŠŸèƒ½2ï¼šæ–‡å­—è¯­éŸ³èŠå¤© -->
-                <div class="glass-effect rounded-2xl p-6 sm:p-8 shadow-glass feature-card">
-                    <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-6 mx-auto">
+                <!-- ¹¦ÄÜ¿¨Æ¬ 2 -->
+                <div class="glass-effect rounded-2xl p-6 sm:p-8 shadow-glass feature-card mouse-reflector">
+                    <div class="mouse-light"></div>
+                    <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
                         <i class="fa fa-comments text-primary text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-semibold mb-4 text-center">æ–‡å­—è¯­éŸ³èŠå¤©</h3>
-                    <p class="text-light-text/90 dark:text-dark-text/90 text-center">å±€åŸŸç½‘å†…å®æ—¶æ²Ÿé€šï¼Œæ”¯æŒæ–‡å­—æ¶ˆæ¯ä¸è¯­éŸ³é€šè¯ï¼Œæ²Ÿé€šæ›´é«˜æ•ˆ</p>
+                    <h3 class="text-xl font-semibold mb-4 text-dark">ÎÄ×ÖÓïÒôÁÄÌì</h3>
+                    <p class="text-gray-600">¾ÖÓòÍøÄÚÊµÊ±¹µÍ¨£¬Ö§³ÖÎÄ×ÖÏûÏ¢ÓëÓïÒôÍ¨»°£¬ÍÅ¶ÓĞ­×÷¹µÍ¨¸ü¸ßĞ§¡£</p>
                 </div>
                 
-                <!-- åŠŸèƒ½3ï¼šå…¨ç±»å‹æ–‡ä»¶å‘é€ -->
-                <div class="glass-effect rounded-2xl p-6 sm:p-8 shadow-glass feature-card">
-                    <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-6 mx-auto">
-                        <i class="fa fa-file-text-o text-primary text-2xl"></i>
+                <!-- ¹¦ÄÜ¿¨Æ¬ 3 -->
+                <div class="glass-effect rounded-2xl p-6 sm:p-8 shadow-glass feature-card mouse-reflector">
+                    <div class="mouse-light"></div>
+                    <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fa fa-file text-primary text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-semibold mb-4 text-center">å…¨ç±»å‹æ–‡ä»¶å‘é€</h3>
-                    <p class="text-light-text/90 dark:text-dark-text/90 text-center">æ”¯æŒæ‰€æœ‰æ ¼å¼æ–‡ä»¶ä¼ è¾“ï¼Œæ— éœ€æ‹…å¿ƒæ–‡ä»¶ç±»å‹é™åˆ¶ï¼Œä¼ è¾“é€Ÿåº¦å¿«</p>
+                    <h3 class="text-xl font-semibold mb-4 text-dark">È«ÀàĞÍÎÄ¼ş·¢ËÍ</h3>
+                    <p class="text-gray-600">Ö§³ÖËùÓĞ¸ñÊ½ÎÄ¼ş´«Êä£¬ÎŞĞèµ£ĞÄÎÄ¼şÀàĞÍÏŞÖÆ£¬¾ÖÓòÍøÄÚ´«ÊäËÙ¶È¿ì¡£</p>
                 </div>
                 
-                <!-- åŠŸèƒ½4ï¼šå®æ—¶å±å¹•é•œåƒ -->
-                <div class="glass-effect rounded-2xl p-6 sm:p-8 shadow-glass feature-card">
-                    <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-6 mx-auto">
-                        <i class="fa fa-desktop text-primary text-2xl"></i>
+                <!-- ¹¦ÄÜ¿¨Æ¬ 4 -->
+                <div class="glass-effect rounded-2xl p-6 sm:p-8 shadow-glass feature-card mouse-reflector">
+                    <div class="mouse-light"></div>
+                    <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fa fa-desktop text-primary text-2xl fa-clone"></i>
                     </div>
-                    <h3 class="text-xl font-semibold mb-4 text-center">å®æ—¶å±å¹•é•œåƒ</h3>
-                    <p class="text-light-text/90 dark:text-dark-text/90 text-center">è¿œç¨‹å…±äº«å±å¹•å†…å®¹ï¼Œé€‚ç”¨äºæ•™å­¦æ¼”ç¤ºã€ä¼šè®®æ±‡æŠ¥ç­‰åœºæ™¯</p>
+                    <h3 class="text-xl font-semibold mb-4 text-dark">ÊµÊ±ÆÁÄ»¾µÏñ</h3>
+                    <p class="text-gray-600">Ô¶³Ì¹²ÏíÆÁÄ»ÄÚÈİ£¬ÊÊÓÃÓÚ½ÌÑ§ÑİÊ¾¡¢»áÒé»ã±¨µÈ³¡¾°£¬ÌáÉıĞ­×÷Ğ§ÂÊ¡£</p>
                 </div>
                 
-                <!-- åŠŸèƒ½5ï¼šéå¯¹ç§°åŠ å¯† -->
-                <div class="glass-effect rounded-2xl p-6 sm:p-8 shadow-glass feature-card">
-                    <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-6 mx-auto">
+                <!-- ¹¦ÄÜ¿¨Æ¬ 5 -->
+                <div class="glass-effect rounded-2xl p-6 sm:p-8 shadow-glass feature-card mouse-reflector">
+                    <div class="mouse-light"></div>
+                    <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
                         <i class="fa fa-lock text-primary text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-semibold mb-4 text-center">éå¯¹ç§°åŠ å¯†æŠ€æœ¯</h3>
-                    <p class="text-light-text/90 dark:text-dark-text/90 text-center">é‡‡ç”¨é«˜å¼ºåº¦éå¯¹ç§°åŠ å¯†ç®—æ³•ï¼Œç¡®ä¿é€šä¿¡å†…å®¹ä¸æ–‡ä»¶ä¼ è¾“å®‰å…¨</p>
+                    <h3 class="text-xl font-semibold mb-4 text-dark">·Ç¶Ô³Æ¼ÓÃÜ¼¼Êõ</h3>
+                    <p class="text-gray-600">²ÉÓÃ¸ßÇ¿¶È·Ç¶Ô³Æ¼ÓÃÜËã·¨£¬È·±£Í¨ĞÅÄÚÈİÓëÎÄ¼ş´«Êä°²È«£¬·ÀÖ¹ĞÅÏ¢Ğ¹Â¶¡£</p>
                 </div>
                 
-                <!-- åŠŸèƒ½6ï¼šå»ä¸­å¿ƒåŒ–ç®¡ç† -->
-                <div class="glass-effect rounded-2xl p-6 sm:p-8 shadow-glass feature-card">
-                    <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-6 mx-auto">
-                        <i class="fa fa-random text-primary text-2xl"></i>
+                <!-- ¹¦ÄÜ¿¨Æ¬ 6 -->
+                <div class="glass-effect rounded-2xl p-6 sm:p-8 shadow-glass feature-card mouse-reflector">
+                    <div class="mouse-light"></div>
+                    <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fa fa-server text-primary text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-semibold mb-4 text-center">å»ä¸­å¿ƒåŒ–ç®¡ç†</h3>
-                    <p class="text-light-text/90 dark:text-dark-text/90 text-center">æ— éœ€ä¸­å¿ƒæœåŠ¡å™¨ï¼Œæ•°æ®ç›´æ¥ç‚¹å¯¹ç‚¹ä¼ è¾“ï¼Œä½ çš„æ•°æ®ä»ä¸ç»è¿‡ç¬¬ä¸‰æ–¹æœåŠ¡å™¨</p>
+                    <h3 class="text-xl font-semibold mb-4 text-dark">È¥ÖĞĞÄ»¯¹ÜÀí</h3>
+                    <p class="text-gray-600">ÎŞĞèÖĞĞÄ·şÎñÆ÷£¬Êı¾İÖ±½Óµã¶Ôµã´«Êä£¬½µµÍÎ¬»¤³É±¾£¬Ìá¸ßÏµÍ³¿É¿¿ĞÔ¡£</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- é€‚ç”¨äººç¾¤åŒºï¼šé’ˆå¯¹å­¦ç”Ÿå’Œä¼ä¸šåœºæ™¯ -->
-    <section class="py-16 sm:py-24 relative">
+    <!-- ÊÊÓÃÈËÈº -->
+    <section id="users" class="py-16 sm:py-24 relative">
         <div class="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 relative z-10">
-            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-12 sm:mb-16 text-center">é€‚ç”¨ <span class="text-primary">äººç¾¤</span></h2>
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-12 sm:mb-16 text-center">ÊÊÓÃ <span class="text-primary">ÈËÈº</span></h2>
             
-            <div class="grid sm:grid-cols-2 gap-8">
-                <!-- å­¦ç”Ÿåœºæ™¯ -->
-                <div class="glass-effect rounded-2xl p-6 sm:p-10 shadow-glass feature-card">
-                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6 mx-auto">
-                        <i class="fa fa-graduation-cap text-primary text-2xl"></i>
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Ñ§ÉúÈºÌå -->
+                <div class="glass-effect rounded-2xl p-6 sm:p-10 shadow-glass mouse-reflector">
+                    <div class="mouse-light"></div>
+                    <div class="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fa fa-graduation-cap text-primary text-3xl"></i>
                     </div>
-                    <h3 class="text-xl sm:text-2xl font-semibold mb-6 text-center">å­¦ç”Ÿç¾¤ä½“</h3>
-                    <ul class="space-y-4 text-light-text/90 dark:text-dark-text/90">
+                    <h3 class="text-2xl font-semibold mb-6 text-dark">Ñ§ÉúÈºÌå</h3>
+                    
+                    <ul class="space-y-4 text-gray-600">
                         <li class="flex items-start">
                             <i class="fa fa-check-circle text-primary mt-1 mr-3 text-lg"></i>
-                            <span>æœºæˆ¿æ— ç½‘ç¯å¢ƒä¸‹ï¼ŒåŒå­¦é—´å®æ—¶èŠå¤©æ²Ÿé€š</span>
+                            <span>»ú·¿ÎŞÍø»·¾³ÏÂ£¬Í¬Ñ§¼äÊµÊ±ÁÄÌì¹µÍ¨£¬·½±ãĞ¡×éÌÖÂÛ</span>
                         </li>
                         <li class="flex items-start">
                             <i class="fa fa-check-circle text-primary mt-1 mr-3 text-lg"></i>
-                            <span>å¿«é€Ÿä¼ è¾“å­¦ä¹ èµ„æ–™ã€ä½œä¸šæ–‡ä»¶ï¼Œæ— éœ€Uç›˜</span>
+                            <span>¿ìËÙ´«ÊäÑ§Ï°×ÊÁÏ¡¢×÷ÒµÎÄ¼ş£¬ÎŞĞèUÅÌ£¬½ÚÊ¡Ê±¼ä</span>
                         </li>
                         <li class="flex items-start">
                             <i class="fa fa-check-circle text-primary mt-1 mr-3 text-lg"></i>
-                            <span>å°ç»„é¡¹ç›®åä½œæ—¶ï¼Œå±å¹•é•œåƒå…±äº«æ€è·¯ä¸æˆæœ</span>
+                            <span>Ğ¡×éÏîÄ¿Ğ­×÷Ê±£¬ÆÁÄ»¾µÏñ¹²ÏíË¼Â·Óë³É¹û£¬Ìá¸ßĞ§ÂÊ</span>
                         </li>
                     </ul>
                 </div>
                 
-                <!-- ä¼ä¸šåœºæ™¯ -->
-                <div class="glass-effect rounded-2xl p-6 sm:p-10 shadow-glass feature-card">
-                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6 mx-auto">
-                        <i class="fa fa-briefcase text-primary text-2xl"></i>
+                <!-- ÆóÒµÓÃ»§ -->
+                <div class="glass-effect rounded-2xl p-6 sm:p-10 shadow-glass mouse-reflector">
+                    <div class="mouse-light"></div>
+                    <div class="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fa fa-building text-primary text-3xl"></i>
                     </div>
-                    <h3 class="text-xl sm:text-2xl font-semibold mb-6 text-center">ä¼ä¸šç”¨æˆ·</h3>
-                    <ul class="space-y-4 text-light-text/90 dark:text-dark-text/90">
+                    <h3 class="text-2xl font-semibold mb-6 text-dark">ÆóÒµÓÃ»§</h3>
+                    
+                    <ul class="space-y-4 text-gray-600">
                         <li class="flex items-start">
                             <i class="fa fa-check-circle text-primary mt-1 mr-3 text-lg"></i>
-                            <span>å†…ç½‘å®‰å…¨èŠå¤©ï¼Œé¿å…å¤–éƒ¨ç½‘ç»œç›‘æ§é£é™©</span>
+                            <span>ÄÚÍø°²È«ÁÄÌì£¬±ÜÃâÍâ²¿ÍøÂç¼à¿Ø·çÏÕ£¬±£»¤ÉÌÒµ»úÃÜ</span>
                         </li>
                         <li class="flex items-start">
                             <i class="fa fa-check-circle text-primary mt-1 mr-3 text-lg"></i>
-                            <span>ä¼ è¾“æ•æ„Ÿä¸šåŠ¡æ–‡ä»¶ï¼ŒåŠ å¯†æŠ€æœ¯ä¿éšœæ•°æ®å®‰å…¨</span>
+                            <span>´«ÊäÃô¸ĞÒµÎñÎÄ¼ş£¬¼ÓÃÜ¼¼Êõ±£ÕÏÊı¾İ°²È«£¬·ÀÖ¹Ğ¹Â¶</span>
                         </li>
                         <li class="flex items-start">
                             <i class="fa fa-check-circle text-primary mt-1 mr-3 text-lg"></i>
-                            <span>å»ä¸­å¿ƒåŒ–æ¶æ„ï¼Œæ— éœ€ç»´æŠ¤ä¸­å¿ƒæœåŠ¡å™¨ï¼Œé™ä½ITæˆæœ¬</span>
+                            <span>È¥ÖĞĞÄ»¯¼Ü¹¹£¬ÎŞĞèÎ¬»¤ÖĞĞÄ·şÎñÆ÷£¬½µµÍIT³É±¾</span>
                         </li>
                     </ul>
                 </div>
@@ -359,93 +820,374 @@
         </div>
     </section>
 
-    <!-- å®‰å…¨ä¼˜åŠ¿åŒºï¼šå¼ºè°ƒæ•°æ®å®‰å…¨ -->
-    <section class="py-16 sm:py-24 bg-light-gray dark:bg-dark-gray relative">
+    <!-- °²È«ÓÅÊÆ -->
+    <section id="security" class="py-16 sm:py-24 bg-neutral relative">
         <div class="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 relative z-10">
-            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-12 sm:mb-16 text-center">å®‰å…¨ <span class="text-primary">ä¼˜åŠ¿</span></h2>
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-12 sm:mb-16 text-center">°²È« <span class="text-primary">ÓÅÊÆ</span></h2>
             
-            <div class="glass-effect rounded-2xl p-8 sm:p-12 shadow-glass max-w-3xl mx-auto">
-                <div class="flex flex-col md:flex-row items-center gap-8">
-                    <!-- å·¦ä¾§å›¾æ ‡ -->
-                    <div class="w-24 h-24 bg-primary/10 rounded-full flex items-center justify-center">
-                        <i class="fa fa-shield text-primary text-4xl"></i>
+            <div class="glass-effect rounded-2xl p-6 sm:p-10 shadow-glass max-w-3xl mx-auto mouse-reflector">
+                <div class="mouse-light"></div>
+                
+                <div class="flex flex-col md:flex-row gap-8 items-center">
+                    <div class="md:w-1/3">
+                        <div class="w-24 h-24 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
+                            <i class="fa fa-shield text-primary text-4xl"></i>
+                        </div>
                     </div>
                     
-                    <!-- å³ä¾§æ–‡å­—ï¼šçªå‡ºæ•°æ®å®‰å…¨ -->
-                    <div class="text-light-text/90 dark:text-dark-text/90 text-base sm:text-lg">
-                        <h3 class="text-xl sm:text-2xl font-semibold mb-4">ä½ çš„æ•°æ®ï¼Œç»å¯¹å®‰å…¨</h3>
-                        <p class="mb-4">Nextiousé‡‡ç”¨å»ä¸­å¿ƒåŒ–æ¶æ„ï¼Œæ‰€æœ‰æ•°æ®å‡é€šè¿‡å±€åŸŸç½‘ç‚¹å¯¹ç‚¹ç›´æ¥ä¼ è¾“ï¼Œ<span class="text-primary font-medium">ä»ä¸ç»è¿‡ä»»ä½•ç¬¬ä¸‰æ–¹æœåŠ¡å™¨</span>ï¼Œå½»åº•æœç»æ•°æ®æ³„éœ²é£é™©ã€‚</p>
-                        <p>é…åˆéå¯¹ç§°åŠ å¯†æŠ€æœ¯ï¼Œå³ä½¿åœ¨å…¬å…±å±€åŸŸç½‘ç¯å¢ƒä¸‹ï¼Œä¹Ÿèƒ½ç¡®ä¿ä½ çš„èŠå¤©å†…å®¹å’Œæ–‡ä»¶ä¼ è¾“ä¸è¢«çªƒå–æˆ–ç¯¡æ”¹ï¼Œä¸ºå­¦ç”Ÿå­¦ä¹ å’Œä¼ä¸šåŠå…¬æä¾›ç»å¯¹å®‰å…¨çš„é€šä¿¡ä¿éšœã€‚</p>
+                    <div class="md:w-2/3">
+                        <h3 class="text-2xl font-semibold mb-6 text-dark">²»ÒªÄÃÄãµÄÊı¾İ°²È«Ã°ÏÕ£¡</h3>
+                        
+                        <p class="text-gray-600 mb-6 text-lg">
+                            Nextious²ÉÓÃÈ¥ÖĞĞÄ»¯¼Ü¹¹£¬ËùÓĞÊı¾İ¾ùÍ¨¹ı¾ÖÓòÍøµã¶ÔµãÖ±½Ó´«Êä£¬´Ó²»¾­¹ıÈÎºÎµÚÈı·½·şÎñÆ÷£¬³¹µ×¶Å¾øÊı¾İĞ¹Â¶·çÏÕ¡£
+                        </p>
+                        
+                        <p class="text-gray-600 text-lg">
+                            ÅäºÏ·Ç¶Ô³Æ¼ÓÃÜ¼¼Êõ£¬¼´Ê¹ÔÚ¹«¹²¾ÖÓòÍø»·¾³ÏÂ£¬Ò²ÄÜÈ·±£ÄãµÄÁÄÌìÄÚÈİºÍÎÄ¼ş´«Êä²»±»ÇÔÈ¡»ò´Û¸Ä£¬ÎªÑ§ÉúÑ§Ï°ºÍÆóÒµ°ì¹«Ìá¹©¾ø¶Ô°²È«µÄÍ¨ĞÅ±£ÕÏ¡£
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div class="glass-btn p-5 rounded-xl mouse-reflector">
+                        <div class="mouse-light"></div>
+                        <div class="flex items-center mb-3">
+                            <i class="fa fa-random text-primary text-xl mr-3"></i>
+                            <h4 class="text-lg font-medium text-dark">µã¶Ôµã´«Êä</h4>
+                        </div>
+                        <p class="text-gray-600 text-sm">Êı¾İÖ±½ÓÔÚÉè±¸¼ä´«Êä£¬²»¾­¹ıÈÎºÎÖĞ¼ä·şÎñÆ÷</p>
+                    </div>
+                    
+                    <div class="glass-btn p-5 rounded-xl mouse-reflector">
+                        <div class="mouse-light"></div>
+                        <div class="flex items-center mb-3">
+                            <i class="fa fa-key text-primary text-xl mr-3"></i>
+                            <h4 class="text-lg font-medium text-dark">¶Ëµ½¶Ë¼ÓÃÜ</h4>
+                        </div>
+                        <p class="text-gray-600 text-sm">²ÉÓÃ¸ß¼¶¼ÓÃÜ±ê×¼£¬Ö»ÓĞ½ÓÊÕ·½ÄÜ½âÃÜÄÚÈİ</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- é¡µè„šï¼šå†æ¬¡å¼ºè°ƒè¿”å›ä¸»é¡µåŠŸèƒ½ -->
-    <footer class="py-12 sm:py-16 glass-effect border-t border-light-glassBorder dark:border-dark-glassBorder relative z-10">
+    <!-- ĞĞ¶¯ÕÙ»½ -->
+    <section class="py-16 sm:py-24 relative">
+        <div class="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="glass-effect rounded-2xl p-8 sm:p-12 shadow-glass text-center max-w-3xl mx-auto mouse-reflector">
+                <div class="mouse-light"></div>
+                
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-6">×¼±¸ºÃÌáÉıÄãµÄ¾ÖÓòÍøÌåÑéÁËÂğ£¿</h2>
+                
+                <p class="text-gray-600 text-lg mb-10 max-w-2xl mx-auto">
+                    ÎŞÂÛÊÇÑ§ÉúÈºÌå»¹ÊÇÆóÒµÓÃ»§£¬Nextious¶¼ÄÜÎªÄãÌá¹©°²È«¡¢¸ßĞ§µÄ¾ÖÓòÍøÍ¨ĞÅÓëÎÄ¼ş´«Êä½â¾ö·½°¸¡£
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#" class="glass-btn glass-btn-primary inline-flex items-center justify-center px-8 py-3.5 text-white font-medium rounded-full mouse-reflector">
+                        <div class="mouse-light"></div>
+                        <i class="fa fa-download mr-2"></i>
+                        ÏÂÔØÌåÑé
+                    </a>
+                    <a href="index.html#project" class="glass-btn inline-flex items-center justify-center px-8 py-3.5 text-primary font-medium rounded-full mouse-reflector">
+                        <div class="mouse-light"></div>
+                        <i class="fa fa-arrow-left mr-2"></i>
+                        ·µ»ØÏîÄ¿Ö÷Ò³
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ò³½Å -->
+    <footer class="py-12 sm:py-16 glass-effect border-t border-white/10 relative z-10">
         <div class="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col sm:flex-row justify-between items-center mb-8 sm:mb-12">
-                <!-- å·¦ä¾§ï¼šLogo + è½¯ä»¶å -->
-                <div class="flex items-center gap-2 mb-6 sm:mb-0">
-                    <img src="https://cdn.luogu.com.cn/upload/image_hosting/vy6i8dsm.png" alt="Nextiousæ ‡å¿—" class="w-8 h-8 rounded object-cover">
-                    <span class="font-semibold text-lg">Nextious</span>
+            <div class="flex flex-col md:flex-row justify-between items-center mb-8 sm:mb-12">
+                <div class="flex items-center gap-2 mb-6 md:mb-0">
+                    <img src="https://cdn.luogu.com.cn/upload/image_hosting/vy6i8dsm.png" alt="TeamPixelÍÅ¶Ó±êÖ¾" class="w-8 h-8 rounded object-cover">
+                    <span class="font-semibold text-lg">TeamPixel</span>
                 </div>
                 
-                <!-- å³ä¾§ï¼šè¿”å›ä¸»é¡µæŒ‰é’®ï¼ˆé‡å¤æ”¾ç½®ï¼Œæ–¹ä¾¿ç”¨æˆ·ï¼‰ -->
-                <a href="https://tpixel.qzz.io" class="glass-btn glass-btn-primary px-6 py-3 text-base flex items-center">
-                    <i class="fa fa-home mr-2"></i>
-                    è¿”å›TeamPixelä¸»é¡µ
-                </a>
+                <div class="flex gap-6 sm:gap-8">
+                    <div class="flex flex-col items-center">
+                        <a href="https://www.luogu.com.cn/team/112080" target="_blank" class="glass-btn w-10 h-10 flex items-center justify-center text-gray-400 hover:text-primary rounded-full mouse-reflector">
+                            <div class="mouse-light"></div>
+                            <i class="fa fa-users text-xl"></i>
+                        </a>
+                        <span class="text-xs text-gray-500 mt-1">ÍÅ¶ÓÂå¹ÈÖ÷Ò³</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <a href="https://www.luogu.com.cn/user/1017957" target="_blank" class="glass-btn w-10 h-10 flex items-center justify-center text-gray-400 hover:text-primary rounded-full mouse-reflector">
+                            <div class="mouse-light"></div>
+                            <i class="fa fa-user text-xl"></i>
+                        </a>
+                        <span class="text-xs text-gray-500 mt-1">wujzµÄÂå¹ÈÖ÷Ò³</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <a href="https://www.luogu.com.cn/user/1513356" target="_blank" class="glass-btn w-10 h-10 flex items-center justify-center text-gray-400 hover:text-primary rounded-full mouse-reflector">
+                            <div class="mouse-light"></div>
+                            <i class="fa fa-user text-xl"></i>
+                        </a>
+                        <span class="text-xs text-gray-500 mt-1">Teddyzhi0815µÄÂå¹ÈÖ÷Ò³</span>
+                    </div>
+                </div>
             </div>
             
-            <!-- ç‰ˆæƒä¿¡æ¯ -->
-            <div class="text-center text-light-text/60 dark:text-dark-text/60 text-sm sm:text-base">
-                <p>Â© 2025 TeamPixelå›¢é˜Ÿ. Nextiousè½¯ä»¶ä»‹ç»é¡µé¢.</p>
-                <p class="mt-2">ä¸“æ³¨äºå±€åŸŸç½‘é€šä¿¡ä¸æ–‡ä»¶ä¼ è¾“çš„å®‰å…¨è§£å†³æ–¹æ¡ˆ</p>
+            <div class="text-center text-gray-400 text-sm sm:text-base">
+                <p>? 2025 TeamPixelÍÅ¶Ó. NextiousÏîÄ¿¿ª·¢ÖĞ.</p>
+                <p class="mt-2">±¾ÍøÕ¾Õ¹Ê¾ÍÅ¶Ó¼°ÏîÄ¿Ïà¹ØĞÅÏ¢Óë¼¼ÊõÎÄµµ</p>
             </div>
         </div>
     </footer>
 
-    <!-- JavaScriptï¼šä¸»é¢˜åˆ‡æ¢ä¸åŸºç¡€äº¤äº’ -->
+    <!-- JavaScript -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const html = document.documentElement;
+            // ÉîÉ«Ä£Ê½ÇĞ»»
             const themeToggle = document.getElementById('themeToggle');
+            const mobileThemeToggle = document.getElementById('mobileThemeToggle');
+            const mobileThemeText = document.getElementById('mobileThemeText');
+            const themeIcon = document.querySelector('.theme-toggle');
+            const mobileThemeIcon = document.querySelector('#mobileThemeToggle .theme-toggle');
+            const mobileMenu = document.getElementById('mobileMenu');
             
-            // åˆå§‹åŒ–ä¸»é¢˜ï¼šè·Ÿéšæœ¬åœ°å­˜å‚¨æˆ–ç³»ç»Ÿè®¾ç½®
-            function initTheme() {
-                const savedTheme = localStorage.getItem('theme');
-                if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                    html.classList.add('dark');
-                } else {
-                    html.classList.remove('dark');
+            // ³õÊ¼»¯Ö÷Ìâ
+            if (localStorage.getItem('darkMode') === 'true' || 
+                (!localStorage.getItem('darkMode') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                enableDarkMode();
+            }
+            
+            // °ó¶¨Ö÷ÌâÇĞ»»ÊÂ¼ş
+            themeToggle.addEventListener('click', toggleDarkMode);
+            if (mobileThemeToggle) {
+                mobileThemeToggle.addEventListener('click', toggleDarkMode);
+            }
+            
+            function toggleDarkMode() {
+                document.body.classList.contains('dark-mode') ? disableDarkMode() : enableDarkMode();
+            }
+            
+            function enableDarkMode() {
+                document.body.classList.add('dark-mode');
+                
+                // ¸üĞÂËùÓĞÖ÷ÌâÍ¼±ê
+                if (themeIcon) {
+                    themeIcon.classList.remove('fa-moon-o');
+                    themeIcon.classList.add('fa-sun-o', 'dark');
                 }
+                if (mobileThemeIcon) {
+                    mobileThemeIcon.classList.remove('fa-moon-o');
+                    mobileThemeIcon.classList.add('fa-sun-o', 'dark');
+                }
+                
+                // ÇĞ»»°´Å¥ÎÄ±¾
+                if (mobileThemeText) mobileThemeText.textContent = 'Ç³É«Ä£Ê½';
+                localStorage.setItem('darkMode', 'true');
+                
+                // È·±£²Ëµ¥Ãæ°åÔÚÉîÉ«Ä£Ê½ÏÂÕıÈ·ÏÔÊ¾
+                updateMenuDarkMode(true);
             }
             
-            // åˆ‡æ¢ä¸»é¢˜
-            function toggleTheme() {
-                html.classList.toggle('dark');
-                localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+            function disableDarkMode() {
+                document.body.classList.remove('dark-mode');
+                
+                // ¸üĞÂËùÓĞÖ÷ÌâÍ¼±ê
+                if (themeIcon) {
+                    themeIcon.classList.remove('fa-sun-o', 'dark');
+                    themeIcon.classList.add('fa-moon-o');
+                }
+                if (mobileThemeIcon) {
+                    mobileThemeIcon.classList.remove('fa-sun-o', 'dark');
+                    mobileThemeIcon.classList.add('fa-moon-o');
+                }
+                
+                // ÇĞ»»°´Å¥ÎÄ±¾
+                if (mobileThemeText) mobileThemeText.textContent = 'ÉîÉ«Ä£Ê½';
+                localStorage.setItem('darkMode', 'false');
+                
+                // È·±£²Ëµ¥Ãæ°åÔÚÇ³É«Ä£Ê½ÏÂÕıÈ·ÏÔÊ¾
+                updateMenuDarkMode(false);
             }
             
-            // ç»‘å®šäº‹ä»¶
-            themeToggle?.addEventListener('click', toggleTheme);
-            initTheme();
+            // ×¨ÃÅÓÃÓÚ¸üĞÂ²Ëµ¥Ãæ°åÉîÉ«Ä£Ê½µÄº¯Êı
+            function updateMenuDarkMode(isDark) {
+                if (!mobileMenu) return;
+                
+                // Ç¿ÖÆ¸üĞÂ²Ëµ¥Ãæ°åµÄÑùÊ½£¬È·±£ÉîÉ«/Ç³É«Ä£Ê½ÕıÈ·Ó¦ÓÃ
+                if (isDark) {
+                    mobileMenu.classList.add('dark-mode');
+                } else {
+                    mobileMenu.classList.remove('dark-mode');
+                }
+                
+                // ´¥·¢ÖØ»æÒÔÈ·±£ÑùÊ½Á¢¼´¸üĞÂ
+                void mobileMenu.offsetWidth;
+            }
             
-            // å¯¼èˆªæ æ»šåŠ¨æ•ˆæœ
+            // µ¼º½À¸¹ö¶¯Ğ§¹û
             window.addEventListener('scroll', function() {
+                const navEllipse = document.querySelector('.glass-effect.shadow-glass.px-8');
+                const logo = document.getElementById('logo');
+                const teamName = document.getElementById('team-name');
                 const header = document.querySelector('header');
+                
                 if (window.scrollY > 50) {
+                    if (navEllipse) navEllipse.classList.add('nav-scrolled');
+                    logo.classList.add('w-7', 'h-7');
+                    logo.classList.remove('w-8', 'h-8', 'sm:w-10', 'sm:h-10');
+                    teamName.classList.add('text-base');
+                    teamName.classList.remove('text-lg', 'sm:text-xl');
                     header.classList.add('py-2');
                     header.classList.remove('py-4');
                 } else {
+                    if (navEllipse) navEllipse.classList.remove('nav-scrolled');
+                    logo.classList.remove('w-7', 'h-7');
+                    logo.classList.add('w-8', 'h-8', 'sm:w-10', 'sm:h-10');
+                    teamName.classList.remove('text-base');
+                    teamName.classList.add('text-lg', 'sm:text-xl');
                     header.classList.remove('py-2');
                     header.classList.add('py-4');
+                }
+            });
+            
+            // ÒÆ¶¯¶Ë²Ëµ¥Âß¼­ - ±äĞÎ¶¯»­ÊµÏÖ
+            const openMenuBtn = document.getElementById('openMenu');
+            const menuOverlay = document.getElementById('menuOverlay');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+            
+            if (openMenuBtn && mobileMenu && menuOverlay) {
+                // ²Ëµ¥°´Å¥ÓëÃæ°å¶ÔÆë
+                function positionMenu() {
+                    if (!openMenuBtn) return;
+                    
+                    // »ñÈ¡°´Å¥µÄÎ»ÖÃĞÅÏ¢
+                    const btnRect = openMenuBtn.getBoundingClientRect();
+                    
+                    // ²Ëµ¥ÓÒÉÏ½ÇÓë°´Å¥¶ÔÆë
+                    mobileMenu.style.top = `${btnRect.top}px`;
+                    mobileMenu.style.right = `${window.innerWidth - btnRect.right}px`;
+                }
+                
+                // ³õÊ¼¶¨Î»
+                positionMenu();
+                
+                // ¼àÌı´°¿Ú´óĞ¡±ä»¯£¬¸üĞÂÎ»ÖÃ
+                window.addEventListener('resize', positionMenu);
+                
+                // ²Ëµ¥°´Å¥µã»÷´¦Àí - ±äĞÎ¶¯»­
+                function toggleMenu() {
+                    if (mobileMenu.classList.contains('active')) {
+                        closeMenu();
+                    } else {
+                        openMenu();
+                    }
+                }
+                
+                function openMenu() {
+                    // ÏÈ¸üĞÂÎ»ÖÃÔÙÏÔÊ¾
+                    positionMenu();
+                    
+                    // °´Å¥·Å´ó±äĞÎÎª²Ëµ¥Ãæ°åµÄ¶¯»­
+                    mobileMenu.classList.add('active');
+                    menuOverlay.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                    
+                    // Òş²ØÔ­°´Å¥
+                    setTimeout(() => {
+                        openMenuBtn.classList.add('hidden');
+                    }, 200);
+                    
+                    // È·±£²Ëµ¥´ò¿ªÊ±Ó¦ÓÃÕıÈ·µÄÖ÷ÌâÑùÊ½
+                    updateMenuDarkMode(document.body.classList.contains('dark-mode'));
+                }
+                
+                function closeMenu() {
+                    mobileMenu.classList.remove('active');
+                    menuOverlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                    openMenuBtn.classList.remove('hidden');
+                }
+                
+                // °ó¶¨°´Å¥µã»÷ÊÂ¼ş
+                openMenuBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    toggleMenu();
+                });
+                
+                // µã»÷ÕÚÕÖ¹Ø±Õ²Ëµ¥
+                menuOverlay.addEventListener('click', closeMenu);
+                
+                // µã»÷²Ëµ¥Ïî¹Ø±Õ²Ëµ¥²¢Ìø×ª
+                mobileLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        closeMenu();
+                        
+                        const targetId = this.getAttribute('href');
+                        const targetElement = document.querySelector(targetId);
+                        
+                        if (targetElement) {
+                            setTimeout(() => {
+                                window.scrollTo({
+                                    top: targetElement.offsetTop - 80,
+                                    behavior: 'smooth'
+                                });
+                            }, 300);
+                        }
+                    });
+                });
+                
+                // ·ÀÖ¹µã»÷²Ëµ¥ÄÚ²¿¹Ø±Õ²Ëµ¥
+                mobileMenu.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                });
+            }
+            
+            // Æ½»¬¹ö¶¯
+            document.querySelectorAll('a[href^="#"]:not(.mobile-link)').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Êó±êĞüÍ£·´¹âĞ§¹ûÊµÏÖ
+            document.querySelectorAll('.mouse-reflector').forEach(element => {
+                // »ñÈ¡Ã¿¸öÔªËØÄÚµÄ·´¹âĞ§¹ûÔªËØ
+                const mouseLight = element.querySelector('.mouse-light');
+                
+                if (mouseLight) {
+                    // ¼àÌıÊó±êÒÆ¶¯ÊÂ¼ş£¬ÈÃ·´¹â¸úËæÊó±ê
+                    element.addEventListener('mousemove', (e) => {
+                        // »ñÈ¡ÔªËØÏà¶ÔÓÚÊÓ¿ÚµÄÎ»ÖÃ
+                        const rect = element.getBoundingClientRect();
+                        
+                        // ¼ÆËãÊó±êÔÚÔªËØÄÚµÄÏà¶ÔÎ»ÖÃ
+                        const x = e.clientX - rect.left;
+                        const y = e.clientY - rect.top;
+                        
+                        // ÉèÖÃ·´¹âĞ§¹ûµÄÎ»ÖÃ
+                        mouseLight.style.left = `${x}px`;
+                        mouseLight.style.top = `${y}px`;
+                    });
+                }
+            });
+            
+            // µ±Ö÷ÌâÇĞ»»Ê±£¬È·±£²Ëµ¥Ãæ°åÑùÊ½ÕıÈ·¸üĞÂ
+            document.addEventListener('darkModeToggled', function() {
+                if (mobileMenu && mobileMenu.classList.contains('active')) {
+                    updateMenuDarkMode(document.body.classList.contains('dark-mode'));
                 }
             });
         });
     </script>
 </body>
 </html>
-</doubaocanvas-part></doubaocanvas>
+    
