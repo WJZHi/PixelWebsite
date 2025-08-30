@@ -1,14 +1,14 @@
-<!DOCTYPE html>
+ï»¿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nextious - ¾ÖÓòÍøÍ¨ĞÅÓëÎÄ¼ş´«Êä½â¾ö·½°¸</title>
-    <!-- ÒıÈëÍâ²¿×ÊÔ´ -->
+    <title>Nextious - å±€åŸŸç½‘é€šä¿¡ä¸æ–‡ä»¶ä¼ è¾“è§£å†³æ–¹æ¡ˆ</title>
+    <!-- å¼•å…¥å¤–éƒ¨èµ„æº -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
     
-    <!-- ÅäÖÃTailwind -->
+    <!-- é…ç½®Tailwind -->
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -39,7 +39,7 @@
         }
     </script>
     
-    <!-- ×Ô¶¨Òå¹¤¾ßÀà -->
+    <!-- è‡ªå®šä¹‰å·¥å…·ç±» -->
     <style type="text/tailwindcss">
         @layer utilities {
             .content-auto {
@@ -123,7 +123,7 @@
                 position: relative;
                 overflow: hidden;
             }
-            /* ²Ëµ¥°´Å¥Í³Ò»ÑùÊ½ */
+            /* èœå•æŒ‰é’®ç»Ÿä¸€æ ·å¼ */
             .menu-button {
                 display: flex;
                 align-items: center;
@@ -139,7 +139,7 @@
                 flex-shrink: 0;
                 text-align: center;
             }
-            /* ÌØĞÔ¿¨Æ¬ÑùÊ½ */
+            /* ç‰¹æ€§å¡ç‰‡æ ·å¼ */
             .feature-card {
                 transition: transform 0.3s ease, box-shadow 0.3s ease;
             }
@@ -150,7 +150,7 @@
     </style>
     
     <style>
-        /* »ù´¡ÑùÊ½ */
+        /* åŸºç¡€æ ·å¼ */
         body {
             overflow-x: hidden;
             transition: background-color 0.4s ease, color 0.4s ease;
@@ -160,7 +160,7 @@
             scroll-behavior: smooth;
         }
         
-        /* ÉîÉ«Ä£Ê½ÑùÊ½ */
+        /* æ·±è‰²æ¨¡å¼æ ·å¼ */
         body.dark-mode {
             background-color: #0F172A;
             color: #E2E8F0;
@@ -186,7 +186,7 @@
             color: #F8FAFC !important;
         }
         
-        /* ¶¯»­Ğ§¹û */
+        /* åŠ¨ç”»æ•ˆæœ */
         @keyframes pulse-dot {
             0%, 100% { opacity: 1; }
             50% { opacity: 0.5; }
@@ -214,7 +214,7 @@
             background-color: rgba(59, 130, 246, 0.1);
         }
         
-        /* µ¼º½À¸¹ö¶¯Ğ§¹û */
+        /* å¯¼èˆªæ æ»šåŠ¨æ•ˆæœ */
         .nav-scrolled {
             padding-top: 0.5rem !important;
             padding-bottom: 0.5rem !important;
@@ -223,7 +223,7 @@
             font-size: 0.875rem !important;
         }
         
-        /* ÒÆ¶¯¶Ë²Ëµ¥ÑùÊ½ */
+        /* ç§»åŠ¨ç«¯èœå•æ ·å¼ */
         .menu-overlay {
             position: fixed;
             top: 0;
@@ -248,47 +248,47 @@
             visibility: visible;
         }
         
-        /* ²Ëµ¥Ãæ°å - ½ô´ÕÉè¼Æ */
+        /* ç§»åŠ¨ç«¯èœå• - ç»ç’ƒæ€ */
         .mobile-menu {
             position: fixed;
-            top: 0;
-            right: 0;
-            width: 240px;
-            border-radius: 1.5rem;
+            top: 4rem; /* å¯¼èˆªæ ä¸‹æ–¹ï¼ŒæŒ‰é’®æ­£ä¸‹æ–¹ */
+            right: 0.75rem; /* ä¸èœå•æŒ‰é’®å³ä¾§å¯¹é½ */
+            width: 260px;
+            border-radius: 1rem;
             z-index: 999;
             transform-origin: top right;
-            transform: scale(0.1);
+            transform: scale(0.9) translateY(-5px);
             opacity: 0;
             visibility: hidden;
-            transition: all 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.28);
-            max-height: calc(100vh - 2rem);
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            max-height: calc(100vh - 5rem);
             overflow-y: auto;
             
-            /* ÓÅ»¯µÄ¸ßË¹Ä£ºı±³¾° */
+            /* ä¼˜åŒ–çš„ç»ç’ƒæ€æ¨¡ç³Šæ•ˆæœ */
             backdrop-filter: blur(20px) saturate(120%);
             -webkit-backdrop-filter: blur(20px) saturate(120%);
             
-            /* »ù´¡±³¾° - È·±£ÄÚÈİ¿É¶ÁĞÔ */
-            background: rgba(255, 255, 255, 0.1);
+            /* åŠé€æ˜èƒŒæ™¯ */
+            background: rgba(255, 255, 255, 0.95);
             
-            /* ±ß¿òºÍÒõÓ°ÔöÇ¿²£Á§ÖÊ¸Ğ */
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+            /* è¾¹æ¡†å’Œé˜´å½± */
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
             
-            /* ½ô´ÕµÄÄÚ²¿±ß¾à */
+            /* å†…éƒ¨è¾¹è· */
             padding: 1rem;
         }
         
-        /* ÉîÉ«Ä£Ê½ÏÂµÄ²Ëµ¥Ãæ°å */
+        /* æ·±è‰²æ¨¡å¼ä¸‹çš„èœå•èƒŒæ™¯ */
         body.dark-mode .mobile-menu {
-            background: rgba(15, 23, 42, 0.85);
+            background: rgba(15, 23, 42, 0.95);
             backdrop-filter: blur(20px) saturate(140%);
             -webkit-backdrop-filter: blur(20px) saturate(140%);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
         }
         
-        /* ²£Á§ÕÛÉä±ßÔµĞ§¹û */
+        /* æ·»åŠ æŠ˜å°„å…‰è¾¹ç¼˜æ•ˆæœ */
         .mobile-menu::before,
         .mobile-menu::after,
         .mobile-menu .refraction-left,
@@ -298,7 +298,7 @@
             pointer-events: none;
         }
         
-        /* ÉÏ±ßÔµÕÛÉä */
+        /* ä¸Šè¾¹ç¼˜æŠ˜å°„ */
         .mobile-menu::before {
             top: 0;
             left: 0;
@@ -310,7 +310,7 @@
                 transparent);
         }
         
-        /* ÏÂ±ßÔµÕÛÉä */
+        /* ä¸‹è¾¹ç¼˜æŠ˜å°„ */
         .mobile-menu::after {
             bottom: 0;
             left: 0;
@@ -322,7 +322,7 @@
                 transparent);
         }
         
-        /* ×ó±ßÔµÕÛÉä */
+        /* å·¦ä¾§æŠ˜å°„ */
         .mobile-menu .refraction-left {
             top: 0;
             left: 0;
@@ -334,7 +334,7 @@
                 transparent);
         }
         
-        /* ÓÒ±ßÔµÕÛÉä */
+        /* å³ä¾§æŠ˜å°„ */
         .mobile-menu .refraction-right {
             top: 0;
             right: 0;
@@ -346,7 +346,7 @@
                 transparent);
         }
         
-        /* ÉîÉ«Ä£Ê½ÏÂµÄ±ßÔµÕÛÉäµ÷Õû */
+        /* æ·±è‰²æ¨¡å¼ä¸‹çš„è¾¹ç¼˜æŠ˜å°„æ•ˆæœè°ƒæ•´ */
         body.dark-mode .mobile-menu::before {
             background: linear-gradient(90deg, 
                 transparent, 
@@ -369,14 +369,14 @@
                 transparent);
         }
         
-        /* ²Ëµ¥¼¤»î×´Ì¬ - ±äĞÎ¶¯»­ */
+        /* èœå•æ¿€æ´»çŠ¶æ€ - ä¼˜é›…å±•å¼€ */
         .mobile-menu.active {
-            transform: scale(1);
+            transform: scale(1) translateY(0);
             opacity: 1;
             visibility: visible;
         }
         
-        /* ²Ëµ¥°´Å¥ÑùÊ½Óë±äĞÎ¶¯»­ */
+        /* èœå•æŒ‰é’®æ ·å¼ - æ¿€æ´»çŠ¶æ€ */
         #openMenu {
             position: fixed;
             top: 1.5rem;
@@ -394,7 +394,7 @@
             pointer-events: none;
         }
         
-        /* ÉîÉ«Ä£Ê½ÇĞ»»°´Å¥¶¯»­ */
+        /* æ·±è‰²æ¨¡å¼åˆ‡æ¢æŒ‰é’®åŠ¨ç”» */
         .theme-toggle {
             transition: transform 0.3s ease;
         }
@@ -403,7 +403,7 @@
             transform: rotate(180deg);
         }
         
-        /* ÒºÌ¬²£Á§°´Å¥µÄÌØÊâÑùÊ½ */
+        /* æ¶²æ€ç»ç’ƒæŒ‰é’®æ ¸å¿ƒæ ·å¼ */
         .glass-btn {
             background: rgba(255, 255, 255, 0.6);
             backdrop-filter: blur(10px);
@@ -434,7 +434,7 @@
             background: rgba(59, 130, 246, 0.9);
         }
         
-        /* ÉîÉ«Ä£Ê½ÏÂµÄ°´Å¥ÑùÊ½ */
+        /* æ·±è‰²æ¨¡å¼ä¸‹çš„æŒ‰é’®æ ·å¼ */
         body.dark-mode .glass-btn {
             background: rgba(30, 41, 59, 0.8);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -463,7 +463,7 @@
             box-shadow: 0 8px 30px rgba(59, 130, 246, 0.35);
         }
         
-        /* ÉîÉ«Ä£Ê½ÏÂµÄ²£Á§Ğ§¹û¿¨Æ¬ */
+        /* æ·±è‰²æ¨¡å¼ä¸‹çš„ç»ç’ƒæ€ç»„ä»¶ */
         body.dark-mode .glass-effect {
             background: rgba(30, 41, 59, 0.8);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -474,7 +474,7 @@
             border: 1px solid rgba(255, 255, 255, 0.08);
         }
         
-        /* ÉîÉ«Ä£Ê½ÏÂµÄÁ´½ÓÑÕÉ« */
+        /* æ·±è‰²æ¨¡å¼ä¸‹çš„é“¾æ¥é¢œè‰² */
         body.dark-mode a {
             color: #93C5FD;
         }
@@ -487,13 +487,13 @@
             border-top-color: rgba(255, 255, 255, 0.08);
         }
         
-        /* Ö÷ÌâÇĞ»»Æ½»¬¹ı¶É */
+        /* ç¡®ä¿å¹³æ»‘è¿‡æ¸¡ */
         .glass-effect, .glass-btn, .glass-btn-primary, 
         img, a, .border-t, .mobile-menu {
             transition: all 0.4s ease;
         }
         
-        /* Êó±êĞüÍ£·´¹âĞ§¹û */
+        /* é¼ æ ‡æ‚¬åœå…‰æ•ˆ */
         .mouse-light {
             position: absolute;
             pointer-events: none;
@@ -510,7 +510,7 @@
             z-index: 50;
         }
         
-        /* ÉîÉ«Ä£Ê½ÏÂµÄÊó±ê·´¹âµ÷Õû */
+        /* æ·±è‰²æ¨¡å¼ä¸‹çš„é¼ æ ‡å…‰æ•ˆè°ƒæ•´ */
         body.dark-mode .mouse-light {
             background: radial-gradient(circle, 
                 rgba(255, 255, 255, 0.2) 0%, 
@@ -518,672 +518,362 @@
                 rgba(255, 255, 255, 0) 100%);
         }
         
-        /* µ±Êó±êÔÚÔªËØÉÏÊ±ÏÔÊ¾·´¹â */
+        /* é¼ æ ‡æ‚¬åœå…ƒç´ æ—¶æ˜¾ç¤ºå…‰æ•ˆ */
         .mouse-reflector:hover .mouse-light {
             opacity: 1;
         }
         
-        /* ²Ëµ¥ÄÚÎÄ±¾ÔÚÉîÉ«Ä£Ê½ÏÂµÄÑÕÉ« */
+        /* èœå•é“¾æ¥çš„æ·±è‰²æ¨¡å¼é¢œè‰² */
         body.dark-mode .mobile-menu a,
         body.dark-mode .mobile-menu span {
             color: #E2E8F0 !important;
         }
         
-        /* ÉîÉ«Ä£Ê½ÏÂ²Ëµ¥Í¼±êµÄÑÕÉ« */
+        /* æ·±è‰²æ¨¡å¼ä¸‹èœå•å›¾æ ‡é¢œè‰² */
         body.dark-mode .mobile-menu i {
             color: #93C5FD !important;
         }
     </style>
 </head>
 <body class="bg-white text-dark">
-    <!-- ±³¾°×°ÊÎ -->
+    <!-- èƒŒæ™¯è£…é¥° -->
     <div class="fixed -top-40 -right-40 w-96 h-96 bg-primary/5 liquid-shape float-animation z-0"></div>
     <div class="fixed -bottom-20 -left-20 w-72 h-72 bg-primary/5 liquid-shape-2 float-animation-delay z-0"></div>
     
-    <!-- ÒÆ¶¯¶Ë²Ëµ¥¸²¸Ç²ã -->
+    <!-- ç§»åŠ¨ç«¯èœå•é®ç½©å±‚ -->
     <div class="menu-overlay" id="menuOverlay"></div>
     
-    <!-- ÒÆ¶¯¶Ë²Ëµ¥ - ½ô´ÕÉè¼Æ -->
+    <!-- ç§»åŠ¨ç«¯èœå• - ç»ç’ƒæ€ -->
     <div class="mobile-menu shadow-glass refraction-edge mouse-reflector" id="mobileMenu">
-        <!-- Êó±ê·´¹âĞ§¹ûÔªËØ -->
+        <!-- é¼ æ ‡å…‰æ•ˆå…ƒç´  -->
         <div class="mouse-light"></div>
         
-        <!-- ×óÓÒÕÛÉä±ßÔµ -->
+        <!-- å·¦å³æŠ˜å°„è¾¹ç¼˜ -->
         <div class="refraction-left"></div>
         <div class="refraction-right"></div>
         
-        <!-- Í³Ò»¶ÔÆëµÄ²Ëµ¥°´Å¥²¼¾Ö -->
+        <!-- ç»Ÿä¸€é£æ ¼çš„èœå•æŒ‰é’®åˆ—è¡¨ -->
         <ul class="pt-1 pb-1 space-y-2 relative z-10">
             <li><a href="index.html#about" class="mobile-link glass-btn menu-button text-sm rounded-full mouse-reflector">
                 <div class="mouse-light"></div>
                 <i class="fa fa-users menu-icon text-primary"></i>
-                ¹ØÓÚÍÅ¶Ó
+                å…³äºå›¢é˜Ÿ
             </a></li>
             <li><a href="index.html#project" class="mobile-link glass-btn menu-button text-sm rounded-full mouse-reflector">
                 <div class="mouse-light"></div>
                 <i class="fa fa-cube menu-icon text-primary"></i>
-                ÏîÄ¿½éÉÜ
+                é¡¹ç›®ä»‹ç»
             </a></li>
             <li><a href="index.html#docs" class="mobile-link glass-btn menu-button text-sm rounded-full mouse-reflector">
                 <div class="mouse-light"></div>
                 <i class="fa fa-book menu-icon text-primary"></i>
-                ¼¼ÊõÎÄµµ
+                ç›¸å…³æ–‡æ¡£
             </a></li>
             <li><a href="index.html#links" class="mobile-link glass-btn menu-button text-sm rounded-full mouse-reflector">
                 <div class="mouse-light"></div>
                 <i class="fa fa-link menu-icon text-primary"></i>
-                ÖØÒªÁ´½Ó
+                é‡è¦é“¾æ¥
             </a></li>
-            <!-- ÒÆ¶¯¶ËÉîÉ«Ä£Ê½ÇĞ»» - ÓëÆäËû°´Å¥¶ÔÆë -->
+            <!-- ç§»åŠ¨ç«¯æ·±è‰²æ¨¡å¼åˆ‡æ¢ - æ·»åŠ èœå•æŒ‰é’®æ ·å¼ -->
             <li>
                 <button id="mobileThemeToggle" class="glass-btn menu-button text-sm rounded-full mouse-reflector">
                     <div class="mouse-light"></div>
-                    <i class="fa fa-moon-o menu-icon text-primary theme-toggle"></i>
-                    <span id="mobileThemeText">Ç³É«Ä£Ê½</span>
+                    <i class="fa fa-moon menu-icon text-primary"></i>
+                    <span>åˆ‡æ¢æ·±è‰²æ¨¡å¼</span>
                 </button>
             </li>
         </ul>
     </div>
     
-    <!-- µ¼º½À¸ -->
-    <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center">
-                <!-- ×ó²à£ºLogo + ÍÅ¶ÓÃû -->
-                <div class="flex items-center gap-2">
-                    <img src="https://cdn.luogu.com.cn/upload/image_hosting/vy6i8dsm.png" alt="TeamPixelÍÅ¶Ó±êÖ¾" class="w-8 h-8 sm:w-10 sm:h-10 rounded object-cover transition-all duration-300" id="logo">
-                    <span class="font-semibold text-lg sm:text-xl transition-all duration-300" id="team-name">
-                        <a href="index.html">TeamPixel</a>
-                    </span>
+    <!-- å¯¼èˆªæ  -->
+    <nav class="fixed top-0 left-0 right-0 z-40 transition-all duration-300 glass-effect">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center space-x-2">
+                        <img src="https://cdn.luogu.com.cn/upload/image_hosting/vy6i8dsm.png" alt="TeamPixelå›¢é˜Ÿæ ‡å¿—" class="w-8 h-8 sm:w-10 sm:h-10 rounded object-cover transition-all duration-300" id="logo">
+                        <span class="text-lg sm:text-xl font-bold text-primary">Nextious</span>
+                    </a>
                 </div>
                 
-                <!-- ÓÒ²à£ºµ¼º½Á´½ÓºÍÉîÉ«Ä£Ê½ÇĞ»» -->
-                <div class="hidden md:flex items-center gap-4">
-                    <nav class="glass-effect shadow-glass px-8 py-3 hover:shadow-glass-hover transition-all rounded-full mouse-reflector">
-                        <div class="mouse-light"></div>
-                        <ul class="flex items-center gap-6 sm:gap-8">
-                            <li><a href="index.html#about" class="glass-btn px-3 py-1.5 text-gray-600 hover:text-primary text-sm sm:text-base rounded-full mouse-reflector">
-                                <div class="mouse-light"></div>
-                                ¹ØÓÚÍÅ¶Ó
-                            </a></li>
-                            <li><a href="index.html#project" class="glass-btn px-3 py-1.5 text-gray-600 hover:text-primary text-sm sm:text-base rounded-full mouse-reflector">
-                                <div class="mouse-light"></div>
-                                ÏîÄ¿½éÉÜ
-                            </a></li>
-                            <li><a href="nextious.html" class="glass-btn glass-btn-primary px-3 py-1.5 text-white font-medium text-sm sm:text-base rounded-full mouse-reflector">
-                                <div class="mouse-light"></div>
-                                Nextious
-                            </a></li>
-                            <li><a href="index.html#docs" class="glass-btn px-3 py-1.5 text-gray-600 hover:text-primary text-sm sm:text-base rounded-full mouse-reflector">
-                                <div class="mouse-light"></div>
-                                ¼¼ÊõÎÄµµ
-                            </a></li>
-                        </ul>
-                    </nav>
+                <!-- æ¡Œé¢ç«¯å¯¼èˆª -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html#about" class="text-gray-600 hover:text-primary transition-colors">å…³äºå›¢é˜Ÿ</a>
+                    <a href="index.html#project" class="text-gray-600 hover:text-primary transition-colors">é¡¹ç›®ä»‹ç»</a>
+                    <a href="index.html#docs" class="text-gray-600 hover:text-primary transition-colors">ç›¸å…³æ–‡æ¡£</a>
+                    <a href="index.html#links" class="text-gray-600 hover:text-primary transition-colors">é‡è¦é“¾æ¥</a>
                     
-                    <!-- ÉîÉ«Ä£Ê½ÇĞ»»°´Å¥ -->
-                    <button class="glass-btn w-10 h-10 flex items-center justify-center text-gray-600 hover:text-primary rounded-full mouse-reflector" id="themeToggle">
-                        <div class="mouse-light"></div>
-                        <i class="fa fa-moon-o text-lg theme-toggle"></i>
+                    <!-- æ·±è‰²æ¨¡å¼åˆ‡æ¢æŒ‰é’® -->
+                    <button id="themeToggle" class="theme-toggle text-gray-600 hover:text-primary transition-colors">
+                        <i class="fa fa-moon"></i>
                     </button>
                 </div>
                 
-                <!-- ÒÆ¶¯¶Ë²Ëµ¥°´Å¥ -->
-                <button class="md:hidden glass-btn w-10 h-10 flex items-center justify-center text-gray-600 hover:text-primary focus:outline-none rounded-full transition-all duration-300 mouse-reflector" id="openMenu">
-                    <div class="mouse-light"></div>
-                    <i class="fa fa-bars text-lg"></i>
-                </button>
-            </div>
-        </div>
-    </header>
-
-    <!-- Ó¢ĞÛÇøÓò -->
-    <section class="pt-32 pb-20 sm:pt-40 sm:pb-28 px-4 sm:px-6 lg:px-8 relative">
-        <div class="container mx-auto max-w-4xl text-center relative z-10">
-            <div class="glass-effect rounded-2xl p-6 sm:p-8 inline-block mb-10 shadow-glass mouse-reflector">
-                <div class="mouse-light"></div>
-                <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight">Nextious</h1>
-                <p class="text-xl sm:text-2xl text-gray-600 mt-4">¾ÖÓòÍøÍ¨ĞÅÓëÎÄ¼ş´«Êä½â¾ö·½°¸</p>
-            </div>
-            
-            <div class="glass-effect rounded-xl p-6 sm:p-8 max-w-2xl mx-auto shadow-glass mb-12 mouse-reflector">
-                <div class="mouse-light"></div>
-                <h3 class="text-xl sm:text-2xl font-semibold mb-4 text-dark">Ãû³ÆÀ´Ô´</h3>
-                <p class="text-gray-600 mb-3">ÈÚºÏÁËÁ½¸öÀ­¶¡Óïµ¥´ÊµÄºËĞÄº¬Òå£º</p>
-                
-                <div class="grid md:grid-cols-2 gap-6 mt-6">
-                    <div class="glass-btn p-4 rounded-xl mouse-reflector">
-                        <div class="mouse-light"></div>
-                        <p class="text-2xl font-medium text-primary italic">Nexus</p>
-                        <p class="text-gray-600 mt-2">ÒâÎª"Á¬½Ó"</p>
-                    </div>
-                    <div class="glass-btn p-4 rounded-xl mouse-reflector">
-                        <div class="mouse-light"></div>
-                        <p class="text-2xl font-medium text-primary italic">Nuntius</p>
-                        <p class="text-gray-600 mt-2">ÒâÎª"ĞÅÊ¹£¬ĞÅÏ¢"</p>
-                    </div>
-                </div>
-                
-                <p class="text-gray-600 mt-6 text-lg">ÈÚºÏÁ¬½ÓÓëĞÅÏ¢´«µİµÄºËĞÄ¼ÛÖµ£¬´òÔì¸ßĞ§¾ÖÓòÍø¹¤¾ß</p>
-                
-                <div class="flex flex-wrap justify-center gap-3 sm:gap-4 mt-8">
-                    <span class="glass-btn px-4 py-2.5 text-gray-700 text-sm sm:text-base rounded-full mouse-reflector">
-                        <div class="mouse-light"></div>
-                        <i class="fa fa-graduation-cap mr-2 text-primary"></i>Ñ§ÉúÊÊÓÃ
-                    </span>
-                    <span class="glass-btn px-4 py-2.5 text-gray-700 text-sm sm:text-base rounded-full mouse-reflector">
-                        <div class="mouse-light"></div>
-                        <i class="fa fa-building mr-2 text-primary"></i>ÆóÒµÊÊÓÃ
-                    </span>
-                    <span class="glass-btn px-4 py-2.5 text-gray-700 text-sm sm:text-base rounded-full mouse-reflector">
-                        <div class="mouse-light"></div>
-                        <i class="fa fa-wifi mr-2 text-primary"></i>¾ÖÓòÍøÍ¨ĞÅ
-                    </span>
-                    <span class="glass-btn px-4 py-2.5 text-gray-700 text-sm sm:text-base rounded-full mouse-reflector">
-                        <div class="mouse-light"></div>
-                        <i class="fa fa-lock mr-2 text-primary"></i>°²È«¼ÓÃÜ
-                    </span>
-                </div>
-            </div>
-            
-            <a href="#features" class="glass-btn glass-btn-primary inline-flex items-center px-8 py-3.5 text-white font-medium rounded-full mouse-reflector">
-                <div class="mouse-light"></div>
-                Ì½Ë÷ºËĞÄ¹¦ÄÜ
-                <i class="fa fa-arrow-down ml-2"></i>
-            </a>
-        </div>
-    </section>
-
-    <!-- ºËĞÄ¹¦ÄÜ -->
-    <section id="features" class="py-16 sm:py-24 bg-neutral relative">
-        <div class="container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 relative z-10">
-            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-12 sm:mb-16 text-center">ºËĞÄ <span class="text-primary">¹¦ÄÜ</span></h2>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-                <!-- ¹¦ÄÜ¿¨Æ¬ 1 -->
-                <div class="glass-effect rounded-2xl p-6 sm:p-8 shadow-glass feature-card mouse-reflector">
-                    <div class="mouse-light"></div>
-                    <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
-                        <i class="fa fa-desktop text-primary text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-4 text-dark">ÓÑºÃÍ¼ĞÎ»¯½çÃæ</h3>
-                    <p class="text-gray-600">¸æ±ğ¸´ÔÓÃüÁîĞĞ£¬Ö±¹Û²Ù×÷½çÃæ£¬ĞÂÊÖÒ²ÄÜ¿ìËÙÉÏÊÖ£¬½µµÍÊ¹ÓÃÃÅ¼÷¡£</p>
-                </div>
-                
-                <!-- ¹¦ÄÜ¿¨Æ¬ 2 -->
-                <div class="glass-effect rounded-2xl p-6 sm:p-8 shadow-glass feature-card mouse-reflector">
-                    <div class="mouse-light"></div>
-                    <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
-                        <i class="fa fa-comments text-primary text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-4 text-dark">ÎÄ×ÖÓïÒôÁÄÌì</h3>
-                    <p class="text-gray-600">¾ÖÓòÍøÄÚÊµÊ±¹µÍ¨£¬Ö§³ÖÎÄ×ÖÏûÏ¢ÓëÓïÒôÍ¨»°£¬ÍÅ¶ÓĞ­×÷¹µÍ¨¸ü¸ßĞ§¡£</p>
-                </div>
-                
-                <!-- ¹¦ÄÜ¿¨Æ¬ 3 -->
-                <div class="glass-effect rounded-2xl p-6 sm:p-8 shadow-glass feature-card mouse-reflector">
-                    <div class="mouse-light"></div>
-                    <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
-                        <i class="fa fa-file text-primary text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-4 text-dark">È«ÀàĞÍÎÄ¼ş·¢ËÍ</h3>
-                    <p class="text-gray-600">Ö§³ÖËùÓĞ¸ñÊ½ÎÄ¼ş´«Êä£¬ÎŞĞèµ£ĞÄÎÄ¼şÀàĞÍÏŞÖÆ£¬¾ÖÓòÍøÄÚ´«ÊäËÙ¶È¿ì¡£</p>
-                </div>
-                
-                <!-- ¹¦ÄÜ¿¨Æ¬ 4 -->
-                <div class="glass-effect rounded-2xl p-6 sm:p-8 shadow-glass feature-card mouse-reflector">
-                    <div class="mouse-light"></div>
-                    <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
-                        <i class="fa fa-desktop text-primary text-2xl fa-clone"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-4 text-dark">ÊµÊ±ÆÁÄ»¾µÏñ</h3>
-                    <p class="text-gray-600">Ô¶³Ì¹²ÏíÆÁÄ»ÄÚÈİ£¬ÊÊÓÃÓÚ½ÌÑ§ÑİÊ¾¡¢»áÒé»ã±¨µÈ³¡¾°£¬ÌáÉıĞ­×÷Ğ§ÂÊ¡£</p>
-                </div>
-                
-                <!-- ¹¦ÄÜ¿¨Æ¬ 5 -->
-                <div class="glass-effect rounded-2xl p-6 sm:p-8 shadow-glass feature-card mouse-reflector">
-                    <div class="mouse-light"></div>
-                    <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
-                        <i class="fa fa-lock text-primary text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-4 text-dark">·Ç¶Ô³Æ¼ÓÃÜ¼¼Êõ</h3>
-                    <p class="text-gray-600">²ÉÓÃ¸ßÇ¿¶È·Ç¶Ô³Æ¼ÓÃÜËã·¨£¬È·±£Í¨ĞÅÄÚÈİÓëÎÄ¼ş´«Êä°²È«£¬·ÀÖ¹ĞÅÏ¢Ğ¹Â¶¡£</p>
-                </div>
-                
-                <!-- ¹¦ÄÜ¿¨Æ¬ 6 -->
-                <div class="glass-effect rounded-2xl p-6 sm:p-8 shadow-glass feature-card mouse-reflector">
-                    <div class="mouse-light"></div>
-                    <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
-                        <i class="fa fa-server text-primary text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-4 text-dark">È¥ÖĞĞÄ»¯¹ÜÀí</h3>
-                    <p class="text-gray-600">ÎŞĞèÖĞĞÄ·şÎñÆ÷£¬Êı¾İÖ±½Óµã¶Ôµã´«Êä£¬½µµÍÎ¬»¤³É±¾£¬Ìá¸ßÏµÍ³¿É¿¿ĞÔ¡£</p>
+                <!-- ç§»åŠ¨ç«¯èœå•æŒ‰é’® -->
+                <div class="md:hidden">
+                    <button id="openMenu" class="text-gray-600 hover:text-primary transition-colors">
+                        <i class="fa fa-bars text-xl"></i>
+                    </button>
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- ÊÊÓÃÈËÈº -->
-    <section id="users" class="py-16 sm:py-24 relative">
-        <div class="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 relative z-10">
-            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-12 sm:mb-16 text-center">ÊÊÓÃ <span class="text-primary">ÈËÈº</span></h2>
-            
-            <div class="grid md:grid-cols-2 gap-8">
-                <!-- Ñ§ÉúÈºÌå -->
-                <div class="glass-effect rounded-2xl p-6 sm:p-10 shadow-glass mouse-reflector">
-                    <div class="mouse-light"></div>
-                    <div class="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
-                        <i class="fa fa-graduation-cap text-primary text-3xl"></i>
-                    </div>
-                    <h3 class="text-2xl font-semibold mb-6 text-dark">Ñ§ÉúÈºÌå</h3>
-                    
-                    <ul class="space-y-4 text-gray-600">
-                        <li class="flex items-start">
-                            <i class="fa fa-check-circle text-primary mt-1 mr-3 text-lg"></i>
-                            <span>»ú·¿ÎŞÍø»·¾³ÏÂ£¬Í¬Ñ§¼äÊµÊ±ÁÄÌì¹µÍ¨£¬·½±ãĞ¡×éÌÖÂÛ</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fa fa-check-circle text-primary mt-1 mr-3 text-lg"></i>
-                            <span>¿ìËÙ´«ÊäÑ§Ï°×ÊÁÏ¡¢×÷ÒµÎÄ¼ş£¬ÎŞĞèUÅÌ£¬½ÚÊ¡Ê±¼ä</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fa fa-check-circle text-primary mt-1 mr-3 text-lg"></i>
-                            <span>Ğ¡×éÏîÄ¿Ğ­×÷Ê±£¬ÆÁÄ»¾µÏñ¹²ÏíË¼Â·Óë³É¹û£¬Ìá¸ßĞ§ÂÊ</span>
-                        </li>
-                    </ul>
-                </div>
-                
-                <!-- ÆóÒµÓÃ»§ -->
-                <div class="glass-effect rounded-2xl p-6 sm:p-10 shadow-glass mouse-reflector">
-                    <div class="mouse-light"></div>
-                    <div class="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
-                        <i class="fa fa-building text-primary text-3xl"></i>
-                    </div>
-                    <h3 class="text-2xl font-semibold mb-6 text-dark">ÆóÒµÓÃ»§</h3>
-                    
-                    <ul class="space-y-4 text-gray-600">
-                        <li class="flex items-start">
-                            <i class="fa fa-check-circle text-primary mt-1 mr-3 text-lg"></i>
-                            <span>ÄÚÍø°²È«ÁÄÌì£¬±ÜÃâÍâ²¿ÍøÂç¼à¿Ø·çÏÕ£¬±£»¤ÉÌÒµ»úÃÜ</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fa fa-check-circle text-primary mt-1 mr-3 text-lg"></i>
-                            <span>´«ÊäÃô¸ĞÒµÎñÎÄ¼ş£¬¼ÓÃÜ¼¼Êõ±£ÕÏÊı¾İ°²È«£¬·ÀÖ¹Ğ¹Â¶</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fa fa-check-circle text-primary mt-1 mr-3 text-lg"></i>
-                            <span>È¥ÖĞĞÄ»¯¼Ü¹¹£¬ÎŞĞèÎ¬»¤ÖĞĞÄ·şÎñÆ÷£¬½µµÍIT³É±¾</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- °²È«ÓÅÊÆ -->
-    <section id="security" class="py-16 sm:py-24 bg-neutral relative">
-        <div class="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 relative z-10">
-            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-12 sm:mb-16 text-center">°²È« <span class="text-primary">ÓÅÊÆ</span></h2>
-            
-            <div class="glass-effect rounded-2xl p-6 sm:p-10 shadow-glass max-w-3xl mx-auto mouse-reflector">
-                <div class="mouse-light"></div>
-                
-                <div class="flex flex-col md:flex-row gap-8 items-center">
-                    <div class="md:w-1/3">
-                        <div class="w-24 h-24 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
-                            <i class="fa fa-shield text-primary text-4xl"></i>
-                        </div>
-                    </div>
-                    
-                    <div class="md:w-2/3">
-                        <h3 class="text-2xl font-semibold mb-6 text-dark">²»ÒªÄÃÄãµÄÊı¾İ°²È«Ã°ÏÕ£¡</h3>
-                        
-                        <p class="text-gray-600 mb-6 text-lg">
-                            Nextious²ÉÓÃÈ¥ÖĞĞÄ»¯¼Ü¹¹£¬ËùÓĞÊı¾İ¾ùÍ¨¹ı¾ÖÓòÍøµã¶ÔµãÖ±½Ó´«Êä£¬´Ó²»¾­¹ıÈÎºÎµÚÈı·½·şÎñÆ÷£¬³¹µ×¶Å¾øÊı¾İĞ¹Â¶·çÏÕ¡£
-                        </p>
-                        
-                        <p class="text-gray-600 text-lg">
-                            ÅäºÏ·Ç¶Ô³Æ¼ÓÃÜ¼¼Êõ£¬¼´Ê¹ÔÚ¹«¹²¾ÖÓòÍø»·¾³ÏÂ£¬Ò²ÄÜÈ·±£ÄãµÄÁÄÌìÄÚÈİºÍÎÄ¼ş´«Êä²»±»ÇÔÈ¡»ò´Û¸Ä£¬ÎªÑ§ÉúÑ§Ï°ºÍÆóÒµ°ì¹«Ìá¹©¾ø¶Ô°²È«µÄÍ¨ĞÅ±£ÕÏ¡£
-                        </p>
-                    </div>
-                </div>
-                
-                <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    <div class="glass-btn p-5 rounded-xl mouse-reflector">
-                        <div class="mouse-light"></div>
-                        <div class="flex items-center mb-3">
-                            <i class="fa fa-random text-primary text-xl mr-3"></i>
-                            <h4 class="text-lg font-medium text-dark">µã¶Ôµã´«Êä</h4>
-                        </div>
-                        <p class="text-gray-600 text-sm">Êı¾İÖ±½ÓÔÚÉè±¸¼ä´«Êä£¬²»¾­¹ıÈÎºÎÖĞ¼ä·şÎñÆ÷</p>
-                    </div>
-                    
-                    <div class="glass-btn p-5 rounded-xl mouse-reflector">
-                        <div class="mouse-light"></div>
-                        <div class="flex items-center mb-3">
-                            <i class="fa fa-key text-primary text-xl mr-3"></i>
-                            <h4 class="text-lg font-medium text-dark">¶Ëµ½¶Ë¼ÓÃÜ</h4>
-                        </div>
-                        <p class="text-gray-600 text-sm">²ÉÓÃ¸ß¼¶¼ÓÃÜ±ê×¼£¬Ö»ÓĞ½ÓÊÕ·½ÄÜ½âÃÜÄÚÈİ</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ĞĞ¶¯ÕÙ»½ -->
-    <section class="py-16 sm:py-24 relative">
-        <div class="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="glass-effect rounded-2xl p-8 sm:p-12 shadow-glass text-center max-w-3xl mx-auto mouse-reflector">
-                <div class="mouse-light"></div>
-                
-                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-6">×¼±¸ºÃÌáÉıÄãµÄ¾ÖÓòÍøÌåÑéÁËÂğ£¿</h2>
-                
-                <p class="text-gray-600 text-lg mb-10 max-w-2xl mx-auto">
-                    ÎŞÂÛÊÇÑ§ÉúÈºÌå»¹ÊÇÆóÒµÓÃ»§£¬Nextious¶¼ÄÜÎªÄãÌá¹©°²È«¡¢¸ßĞ§µÄ¾ÖÓòÍøÍ¨ĞÅÓëÎÄ¼ş´«Êä½â¾ö·½°¸¡£
+    </nav>
+    
+    <!-- ä¸»è¦å†…å®¹ -->
+    <main class="pt-20">
+        <!-- è‹±é›„åŒºåŸŸ -->
+        <section class="relative py-20 sm:py-32">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
+                    <span class="text-primary">Nextious</span> - å±€åŸŸç½‘é€šä¿¡ä¸æ–‡ä»¶ä¼ è¾“è§£å†³æ–¹æ¡ˆ
+                </h1>
+                <p class="text-lg sm:text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+                    åŸºäºå±€åŸŸç½‘çš„å³æ—¶é€šä¿¡å’Œæ–‡ä»¶ä¼ è¾“ç³»ç»Ÿï¼Œæä¾›å®‰å…¨ã€å¿«é€Ÿã€ä¾¿æ·çš„æœ¬åœ°ç½‘ç»œé€šä¿¡ä½“éªŒ
                 </p>
-                
                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="#" class="glass-btn glass-btn-primary inline-flex items-center justify-center px-8 py-3.5 text-white font-medium rounded-full mouse-reflector">
-                        <div class="mouse-light"></div>
-                        <i class="fa fa-download mr-2"></i>
-                        ÏÂÔØÌåÑé
+                    <a href="#project" class="glass-btn-primary text-white px-8 py-3 rounded-full font-semibold">
+                        äº†è§£æ›´å¤š
                     </a>
-                    <a href="index.html#project" class="glass-btn inline-flex items-center justify-center px-8 py-3.5 text-primary font-medium rounded-full mouse-reflector">
-                        <div class="mouse-light"></div>
-                        <i class="fa fa-arrow-left mr-2"></i>
-                        ·µ»ØÏîÄ¿Ö÷Ò³
+                    <a href="#docs" class="glass-btn text-primary px-8 py-3 rounded-full font-semibold border border-primary">
+                        æŸ¥çœ‹æ–‡æ¡£
                     </a>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Ò³½Å -->
-    <footer class="py-12 sm:py-16 glass-effect border-t border-white/10 relative z-10">
-        <div class="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-center mb-8 sm:mb-12">
-                <div class="flex items-center gap-2 mb-6 md:mb-0">
-                    <img src="https://cdn.luogu.com.cn/upload/image_hosting/vy6i8dsm.png" alt="TeamPixelÍÅ¶Ó±êÖ¾" class="w-8 h-8 rounded object-cover">
-                    <span class="font-semibold text-lg">TeamPixel</span>
-                </div>
-                
-                <div class="flex gap-6 sm:gap-8">
-                    <div class="flex flex-col items-center">
-                        <a href="https://www.luogu.com.cn/team/112080" target="_blank" class="glass-btn w-10 h-10 flex items-center justify-center text-gray-400 hover:text-primary rounded-full mouse-reflector">
-                            <div class="mouse-light"></div>
-                            <i class="fa fa-users text-xl"></i>
-                        </a>
-                        <span class="text-xs text-gray-500 mt-1">ÍÅ¶ÓÂå¹ÈÖ÷Ò³</span>
+        </section>
+        
+        <!-- ç‰¹æ€§å±•ç¤º -->
+        <section id="project" class="py-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-bold text-center mb-12">æ ¸å¿ƒç‰¹æ€§</h2>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="feature-card glass-effect p-6 rounded-2xl">
+                        <div class="text-primary text-3xl mb-4">
+                            <i class="fa fa-comments"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">å³æ—¶é€šä¿¡</h3>
+                        <p class="text-gray-600">æ”¯æŒæ–‡å­—ã€è¡¨æƒ…ã€å›¾ç‰‡ç­‰å¤šç§æ¶ˆæ¯ç±»å‹ï¼Œå®æ—¶åŒæ­¥ï¼Œæ²Ÿé€šæ— éšœç¢</p>
                     </div>
-                    <div class="flex flex-col items-center">
-                        <a href="https://www.luogu.com.cn/user/1017957" target="_blank" class="glass-btn w-10 h-10 flex items-center justify-center text-gray-400 hover:text-primary rounded-full mouse-reflector">
-                            <div class="mouse-light"></div>
-                            <i class="fa fa-user text-xl"></i>
-                        </a>
-                        <span class="text-xs text-gray-500 mt-1">wujzµÄÂå¹ÈÖ÷Ò³</span>
+                    
+                    <div class="feature-card glass-effect p-6 rounded-2xl">
+                        <div class="text-primary text-3xl mb-4">
+                            <i class="fa fa-file-transfer"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">æ–‡ä»¶ä¼ è¾“</h3>
+                        <p class="text-gray-600">é«˜é€Ÿæ–‡ä»¶ä¼ è¾“ï¼Œæ”¯æŒæ–­ç‚¹ç»­ä¼ ï¼Œå¤§æ–‡ä»¶ä¼ è¾“æ›´ç¨³å®š</p>
                     </div>
-                    <div class="flex flex-col items-center">
-                        <a href="https://www.luogu.com.cn/user/1513356" target="_blank" class="glass-btn w-10 h-10 flex items-center justify-center text-gray-400 hover:text-primary rounded-full mouse-reflector">
-                            <div class="mouse-light"></div>
-                            <i class="fa fa-user text-xl"></i>
-                        </a>
-                        <span class="text-xs text-gray-500 mt-1">Teddyzhi0815µÄÂå¹ÈÖ÷Ò³</span>
+                    
+                    <div class="feature-card glass-effect p-6 rounded-2xl">
+                        <div class="text-primary text-3xl mb-4">
+                            <i class="fa fa-shield-alt"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">å®‰å…¨åŠ å¯†</h3>
+                        <p class="text-gray-600">ç«¯åˆ°ç«¯åŠ å¯†é€šä¿¡ï¼Œç¡®ä¿æ•°æ®ä¼ è¾“å®‰å…¨ï¼Œä¿æŠ¤ç”¨æˆ·éšç§</p>
                     </div>
                 </div>
             </div>
-            
-            <div class="text-center text-gray-400 text-sm sm:text-base">
-                <p>? 2025 TeamPixelÍÅ¶Ó. NextiousÏîÄ¿¿ª·¢ÖĞ.</p>
-                <p class="mt-2">±¾ÍøÕ¾Õ¹Ê¾ÍÅ¶Ó¼°ÏîÄ¿Ïà¹ØĞÅÏ¢Óë¼¼ÊõÎÄµµ</p>
+        </section>
+        
+        <!-- æŠ€æœ¯æ¶æ„ -->
+        <section id="docs" class="py-20 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-bold text-center mb-12">æŠ€æœ¯æ¶æ„</h2>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="glass-effect p-6 rounded-2xl">
+                        <h3 class="text-xl font-semibold mb-4">å®¢æˆ·ç«¯</h3>
+                        <ul class="space-y-2 text-gray-600">
+                            <li>â€¢ React + TypeScript æ„å»ºç°ä»£åŒ–ç”¨æˆ·ç•Œé¢</li>
+                            <li>â€¢ WebSocket å®æ—¶é€šä¿¡åè®®</li>
+                            <li>â€¢ å“åº”å¼è®¾è®¡ï¼Œæ”¯æŒå¤šè®¾å¤‡è®¿é—®</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="glass-effect p-6 rounded-2xl">
+                        <h3 class="text-xl font-semibold mb-4">æœåŠ¡ç«¯</h3>
+                        <ul class="space-y-2 text-gray-600">
+                            <li>â€¢ Node.js + Express é«˜æ€§èƒ½åç«¯æœåŠ¡</li>
+                            <li>â€¢ Socket.io å®æ—¶åŒå‘é€šä¿¡</li>
+                            <li>â€¢ SQLite è½»é‡çº§æ•°æ®å­˜å‚¨</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- ä½¿ç”¨æŒ‡å— -->
+        <section class="py-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-bold text-center mb-12">å¿«é€Ÿå¼€å§‹</h2>
+                <div class="max-w-2xl mx-auto">
+                    <div class="space-y-6">
+                        <div class="flex items-start space-x-4">
+                            <div class="flex-shrink-0 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold">1</div>
+                            <div>
+                                <h3 class="font-semibold mb-1">ä¸‹è½½å®‰è£…</h3>
+                                <p class="text-gray-600">ä»GitHub Releasesä¸‹è½½æœ€æ–°ç‰ˆæœ¬ï¼Œæ”¯æŒWindowsã€macOSã€Linux</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-4">
+                            <div class="flex-shrink-0 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold">2</div>
+                            <div>
+                                <h3 class="font-semibold mb-1">å¯åŠ¨æœåŠ¡</h3>
+                                <p class="text-gray-600">è¿è¡ŒæœåŠ¡ç«¯ç¨‹åºï¼Œè‡ªåŠ¨å‘ç°å±€åŸŸç½‘å†…çš„å…¶ä»–ç”¨æˆ·</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-4">
+                            <div class="flex-shrink-0 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold">3</div>
+                            <div>
+                                <h3 class="font-semibold mb-1">å¼€å§‹é€šä¿¡</h3>
+                                <p class="text-gray-600">æ‰“å¼€å®¢æˆ·ç«¯ï¼Œè¿æ¥æœ¬åœ°æœåŠ¡å™¨ï¼Œå³å¯å¼€å§‹èŠå¤©å’Œæ–‡ä»¶ä¼ è¾“</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- é¡µè„š -->
+    <footer class="bg-gray-50 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <img src="https://cdn.luogu.com.cn/upload/image_hosting/vy6i8dsm.png" alt="TeamPixelå›¢é˜Ÿæ ‡å¿—" class="w-12 h-12 sm:w-16 sm:h-16 rounded object-cover mx-auto mb-4">
+                <p class="text-gray-600 mb-4">Nextious - å±€åŸŸç½‘é€šä¿¡ä¸æ–‡ä»¶ä¼ è¾“è§£å†³æ–¹æ¡ˆ</p>
+                <div class="flex justify-center space-x-6">
+                    <a href="https://github.com/TeamPixel" class="text-gray-600 hover:text-primary transition-colors">
+                        <i class="fa fa-github text-xl"></i>
+                    </a>
+                    <a href="mailto:contact@teampixel.com" class="text-gray-600 hover:text-primary transition-colors">
+                        <i class="fa fa-envelope text-xl"></i>
+                    </a>
+                </div>
+                <p class="text-sm text-gray-500 mt-4">&copy; 2024 TeamPixel. ä¿ç•™æ‰€æœ‰æƒåˆ©ã€‚</p>
             </div>
         </div>
     </footer>
-
-    <!-- JavaScript -->
+    
+    <!-- æ·±è‰²æ¨¡å¼åˆ‡æ¢JavaScript -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // ÉîÉ«Ä£Ê½ÇĞ»»
-            const themeToggle = document.getElementById('themeToggle');
-            const mobileThemeToggle = document.getElementById('mobileThemeToggle');
-            const mobileThemeText = document.getElementById('mobileThemeText');
-            const themeIcon = document.querySelector('.theme-toggle');
-            const mobileThemeIcon = document.querySelector('#mobileThemeToggle .theme-toggle');
-            const mobileMenu = document.getElementById('mobileMenu');
+        // æ·±è‰²æ¨¡å¼åˆ‡æ¢åŠŸèƒ½
+        const themeToggle = document.getElementById('themeToggle');
+        const mobileThemeToggle = document.getElementById('mobileThemeToggle');
+        const body = document.body;
+        const themeIcon = themeToggle?.querySelector('i');
+        const mobileThemeIcon = mobileThemeToggle?.querySelector('i');
+        
+        // åˆå§‹åŒ–ä¸»é¢˜
+        function initTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
             
-            // ³õÊ¼»¯Ö÷Ìâ
-            if (localStorage.getItem('darkMode') === 'true' || 
-                (!localStorage.getItem('darkMode') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                enableDarkMode();
+            if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+                applyTheme('dark');
+            } else {
+                applyTheme('light');
             }
-            
-            // °ó¶¨Ö÷ÌâÇĞ»»ÊÂ¼ş
-            themeToggle.addEventListener('click', toggleDarkMode);
-            if (mobileThemeToggle) {
-                mobileThemeToggle.addEventListener('click', toggleDarkMode);
+        }
+        
+        // åº”ç”¨ä¸»é¢˜
+        function applyTheme(theme) {
+            if (theme === 'dark') {
+                body.classList.add('dark-mode');
+                themeToggle?.classList.add('dark');
+                mobileThemeToggle?.classList.add('dark');
+                if (themeIcon) themeIcon.className = 'fa fa-sun';
+                if (mobileThemeIcon) mobileThemeIcon.className = 'fa fa-sun';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.classList.remove('dark-mode');
+                themeToggle?.classList.remove('dark');
+                mobileThemeToggle?.classList.remove('dark');
+                if (themeIcon) themeIcon.className = 'fa fa-moon';
+                if (mobileThemeIcon) mobileThemeIcon.className = 'fa fa-moon';
+                localStorage.setItem('theme', 'light');
             }
-            
-            function toggleDarkMode() {
-                document.body.classList.contains('dark-mode') ? disableDarkMode() : enableDarkMode();
-            }
-            
-            function enableDarkMode() {
-                document.body.classList.add('dark-mode');
-                
-                // ¸üĞÂËùÓĞÖ÷ÌâÍ¼±ê
-                if (themeIcon) {
-                    themeIcon.classList.remove('fa-moon-o');
-                    themeIcon.classList.add('fa-sun-o', 'dark');
-                }
-                if (mobileThemeIcon) {
-                    mobileThemeIcon.classList.remove('fa-moon-o');
-                    mobileThemeIcon.classList.add('fa-sun-o', 'dark');
-                }
-                
-                // ÇĞ»»°´Å¥ÎÄ±¾
-                if (mobileThemeText) mobileThemeText.textContent = 'Ç³É«Ä£Ê½';
-                localStorage.setItem('darkMode', 'true');
-                
-                // È·±£²Ëµ¥Ãæ°åÔÚÉîÉ«Ä£Ê½ÏÂÕıÈ·ÏÔÊ¾
-                updateMenuDarkMode(true);
-            }
-            
-            function disableDarkMode() {
-                document.body.classList.remove('dark-mode');
-                
-                // ¸üĞÂËùÓĞÖ÷ÌâÍ¼±ê
-                if (themeIcon) {
-                    themeIcon.classList.remove('fa-sun-o', 'dark');
-                    themeIcon.classList.add('fa-moon-o');
-                }
-                if (mobileThemeIcon) {
-                    mobileThemeIcon.classList.remove('fa-sun-o', 'dark');
-                    mobileThemeIcon.classList.add('fa-moon-o');
-                }
-                
-                // ÇĞ»»°´Å¥ÎÄ±¾
-                if (mobileThemeText) mobileThemeText.textContent = 'ÉîÉ«Ä£Ê½';
-                localStorage.setItem('darkMode', 'false');
-                
-                // È·±£²Ëµ¥Ãæ°åÔÚÇ³É«Ä£Ê½ÏÂÕıÈ·ÏÔÊ¾
-                updateMenuDarkMode(false);
-            }
-            
-            // ×¨ÃÅÓÃÓÚ¸üĞÂ²Ëµ¥Ãæ°åÉîÉ«Ä£Ê½µÄº¯Êı
-            function updateMenuDarkMode(isDark) {
-                if (!mobileMenu) return;
-                
-                // Ç¿ÖÆ¸üĞÂ²Ëµ¥Ãæ°åµÄÑùÊ½£¬È·±£ÉîÉ«/Ç³É«Ä£Ê½ÕıÈ·Ó¦ÓÃ
-                if (isDark) {
-                    mobileMenu.classList.add('dark-mode');
-                } else {
-                    mobileMenu.classList.remove('dark-mode');
-                }
-                
-                // ´¥·¢ÖØ»æÒÔÈ·±£ÑùÊ½Á¢¼´¸üĞÂ
-                void mobileMenu.offsetWidth;
-            }
-            
-            // µ¼º½À¸¹ö¶¯Ğ§¹û
-            window.addEventListener('scroll', function() {
-                const navEllipse = document.querySelector('.glass-effect.shadow-glass.px-8');
-                const logo = document.getElementById('logo');
-                const teamName = document.getElementById('team-name');
-                const header = document.querySelector('header');
-                
-                if (window.scrollY > 50) {
-                    if (navEllipse) navEllipse.classList.add('nav-scrolled');
-                    logo.classList.add('w-7', 'h-7');
-                    logo.classList.remove('w-8', 'h-8', 'sm:w-10', 'sm:h-10');
-                    teamName.classList.add('text-base');
-                    teamName.classList.remove('text-lg', 'sm:text-xl');
-                    header.classList.add('py-2');
-                    header.classList.remove('py-4');
-                } else {
-                    if (navEllipse) navEllipse.classList.remove('nav-scrolled');
-                    logo.classList.remove('w-7', 'h-7');
-                    logo.classList.add('w-8', 'h-8', 'sm:w-10', 'sm:h-10');
-                    teamName.classList.remove('text-base');
-                    teamName.classList.add('text-lg', 'sm:text-xl');
-                    header.classList.remove('py-2');
-                    header.classList.add('py-4');
+        }
+        
+        // åˆ‡æ¢ä¸»é¢˜
+        function toggleTheme() {
+            const currentTheme = body.classList.contains('dark-mode') ? 'dark' : 'light';
+            applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
+        }
+        
+        // ç»‘å®šäº‹ä»¶
+        themeToggle?.addEventListener('click', toggleTheme);
+        mobileThemeToggle?.addEventListener('click', toggleTheme);
+        
+        // ç›‘å¬ç³»ç»Ÿä¸»é¢˜å˜åŒ–
+        if (window.matchMedia) {
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+                if (!localStorage.getItem('theme')) {
+                    applyTheme(e.matches ? 'dark' : 'light');
                 }
             });
-            
-            // ÒÆ¶¯¶Ë²Ëµ¥Âß¼­ - ±äĞÎ¶¯»­ÊµÏÖ
-            const openMenuBtn = document.getElementById('openMenu');
-            const menuOverlay = document.getElementById('menuOverlay');
-            const mobileLinks = document.querySelectorAll('.mobile-link');
-            
-            if (openMenuBtn && mobileMenu && menuOverlay) {
-                // ²Ëµ¥°´Å¥ÓëÃæ°å¶ÔÆë
-                function positionMenu() {
-                    if (!openMenuBtn) return;
-                    
-                    // »ñÈ¡°´Å¥µÄÎ»ÖÃĞÅÏ¢
-                    const btnRect = openMenuBtn.getBoundingClientRect();
-                    
-                    // ²Ëµ¥ÓÒÉÏ½ÇÓë°´Å¥¶ÔÆë
-                    mobileMenu.style.top = `${btnRect.top}px`;
-                    mobileMenu.style.right = `${window.innerWidth - btnRect.right}px`;
-                }
-                
-                // ³õÊ¼¶¨Î»
-                positionMenu();
-                
-                // ¼àÌı´°¿Ú´óĞ¡±ä»¯£¬¸üĞÂÎ»ÖÃ
-                window.addEventListener('resize', positionMenu);
-                
-                // ²Ëµ¥°´Å¥µã»÷´¦Àí - ±äĞÎ¶¯»­
-                function toggleMenu() {
-                    if (mobileMenu.classList.contains('active')) {
-                        closeMenu();
-                    } else {
-                        openMenu();
-                    }
-                }
-                
-                function openMenu() {
-                    // ÏÈ¸üĞÂÎ»ÖÃÔÙÏÔÊ¾
-                    positionMenu();
-                    
-                    // °´Å¥·Å´ó±äĞÎÎª²Ëµ¥Ãæ°åµÄ¶¯»­
-                    mobileMenu.classList.add('active');
-                    menuOverlay.classList.add('active');
-                    document.body.style.overflow = 'hidden';
-                    
-                    // Òş²ØÔ­°´Å¥
-                    setTimeout(() => {
-                        openMenuBtn.classList.add('hidden');
-                    }, 200);
-                    
-                    // È·±£²Ëµ¥´ò¿ªÊ±Ó¦ÓÃÕıÈ·µÄÖ÷ÌâÑùÊ½
-                    updateMenuDarkMode(document.body.classList.contains('dark-mode'));
-                }
-                
-                function closeMenu() {
-                    mobileMenu.classList.remove('active');
-                    menuOverlay.classList.remove('active');
-                    document.body.style.overflow = '';
-                    openMenuBtn.classList.remove('hidden');
-                }
-                
-                // °ó¶¨°´Å¥µã»÷ÊÂ¼ş
-                openMenuBtn.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    toggleMenu();
-                });
-                
-                // µã»÷ÕÚÕÖ¹Ø±Õ²Ëµ¥
-                menuOverlay.addEventListener('click', closeMenu);
-                
-                // µã»÷²Ëµ¥Ïî¹Ø±Õ²Ëµ¥²¢Ìø×ª
-                mobileLinks.forEach(link => {
-                    link.addEventListener('click', function() {
-                        closeMenu();
-                        
-                        const targetId = this.getAttribute('href');
-                        const targetElement = document.querySelector(targetId);
-                        
-                        if (targetElement) {
-                            setTimeout(() => {
-                                window.scrollTo({
-                                    top: targetElement.offsetTop - 80,
-                                    behavior: 'smooth'
-                                });
-                            }, 300);
-                        }
-                    });
-                });
-                
-                // ·ÀÖ¹µã»÷²Ëµ¥ÄÚ²¿¹Ø±Õ²Ëµ¥
-                mobileMenu.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                });
+        }
+        
+        // åˆå§‹åŒ–ä¸»é¢˜
+        initTheme();
+        
+        // å¯¼èˆªæ æ»šåŠ¨æ•ˆæœ
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('nav-scrolled');
+            } else {
+                nav.classList.remove('nav-scrolled');
             }
-            
-            // Æ½»¬¹ö¶¯
-            document.querySelectorAll('a[href^="#"]:not(.mobile-link)').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
-                    
-                    if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 80,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
+        });
+        
+        // ç§»åŠ¨ç«¯èœå•åŠŸèƒ½
+        const openMenu = document.getElementById('openMenu');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuOverlay = document.getElementById('menuOverlay');
+        
+        function toggleMobileMenu() {
+            mobileMenu.classList.toggle('active');
+            menuOverlay.classList.toggle('active');
+            openMenu.classList.toggle('hidden');
+        }
+        
+        openMenu?.addEventListener('click', toggleMobileMenu);
+        menuOverlay?.addEventListener('click', toggleMobileMenu);
+        
+        // ç§»åŠ¨ç«¯èœå•é“¾æ¥ç‚¹å‡»åå…³é—­èœå•
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                menuOverlay.classList.remove('active');
+                openMenu.classList.remove('hidden');
             });
-            
-            // Êó±êĞüÍ£·´¹âĞ§¹ûÊµÏÖ
-            document.querySelectorAll('.mouse-reflector').forEach(element => {
-                // »ñÈ¡Ã¿¸öÔªËØÄÚµÄ·´¹âĞ§¹ûÔªËØ
-                const mouseLight = element.querySelector('.mouse-light');
-                
-                if (mouseLight) {
-                    // ¼àÌıÊó±êÒÆ¶¯ÊÂ¼ş£¬ÈÃ·´¹â¸úËæÊó±ê
-                    element.addEventListener('mousemove', (e) => {
-                        // »ñÈ¡ÔªËØÏà¶ÔÓÚÊÓ¿ÚµÄÎ»ÖÃ
-                        const rect = element.getBoundingClientRect();
-                        
-                        // ¼ÆËãÊó±êÔÚÔªËØÄÚµÄÏà¶ÔÎ»ÖÃ
-                        const x = e.clientX - rect.left;
-                        const y = e.clientY - rect.top;
-                        
-                        // ÉèÖÃ·´¹âĞ§¹ûµÄÎ»ÖÃ
-                        mouseLight.style.left = `${x}px`;
-                        mouseLight.style.top = `${y}px`;
+        });
+        
+        // å¹³æ»‘æ»šåŠ¨
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
                     });
                 }
             });
-            
-            // µ±Ö÷ÌâÇĞ»»Ê±£¬È·±£²Ëµ¥Ãæ°åÑùÊ½ÕıÈ·¸üĞÂ
-            document.addEventListener('darkModeToggled', function() {
-                if (mobileMenu && mobileMenu.classList.contains('active')) {
-                    updateMenuDarkMode(document.body.classList.contains('dark-mode'));
+        });
+        
+        // é¼ æ ‡å…‰æ•ˆ
+        document.querySelectorAll('.mouse-reflector').forEach(element => {
+            element.addEventListener('mousemove', function(e) {
+                const rect = this.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const light = this.querySelector('.mouse-light');
+                if (light) {
+                    light.style.left = x + 'px';
+                    light.style.top = y + 'px';
                 }
             });
         });
