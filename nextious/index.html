@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nextious - 局域网通信与文件传输解决方案</title>
-    <!-- 引入外部资源 -->
+    <title>Nextious - ������ͨ�����ļ�����������</title>
+    <!-- �����ⲿ��Դ -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
     
-    <!-- 配置Tailwind -->
+    <!-- ����Tailwind -->
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -39,7 +39,7 @@
         }
     </script>
     
-    <!-- 自定义工具类 -->
+    <!-- �Զ��幤���� -->
     <style type="text/tailwindcss">
         @layer utilities {
             .content-auto {
@@ -123,7 +123,7 @@
                 position: relative;
                 overflow: hidden;
             }
-            /* 菜单按钮统一样式 */
+            /* �˵���ťͳһ��ʽ */
             .menu-button {
                 display: flex;
                 align-items: center;
@@ -139,7 +139,7 @@
                 flex-shrink: 0;
                 text-align: center;
             }
-            /* 特性卡片样式 */
+            /* ���Կ�Ƭ��ʽ */
             .feature-card {
                 transition: transform 0.3s ease, box-shadow 0.3s ease;
             }
@@ -150,7 +150,7 @@
     </style>
     
     <style>
-        /* 基础样式 */
+        /* ������ʽ */
         body {
             overflow-x: hidden;
             transition: background-color 0.4s ease, color 0.4s ease;
@@ -160,7 +160,7 @@
             scroll-behavior: smooth;
         }
         
-        /* 深色模式样式 */
+        /* ��ɫģʽ��ʽ */
         body.dark-mode {
             background-color: #0F172A;
             color: #E2E8F0;
@@ -186,7 +186,7 @@
             color: #F8FAFC !important;
         }
         
-        /* 动画效果 */
+        /* ����Ч�� */
         @keyframes pulse-dot {
             0%, 100% { opacity: 1; }
             50% { opacity: 0.5; }
@@ -214,7 +214,7 @@
             background-color: rgba(59, 130, 246, 0.1);
         }
         
-        /* 导航栏滚动效果 */
+        /* ����������Ч�� */
         .nav-scrolled {
             padding-top: 0.5rem !important;
             padding-bottom: 0.5rem !important;
@@ -223,7 +223,7 @@
             font-size: 0.875rem !important;
         }
         
-        /* 移动端菜单样式 */
+        /* �ƶ��˲˵���ʽ */
         .menu-overlay {
             position: fixed;
             top: 0;
@@ -248,44 +248,47 @@
             visibility: visible;
         }
         
-        /* 移动端菜单 - 玻璃态 */
+        /* �˵���� - ������ */
         .mobile-menu {
             position: fixed;
-            top: 64px; /* 导航栏高度约64px，紧贴导航栏底部 */
-            left: 16px; /* 靠左对齐，与左侧边缘保持16px间距 */
-            width: 280px;
-            max-width: calc(100vw - 32px); /* 确保不会超出屏幕 */
-            border-radius: 12px;
+            top: 0;
+            right: 0;
+            width: 240px;
+            border-radius: 1.5rem;
             z-index: 999;
-            transform-origin: top left;
-            transform: scale(0.8) translateY(-10px);
+            transform-origin: top right;
+            transform: scale(0.1);
             opacity: 0;
             visibility: hidden;
-            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            max-height: calc(100vh - 80px);
+            transition: all 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+            max-height: calc(100vh - 2rem);
             overflow-y: auto;
             
-            /* 玻璃态效果 */
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            background: rgba(255, 255, 255, 0.9);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+            /* �Ż��ĸ�˹ģ������ */
+            backdrop-filter: blur(20px) saturate(120%);
+            -webkit-backdrop-filter: blur(20px) saturate(120%);
             
-            /* 内边距 */
-            padding: 16px;
+            /* �������� - ȷ�����ݿɶ��� */
+            background: rgba(255, 255, 255, 0.1);
+            
+            /* �߿����Ӱ��ǿ�����ʸ� */
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+            
+            /* ��յ��ڲ��߾� */
+            padding: 1rem;
         }
         
-        /* 深色模式下的菜单背景 */
+        /* ��ɫģʽ�µĲ˵���� */
         body.dark-mode .mobile-menu {
-            background: rgba(15, 23, 42, 0.9);
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(20px) saturate(140%);
+            -webkit-backdrop-filter: blur(20px) saturate(140%);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
         }
         
-        /* 添加折射光边缘效果 */
+        /* ���������ԵЧ�� */
         .mobile-menu::before,
         .mobile-menu::after,
         .mobile-menu .refraction-left,
@@ -295,7 +298,7 @@
             pointer-events: none;
         }
         
-        /* 上边缘折射 */
+        /* �ϱ�Ե���� */
         .mobile-menu::before {
             top: 0;
             left: 0;
@@ -307,7 +310,7 @@
                 transparent);
         }
         
-        /* 下边缘折射 */
+        /* �±�Ե���� */
         .mobile-menu::after {
             bottom: 0;
             left: 0;
@@ -319,7 +322,7 @@
                 transparent);
         }
         
-        /* 左侧折射 */
+        /* ���Ե���� */
         .mobile-menu .refraction-left {
             top: 0;
             left: 0;
@@ -331,7 +334,7 @@
                 transparent);
         }
         
-        /* 右侧折射 */
+        /* �ұ�Ե���� */
         .mobile-menu .refraction-right {
             top: 0;
             right: 0;
@@ -343,7 +346,7 @@
                 transparent);
         }
         
-        /* 深色模式下的边缘折射效果调整 */
+        /* ��ɫģʽ�µı�Ե������� */
         body.dark-mode .mobile-menu::before {
             background: linear-gradient(90deg, 
                 transparent, 
@@ -366,14 +369,14 @@
                 transparent);
         }
         
-        /* 菜单激活状态 - 从左上角优雅展开 */
+        /* �˵�����״̬ - ���ζ��� */
         .mobile-menu.active {
-            transform: scale(1) translateY(0);
+            transform: scale(1);
             opacity: 1;
             visibility: visible;
         }
         
-        /* 菜单按钮样式 - 激活状态 */
+        /* �˵���ť��ʽ����ζ��� */
         #openMenu {
             position: fixed;
             top: 1.5rem;
@@ -391,7 +394,7 @@
             pointer-events: none;
         }
         
-        /* 深色模式切换按钮动画 */
+        /* ��ɫģʽ�л���ť���� */
         .theme-toggle {
             transition: transform 0.3s ease;
         }
@@ -400,7 +403,7 @@
             transform: rotate(180deg);
         }
         
-        /* 液态玻璃按钮核心样式 */
+        /* Һ̬������ť��������ʽ */
         .glass-btn {
             background: rgba(255, 255, 255, 0.6);
             backdrop-filter: blur(10px);
@@ -431,7 +434,7 @@
             background: rgba(59, 130, 246, 0.9);
         }
         
-        /* 深色模式下的按钮样式 */
+        /* ��ɫģʽ�µİ�ť��ʽ */
         body.dark-mode .glass-btn {
             background: rgba(30, 41, 59, 0.8);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -460,7 +463,7 @@
             box-shadow: 0 8px 30px rgba(59, 130, 246, 0.35);
         }
         
-        /* 深色模式下的玻璃态组件 */
+        /* ��ɫģʽ�µĲ���Ч����Ƭ */
         body.dark-mode .glass-effect {
             background: rgba(30, 41, 59, 0.8);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -471,7 +474,7 @@
             border: 1px solid rgba(255, 255, 255, 0.08);
         }
         
-        /* 深色模式下的链接颜色 */
+        /* ��ɫģʽ�µ�������ɫ */
         body.dark-mode a {
             color: #93C5FD;
         }
@@ -484,13 +487,13 @@
             border-top-color: rgba(255, 255, 255, 0.08);
         }
         
-        /* 确保平滑过渡 */
+        /* �����л�ƽ������ */
         .glass-effect, .glass-btn, .glass-btn-primary, 
         img, a, .border-t, .mobile-menu {
             transition: all 0.4s ease;
         }
         
-        /* 鼠标悬停光效 */
+        /* �����ͣ����Ч�� */
         .mouse-light {
             position: absolute;
             pointer-events: none;
@@ -507,7 +510,7 @@
             z-index: 50;
         }
         
-        /* 深色模式下的鼠标光效调整 */
+        /* ��ɫģʽ�µ���귴����� */
         body.dark-mode .mouse-light {
             background: radial-gradient(circle, 
                 rgba(255, 255, 255, 0.2) 0%, 
@@ -515,362 +518,672 @@
                 rgba(255, 255, 255, 0) 100%);
         }
         
-        /* 鼠标悬停元素时显示光效 */
+        /* �������Ԫ����ʱ��ʾ���� */
         .mouse-reflector:hover .mouse-light {
             opacity: 1;
         }
         
-        /* 菜单链接的深色模式颜色 */
+        /* �˵����ı�����ɫģʽ�µ���ɫ */
         body.dark-mode .mobile-menu a,
         body.dark-mode .mobile-menu span {
             color: #E2E8F0 !important;
         }
         
-        /* 深色模式下菜单图标颜色 */
+        /* ��ɫģʽ�²˵�ͼ�����ɫ */
         body.dark-mode .mobile-menu i {
             color: #93C5FD !important;
         }
     </style>
 </head>
 <body class="bg-white text-dark">
-    <!-- 背景装饰 -->
+    <!-- ����װ�� -->
     <div class="fixed -top-40 -right-40 w-96 h-96 bg-primary/5 liquid-shape float-animation z-0"></div>
     <div class="fixed -bottom-20 -left-20 w-72 h-72 bg-primary/5 liquid-shape-2 float-animation-delay z-0"></div>
     
-    <!-- 移动端菜单遮罩层 -->
+    <!-- �ƶ��˲˵����ǲ� -->
     <div class="menu-overlay" id="menuOverlay"></div>
     
-    <!-- 移动端菜单 - 玻璃态 -->
+    <!-- �ƶ��˲˵� - ������ -->
     <div class="mobile-menu shadow-glass refraction-edge mouse-reflector" id="mobileMenu">
-        <!-- 鼠标光效元素 -->
+        <!-- ��귴��Ч��Ԫ�� -->
         <div class="mouse-light"></div>
         
-        <!-- 左右折射边缘 -->
+        <!-- ���������Ե -->
         <div class="refraction-left"></div>
         <div class="refraction-right"></div>
         
-        <!-- 统一风格的菜单按钮列表 -->
+        <!-- ͳһ����Ĳ˵���ť���� -->
         <ul class="pt-1 pb-1 space-y-2 relative z-10">
             <li><a href="index.html#about" class="mobile-link glass-btn menu-button text-sm rounded-full mouse-reflector">
                 <div class="mouse-light"></div>
                 <i class="fa fa-users menu-icon text-primary"></i>
-                关于团队
+                �����Ŷ�
             </a></li>
             <li><a href="index.html#project" class="mobile-link glass-btn menu-button text-sm rounded-full mouse-reflector">
                 <div class="mouse-light"></div>
                 <i class="fa fa-cube menu-icon text-primary"></i>
-                项目介绍
+                ��Ŀ����
             </a></li>
             <li><a href="index.html#docs" class="mobile-link glass-btn menu-button text-sm rounded-full mouse-reflector">
                 <div class="mouse-light"></div>
                 <i class="fa fa-book menu-icon text-primary"></i>
-                相关文档
+                �����ĵ�
             </a></li>
             <li><a href="index.html#links" class="mobile-link glass-btn menu-button text-sm rounded-full mouse-reflector">
                 <div class="mouse-light"></div>
                 <i class="fa fa-link menu-icon text-primary"></i>
-                重要链接
+                ��Ҫ����
             </a></li>
-            <!-- 移动端深色模式切换 - 添加菜单按钮样式 -->
+            <!-- �ƶ�����ɫģʽ�л� - ��������ť���� -->
             <li>
                 <button id="mobileThemeToggle" class="glass-btn menu-button text-sm rounded-full mouse-reflector">
                     <div class="mouse-light"></div>
-                    <i class="fa fa-moon menu-icon text-primary"></i>
-                    <span>切换深色模式</span>
+                    <i class="fa fa-moon-o menu-icon text-primary theme-toggle"></i>
+                    <span id="mobileThemeText">ǳɫģʽ</span>
                 </button>
             </li>
         </ul>
     </div>
     
-    <!-- 导航栏 -->
-    <nav class="fixed top-0 left-0 right-0 z-40 transition-all duration-300 glass-effect">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center py-4">
-                <!-- Logo -->
-                <div class="flex items-center">
-                    <a href="index.html" class="flex items-center space-x-2">
-                        <img src="https://cdn.luogu.com.cn/upload/image_hosting/vy6i8dsm.png" alt="TeamPixel团队标志" class="w-8 h-8 sm:w-10 sm:h-10 rounded object-cover transition-all duration-300" id="logo">
-                        <span class="text-lg sm:text-xl font-bold text-primary">Nextious</span>
-                    </a>
+    <!-- ������ -->
+    <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center">
+                <!-- ��ࣺLogo + �Ŷ��� -->
+                <div class="flex items-center gap-2">
+                    <img src="https://cdn.luogu.com.cn/upload/image_hosting/vy6i8dsm.png" alt="TeamPixel�Ŷӱ�־" class="w-8 h-8 sm:w-10 sm:h-10 rounded object-cover transition-all duration-300" id="logo">
+                    <span class="font-semibold text-lg sm:text-xl transition-all duration-300" id="team-name">
+                        <a href="index.html">TeamPixel</a>
+                    </span>
                 </div>
                 
-                <!-- 桌面端导航 -->
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="index.html#about" class="text-gray-600 hover:text-primary transition-colors">关于团队</a>
-                    <a href="index.html#project" class="text-gray-600 hover:text-primary transition-colors">项目介绍</a>
-                    <a href="index.html#docs" class="text-gray-600 hover:text-primary transition-colors">相关文档</a>
-                    <a href="index.html#links" class="text-gray-600 hover:text-primary transition-colors">重要链接</a>
+                <!-- �Ҳࣺ�������Ӻ���ɫģʽ�л� -->
+                <div class="hidden md:flex items-center gap-4">
+                    <nav class="glass-effect shadow-glass px-8 py-3 hover:shadow-glass-hover transition-all rounded-full mouse-reflector">
+                        <div class="mouse-light"></div>
+                        <ul class="flex items-center gap-6 sm:gap-8">
+                            <li><a href="index.html#about" class="glass-btn px-3 py-1.5 text-gray-600 hover:text-primary text-sm sm:text-base rounded-full mouse-reflector">
+                                <div class="mouse-light"></div>
+                                �����Ŷ�
+                            </a></li>
+                            <li><a href="index.html#project" class="glass-btn px-3 py-1.5 text-gray-600 hover:text-primary text-sm sm:text-base rounded-full mouse-reflector">
+                                <div class="mouse-light"></div>
+                                ��Ŀ����
+                            </a></li>
+                            <li><a href="nextious.html" class="glass-btn glass-btn-primary px-3 py-1.5 text-white font-medium text-sm sm:text-base rounded-full mouse-reflector">
+                                <div class="mouse-light"></div>
+                                Nextious
+                            </a></li>
+                            <li><a href="index.html#docs" class="glass-btn px-3 py-1.5 text-gray-600 hover:text-primary text-sm sm:text-base rounded-full mouse-reflector">
+                                <div class="mouse-light"></div>
+                                �����ĵ�
+                            </a></li>
+                        </ul>
+                    </nav>
                     
-                    <!-- 深色模式切换按钮 -->
-                    <button id="themeToggle" class="theme-toggle text-gray-600 hover:text-primary transition-colors">
-                        <i class="fa fa-moon"></i>
+                    <!-- ��ɫģʽ�л���ť -->
+                    <button class="glass-btn w-10 h-10 flex items-center justify-center text-gray-600 hover:text-primary rounded-full mouse-reflector" id="themeToggle">
+                        <div class="mouse-light"></div>
+                        <i class="fa fa-moon-o text-lg theme-toggle"></i>
                     </button>
                 </div>
                 
-                <!-- 移动端菜单按钮 -->
-                <div class="md:hidden">
-                    <button id="openMenu" class="text-gray-600 hover:text-primary transition-colors">
-                        <i class="fa fa-bars text-xl"></i>
-                    </button>
+                <!-- �ƶ��˲˵���ť -->
+                <button class="md:hidden glass-btn w-10 h-10 flex items-center justify-center text-gray-600 hover:text-primary focus:outline-none rounded-full transition-all duration-300 mouse-reflector" id="openMenu">
+                    <div class="mouse-light"></div>
+                    <i class="fa fa-bars text-lg"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Ӣ������ -->
+    <section class="pt-32 pb-20 sm:pt-40 sm:pb-28 px-4 sm:px-6 lg:px-8 relative">
+        <div class="container mx-auto max-w-4xl text-center relative z-10">
+            <div class="glass-effect rounded-2xl p-6 sm:p-8 inline-block mb-10 shadow-glass mouse-reflector">
+                <div class="mouse-light"></div>
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight">Nextious</h1>
+                <p class="text-xl sm:text-2xl text-gray-600 mt-4">������ͨ�����ļ�����������</p>
+            </div>
+            
+            <div class="glass-effect rounded-xl p-6 sm:p-8 max-w-2xl mx-auto shadow-glass mb-12 mouse-reflector">
+                <div class="mouse-light"></div>
+                <h3 class="text-xl sm:text-2xl font-semibold mb-4 text-dark">������Դ</h3>
+                <p class="text-gray-600 mb-3">�ں������������ﵥ�ʵĺ��ĺ��壺</p>
+                
+                <div class="grid md:grid-cols-2 gap-6 mt-6">
+                    <div class="glass-btn p-4 rounded-xl mouse-reflector">
+                        <div class="mouse-light"></div>
+                        <p class="text-2xl font-medium text-primary italic">Nexus</p>
+                        <p class="text-gray-600 mt-2">��Ϊ"����"</p>
+                    </div>
+                    <div class="glass-btn p-4 rounded-xl mouse-reflector">
+                        <div class="mouse-light"></div>
+                        <p class="text-2xl font-medium text-primary italic">Nuntius</p>
+                        <p class="text-gray-600 mt-2">��Ϊ"��ʹ����Ϣ"</p>
+                    </div>
+                </div>
+                
+                <p class="text-gray-600 mt-6 text-lg">�ں���������Ϣ���ݵĺ��ļ�ֵ�������Ч����������</p>
+                
+                <div class="flex flex-wrap justify-center gap-3 sm:gap-4 mt-8">
+                    <span class="glass-btn px-4 py-2.5 text-gray-700 text-sm sm:text-base rounded-full mouse-reflector">
+                        <div class="mouse-light"></div>
+                        <i class="fa fa-graduation-cap mr-2 text-primary"></i>ѧ������
+                    </span>
+                    <span class="glass-btn px-4 py-2.5 text-gray-700 text-sm sm:text-base rounded-full mouse-reflector">
+                        <div class="mouse-light"></div>
+                        <i class="fa fa-building mr-2 text-primary"></i>��ҵ����
+                    </span>
+                    <span class="glass-btn px-4 py-2.5 text-gray-700 text-sm sm:text-base rounded-full mouse-reflector">
+                        <div class="mouse-light"></div>
+                        <i class="fa fa-wifi mr-2 text-primary"></i>������ͨ��
+                    </span>
+                    <span class="glass-btn px-4 py-2.5 text-gray-700 text-sm sm:text-base rounded-full mouse-reflector">
+                        <div class="mouse-light"></div>
+                        <i class="fa fa-lock mr-2 text-primary"></i>��ȫ����
+                    </span>
+                </div>
+            </div>
+            
+            <a href="#features" class="glass-btn glass-btn-primary inline-flex items-center px-8 py-3.5 text-white font-medium rounded-full mouse-reflector">
+                <div class="mouse-light"></div>
+                ̽�����Ĺ���
+                <i class="fa fa-arrow-down ml-2"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- ���Ĺ��� -->
+    <section id="features" class="py-16 sm:py-24 bg-neutral relative">
+        <div class="container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 relative z-10">
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-12 sm:mb-16 text-center">���� <span class="text-primary">����</span></h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                <!-- ���ܿ�Ƭ 1 -->
+                <div class="glass-effect rounded-2xl p-6 sm:p-8 shadow-glass feature-card mouse-reflector">
+                    <div class="mouse-light"></div>
+                    <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fa fa-desktop text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 text-dark">�Ѻ�ͼ�λ�����</h3>
+                    <p class="text-gray-600">����������У�ֱ�۲������棬����Ҳ�ܿ������֣�����ʹ���ż���</p>
+                </div>
+                
+                <!-- ���ܿ�Ƭ 2 -->
+                <div class="glass-effect rounded-2xl p-6 sm:p-8 shadow-glass feature-card mouse-reflector">
+                    <div class="mouse-light"></div>
+                    <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fa fa-comments text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 text-dark">������������</h3>
+                    <p class="text-gray-600">��������ʵʱ��ͨ��֧��������Ϣ������ͨ�����Ŷ�Э����ͨ����Ч��</p>
+                </div>
+                
+                <!-- ���ܿ�Ƭ 3 -->
+                <div class="glass-effect rounded-2xl p-6 sm:p-8 shadow-glass feature-card mouse-reflector">
+                    <div class="mouse-light"></div>
+                    <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fa fa-file text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 text-dark">ȫ�����ļ�����</h3>
+                    <p class="text-gray-600">֧�����и�ʽ�ļ����䣬���赣���ļ��������ƣ��������ڴ����ٶȿ졣</p>
+                </div>
+                
+                <!-- ���ܿ�Ƭ 4 -->
+                <div class="glass-effect rounded-2xl p-6 sm:p-8 shadow-glass feature-card mouse-reflector">
+                    <div class="mouse-light"></div>
+                    <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fa fa-desktop text-primary text-2xl fa-clone"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 text-dark">ʵʱ��Ļ����</h3>
+                    <p class="text-gray-600">Զ�̹�����Ļ���ݣ������ڽ�ѧ��ʾ������㱨�ȳ���������Э��Ч�ʡ�</p>
+                </div>
+                
+                <!-- ���ܿ�Ƭ 5 -->
+                <div class="glass-effect rounded-2xl p-6 sm:p-8 shadow-glass feature-card mouse-reflector">
+                    <div class="mouse-light"></div>
+                    <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fa fa-lock text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 text-dark">�ǶԳƼ��ܼ���</h3>
+                    <p class="text-gray-600">���ø�ǿ�ȷǶԳƼ����㷨��ȷ��ͨ���������ļ����䰲ȫ����ֹ��Ϣй¶��</p>
+                </div>
+                
+                <!-- ���ܿ�Ƭ 6 -->
+                <div class="glass-effect rounded-2xl p-6 sm:p-8 shadow-glass feature-card mouse-reflector">
+                    <div class="mouse-light"></div>
+                    <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fa fa-server text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 text-dark">ȥ���Ļ�����</h3>
+                    <p class="text-gray-600">�������ķ�����������ֱ�ӵ�Ե㴫�䣬����ά���ɱ������ϵͳ�ɿ��ԡ�</p>
                 </div>
             </div>
         </div>
-    </nav>
-    
-    <!-- 主要内容 -->
-    <main class="pt-20">
-        <!-- 英雄区域 -->
-        <section class="relative py-20 sm:py-32">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
-                    <span class="text-primary">Nextious</span> - 局域网通信与文件传输解决方案
-                </h1>
-                <p class="text-lg sm:text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-                    基于局域网的即时通信和文件传输系统，提供安全、快速、便捷的本地网络通信体验
+    </section>
+
+    <!-- ������Ⱥ -->
+    <section id="users" class="py-16 sm:py-24 relative">
+        <div class="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 relative z-10">
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-12 sm:mb-16 text-center">���� <span class="text-primary">��Ⱥ</span></h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- ѧ��Ⱥ�� -->
+                <div class="glass-effect rounded-2xl p-6 sm:p-10 shadow-glass mouse-reflector">
+                    <div class="mouse-light"></div>
+                    <div class="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fa fa-graduation-cap text-primary text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-6 text-dark">ѧ��Ⱥ��</h3>
+                    
+                    <ul class="space-y-4 text-gray-600">
+                        <li class="flex items-start">
+                            <i class="fa fa-check-circle text-primary mt-1 mr-3 text-lg"></i>
+                            <span>�������������£�ͬѧ��ʵʱ���칵ͨ������С������</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-check-circle text-primary mt-1 mr-3 text-lg"></i>
+                            <span>���ٴ���ѧϰ���ϡ���ҵ�ļ�������U�̣���ʡʱ��</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-check-circle text-primary mt-1 mr-3 text-lg"></i>
+                            <span>С����ĿЭ��ʱ����Ļ������˼·��ɹ������Ч��</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- ��ҵ�û� -->
+                <div class="glass-effect rounded-2xl p-6 sm:p-10 shadow-glass mouse-reflector">
+                    <div class="mouse-light"></div>
+                    <div class="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fa fa-building text-primary text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-6 text-dark">��ҵ�û�</h3>
+                    
+                    <ul class="space-y-4 text-gray-600">
+                        <li class="flex items-start">
+                            <i class="fa fa-check-circle text-primary mt-1 mr-3 text-lg"></i>
+                            <span>������ȫ���죬�����ⲿ�����ط��գ�������ҵ����</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-check-circle text-primary mt-1 mr-3 text-lg"></i>
+                            <span>�������ҵ���ļ������ܼ����������ݰ�ȫ����ֹй¶</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-check-circle text-primary mt-1 mr-3 text-lg"></i>
+                            <span>ȥ���Ļ��ܹ�������ά�����ķ�����������IT�ɱ�</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ��ȫ���� -->
+    <section id="security" class="py-16 sm:py-24 bg-neutral relative">
+        <div class="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 relative z-10">
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-12 sm:mb-16 text-center">��ȫ <span class="text-primary">����</span></h2>
+            
+            <div class="glass-effect rounded-2xl p-6 sm:p-10 shadow-glass max-w-3xl mx-auto mouse-reflector">
+                <div class="mouse-light"></div>
+                
+                <div class="flex flex-col md:flex-row gap-8 items-center">
+                    <div class="md:w-1/3">
+                        <div class="w-24 h-24 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
+                            <i class="fa fa-shield text-primary text-4xl"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="md:w-2/3">
+                        <h3 class="text-2xl font-semibold mb-6 text-dark">��Ҫ��������ݰ�ȫð�գ�</h3>
+                        
+                        <p class="text-gray-600 mb-6 text-lg">
+                            Nextious����ȥ���Ļ��ܹ����������ݾ�ͨ����������Ե�ֱ�Ӵ��䣬�Ӳ������κε����������������׶ž�����й¶���ա�
+                        </p>
+                        
+                        <p class="text-gray-600 text-lg">
+                            ��ϷǶԳƼ��ܼ�������ʹ�ڹ��������������£�Ҳ��ȷ������������ݺ��ļ����䲻����ȡ��۸ģ�Ϊѧ��ѧϰ����ҵ�칫�ṩ���԰�ȫ��ͨ�ű��ϡ�
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div class="glass-btn p-5 rounded-xl mouse-reflector">
+                        <div class="mouse-light"></div>
+                        <div class="flex items-center mb-3">
+                            <i class="fa fa-random text-primary text-xl mr-3"></i>
+                            <h4 class="text-lg font-medium text-dark">��Ե㴫��</h4>
+                        </div>
+                        <p class="text-gray-600 text-sm">����ֱ�����豸�䴫�䣬�������κ��м������</p>
+                    </div>
+                    
+                    <div class="glass-btn p-5 rounded-xl mouse-reflector">
+                        <div class="mouse-light"></div>
+                        <div class="flex items-center mb-3">
+                            <i class="fa fa-key text-primary text-xl mr-3"></i>
+                            <h4 class="text-lg font-medium text-dark">�˵��˼���</h4>
+                        </div>
+                        <p class="text-gray-600 text-sm">���ø߼����ܱ�׼��ֻ�н��շ��ܽ�������</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- �ж��ٻ� -->
+    <section class="py-16 sm:py-24 relative">
+        <div class="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="glass-effect rounded-2xl p-8 sm:p-12 shadow-glass text-center max-w-3xl mx-auto mouse-reflector">
+                <div class="mouse-light"></div>
+                
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-6">׼����������ľ�������������</h2>
+                
+                <p class="text-gray-600 text-lg mb-10 max-w-2xl mx-auto">
+                    ������ѧ��Ⱥ�廹����ҵ�û���Nextious����Ϊ���ṩ��ȫ����Ч�ľ�����ͨ�����ļ�������������
                 </p>
+                
                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="#project" class="glass-btn-primary text-white px-8 py-3 rounded-full font-semibold">
-                        了解更多
+                    <a href="#" class="glass-btn glass-btn-primary inline-flex items-center justify-center px-8 py-3.5 text-white font-medium rounded-full mouse-reflector">
+                        <div class="mouse-light"></div>
+                        <i class="fa fa-download mr-2"></i>
+                        ��������
                     </a>
-                    <a href="#docs" class="glass-btn text-primary px-8 py-3 rounded-full font-semibold border border-primary">
-                        查看文档
+                    <a href="index.html#project" class="glass-btn inline-flex items-center justify-center px-8 py-3.5 text-primary font-medium rounded-full mouse-reflector">
+                        <div class="mouse-light"></div>
+                        <i class="fa fa-arrow-left mr-2"></i>
+                        ������Ŀ��ҳ
                     </a>
                 </div>
             </div>
-        </section>
-        
-        <!-- 特性展示 -->
-        <section id="project" class="py-20">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl font-bold text-center mb-12">核心特性</h2>
-                <div class="grid md:grid-cols-3 gap-8">
-                    <div class="feature-card glass-effect p-6 rounded-2xl">
-                        <div class="text-primary text-3xl mb-4">
-                            <i class="fa fa-comments"></i>
-                        </div>
-                        <h3 class="text-xl font-semibold mb-2">即时通信</h3>
-                        <p class="text-gray-600">支持文字、表情、图片等多种消息类型，实时同步，沟通无障碍</p>
+        </div>
+    </section>
+
+    <!-- ҳ�� -->
+    <footer class="py-12 sm:py-16 glass-effect border-t border-white/10 relative z-10">
+        <div class="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-8 sm:mb-12">
+                <div class="flex items-center gap-2 mb-6 md:mb-0">
+                    <img src="https://cdn.luogu.com.cn/upload/image_hosting/vy6i8dsm.png" alt="TeamPixel�Ŷӱ�־" class="w-8 h-8 rounded object-cover">
+                    <span class="font-semibold text-lg">TeamPixel</span>
+                </div>
+                
+                <div class="flex gap-6 sm:gap-8">
+                    <div class="flex flex-col items-center">
+                        <a href="https://www.luogu.com.cn/team/112080" target="_blank" class="glass-btn w-10 h-10 flex items-center justify-center text-gray-400 hover:text-primary rounded-full mouse-reflector">
+                            <div class="mouse-light"></div>
+                            <i class="fa fa-users text-xl"></i>
+                        </a>
+                        <span class="text-xs text-gray-500 mt-1">�Ŷ������ҳ</span>
                     </div>
-                    
-                    <div class="feature-card glass-effect p-6 rounded-2xl">
-                        <div class="text-primary text-3xl mb-4">
-                            <i class="fa fa-file-transfer"></i>
-                        </div>
-                        <h3 class="text-xl font-semibold mb-2">文件传输</h3>
-                        <p class="text-gray-600">高速文件传输，支持断点续传，大文件传输更稳定</p>
+                    <div class="flex flex-col items-center">
+                        <a href="https://www.luogu.com.cn/user/1017957" target="_blank" class="glass-btn w-10 h-10 flex items-center justify-center text-gray-400 hover:text-primary rounded-full mouse-reflector">
+                            <div class="mouse-light"></div>
+                            <i class="fa fa-user text-xl"></i>
+                        </a>
+                        <span class="text-xs text-gray-500 mt-1">wujz�������ҳ</span>
                     </div>
-                    
-                    <div class="feature-card glass-effect p-6 rounded-2xl">
-                        <div class="text-primary text-3xl mb-4">
-                            <i class="fa fa-shield-alt"></i>
-                        </div>
-                        <h3 class="text-xl font-semibold mb-2">安全加密</h3>
-                        <p class="text-gray-600">端到端加密通信，确保数据传输安全，保护用户隐私</p>
+                    <div class="flex flex-col items-center">
+                        <a href="https://www.luogu.com.cn/user/1513356" target="_blank" class="glass-btn w-10 h-10 flex items-center justify-center text-gray-400 hover:text-primary rounded-full mouse-reflector">
+                            <div class="mouse-light"></div>
+                            <i class="fa fa-user text-xl"></i>
+                        </a>
+                        <span class="text-xs text-gray-500 mt-1">Teddyzhi0815�������ҳ</span>
                     </div>
                 </div>
             </div>
-        </section>
-        
-        <!-- 技术架构 -->
-        <section id="docs" class="py-20 bg-gray-50">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl font-bold text-center mb-12">技术架构</h2>
-                <div class="grid md:grid-cols-2 gap-8">
-                    <div class="glass-effect p-6 rounded-2xl">
-                        <h3 class="text-xl font-semibold mb-4">客户端</h3>
-                        <ul class="space-y-2 text-gray-600">
-                            <li>• React + TypeScript 构建现代化用户界面</li>
-                            <li>• WebSocket 实时通信协议</li>
-                            <li>• 响应式设计，支持多设备访问</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="glass-effect p-6 rounded-2xl">
-                        <h3 class="text-xl font-semibold mb-4">服务端</h3>
-                        <ul class="space-y-2 text-gray-600">
-                            <li>• Node.js + Express 高性能后端服务</li>
-                            <li>• Socket.io 实时双向通信</li>
-                            <li>• SQLite 轻量级数据存储</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- 使用指南 -->
-        <section class="py-20">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl font-bold text-center mb-12">快速开始</h2>
-                <div class="max-w-2xl mx-auto">
-                    <div class="space-y-6">
-                        <div class="flex items-start space-x-4">
-                            <div class="flex-shrink-0 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold">1</div>
-                            <div>
-                                <h3 class="font-semibold mb-1">下载安装</h3>
-                                <p class="text-gray-600">从GitHub Releases下载最新版本，支持Windows、macOS、Linux</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start space-x-4">
-                            <div class="flex-shrink-0 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold">2</div>
-                            <div>
-                                <h3 class="font-semibold mb-1">启动服务</h3>
-                                <p class="text-gray-600">运行服务端程序，自动发现局域网内的其他用户</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start space-x-4">
-                            <div class="flex-shrink-0 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold">3</div>
-                            <div>
-                                <h3 class="font-semibold mb-1">开始通信</h3>
-                                <p class="text-gray-600">打开客户端，连接本地服务器，即可开始聊天和文件传输</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-    
-    <!-- 页脚 -->
-    <footer class="bg-gray-50 py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center">
-                <img src="https://cdn.luogu.com.cn/upload/image_hosting/vy6i8dsm.png" alt="TeamPixel团队标志" class="w-12 h-12 sm:w-16 sm:h-16 rounded object-cover mx-auto mb-4">
-                <p class="text-gray-600 mb-4">Nextious - 局域网通信与文件传输解决方案</p>
-                <div class="flex justify-center space-x-6">
-                    <a href="https://github.com/TeamPixel" class="text-gray-600 hover:text-primary transition-colors">
-                        <i class="fa fa-github text-xl"></i>
-                    </a>
-                    <a href="mailto:contact@teampixel.com" class="text-gray-600 hover:text-primary transition-colors">
-                        <i class="fa fa-envelope text-xl"></i>
-                    </a>
-                </div>
-                <p class="text-sm text-gray-500 mt-4">&copy; 2024 TeamPixel. 保留所有权利。</p>
+            
+            <div class="text-center text-gray-400 text-sm sm:text-base">
+                <p>? 2025 TeamPixel�Ŷ�. Nextious��Ŀ������.</p>
+                <p class="mt-2">����վչʾ�ŶӼ���Ŀ�����Ϣ�뼼���ĵ�</p>
             </div>
         </div>
     </footer>
-    
-    <!-- 深色模式切换JavaScript -->
+
+    <!-- JavaScript -->
     <script>
-        // 深色模式切换功能
-        const themeToggle = document.getElementById('themeToggle');
-        const mobileThemeToggle = document.getElementById('mobileThemeToggle');
-        const body = document.body;
-        const themeIcon = themeToggle?.querySelector('i');
-        const mobileThemeIcon = mobileThemeToggle?.querySelector('i');
-        
-        // 初始化主题
-        function initTheme() {
-            const savedTheme = localStorage.getItem('theme');
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.addEventListener('DOMContentLoaded', function() {
+            // ��ɫģʽ�л�
+            const themeToggle = document.getElementById('themeToggle');
+            const mobileThemeToggle = document.getElementById('mobileThemeToggle');
+            const mobileThemeText = document.getElementById('mobileThemeText');
+            const themeIcon = document.querySelector('.theme-toggle');
+            const mobileThemeIcon = document.querySelector('#mobileThemeToggle .theme-toggle');
+            const mobileMenu = document.getElementById('mobileMenu');
             
-            if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-                applyTheme('dark');
-            } else {
-                applyTheme('light');
+            // ��ʼ������
+            if (localStorage.getItem('darkMode') === 'true' || 
+                (!localStorage.getItem('darkMode') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                enableDarkMode();
             }
-        }
-        
-        // 应用主题
-        function applyTheme(theme) {
-            if (theme === 'dark') {
-                body.classList.add('dark-mode');
-                themeToggle?.classList.add('dark');
-                mobileThemeToggle?.classList.add('dark');
-                if (themeIcon) themeIcon.className = 'fa fa-sun';
-                if (mobileThemeIcon) mobileThemeIcon.className = 'fa fa-sun';
-                localStorage.setItem('theme', 'dark');
-            } else {
-                body.classList.remove('dark-mode');
-                themeToggle?.classList.remove('dark');
-                mobileThemeToggle?.classList.remove('dark');
-                if (themeIcon) themeIcon.className = 'fa fa-moon';
-                if (mobileThemeIcon) mobileThemeIcon.className = 'fa fa-moon';
-                localStorage.setItem('theme', 'light');
+            
+            // �������л��¼�
+            themeToggle.addEventListener('click', toggleDarkMode);
+            if (mobileThemeToggle) {
+                mobileThemeToggle.addEventListener('click', toggleDarkMode);
             }
-        }
-        
-        // 切换主题
-        function toggleTheme() {
-            const currentTheme = body.classList.contains('dark-mode') ? 'dark' : 'light';
-            applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
-        }
-        
-        // 绑定事件
-        themeToggle?.addEventListener('click', toggleTheme);
-        mobileThemeToggle?.addEventListener('click', toggleTheme);
-        
-        // 监听系统主题变化
-        if (window.matchMedia) {
-            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
-                if (!localStorage.getItem('theme')) {
-                    applyTheme(e.matches ? 'dark' : 'light');
+            
+            function toggleDarkMode() {
+                document.body.classList.contains('dark-mode') ? disableDarkMode() : enableDarkMode();
+            }
+            
+            function enableDarkMode() {
+                document.body.classList.add('dark-mode');
+                
+                // ������������ͼ��
+                if (themeIcon) {
+                    themeIcon.classList.remove('fa-moon-o');
+                    themeIcon.classList.add('fa-sun-o', 'dark');
+                }
+                if (mobileThemeIcon) {
+                    mobileThemeIcon.classList.remove('fa-moon-o');
+                    mobileThemeIcon.classList.add('fa-sun-o', 'dark');
+                }
+                
+                // �л���ť�ı�
+                if (mobileThemeText) mobileThemeText.textContent = 'ǳɫģʽ';
+                localStorage.setItem('darkMode', 'true');
+                
+                // ȷ���˵��������ɫģʽ����ȷ��ʾ
+                updateMenuDarkMode(true);
+            }
+            
+            function disableDarkMode() {
+                document.body.classList.remove('dark-mode');
+                
+                // ������������ͼ��
+                if (themeIcon) {
+                    themeIcon.classList.remove('fa-sun-o', 'dark');
+                    themeIcon.classList.add('fa-moon-o');
+                }
+                if (mobileThemeIcon) {
+                    mobileThemeIcon.classList.remove('fa-sun-o', 'dark');
+                    mobileThemeIcon.classList.add('fa-moon-o');
+                }
+                
+                // �л���ť�ı�
+                if (mobileThemeText) mobileThemeText.textContent = '��ɫģʽ';
+                localStorage.setItem('darkMode', 'false');
+                
+                // ȷ���˵������ǳɫģʽ����ȷ��ʾ
+                updateMenuDarkMode(false);
+            }
+            
+            // ר�����ڸ��²˵������ɫģʽ�ĺ���
+            function updateMenuDarkMode(isDark) {
+                if (!mobileMenu) return;
+                
+                // ǿ�Ƹ��²˵�������ʽ��ȷ����ɫ/ǳɫģʽ��ȷӦ��
+                if (isDark) {
+                    mobileMenu.classList.add('dark-mode');
+                } else {
+                    mobileMenu.classList.remove('dark-mode');
+                }
+                
+                // �����ػ���ȷ����ʽ��������
+                void mobileMenu.offsetWidth;
+            }
+            
+            // ����������Ч��
+            window.addEventListener('scroll', function() {
+                const navEllipse = document.querySelector('.glass-effect.shadow-glass.px-8');
+                const logo = document.getElementById('logo');
+                const teamName = document.getElementById('team-name');
+                const header = document.querySelector('header');
+                
+                if (window.scrollY > 50) {
+                    if (navEllipse) navEllipse.classList.add('nav-scrolled');
+                    logo.classList.add('w-7', 'h-7');
+                    logo.classList.remove('w-8', 'h-8', 'sm:w-10', 'sm:h-10');
+                    teamName.classList.add('text-base');
+                    teamName.classList.remove('text-lg', 'sm:text-xl');
+                    header.classList.add('py-2');
+                    header.classList.remove('py-4');
+                } else {
+                    if (navEllipse) navEllipse.classList.remove('nav-scrolled');
+                    logo.classList.remove('w-7', 'h-7');
+                    logo.classList.add('w-8', 'h-8', 'sm:w-10', 'sm:h-10');
+                    teamName.classList.remove('text-base');
+                    teamName.classList.add('text-lg', 'sm:text-xl');
+                    header.classList.remove('py-2');
+                    header.classList.add('py-4');
                 }
             });
-        }
-        
-        // 初始化主题
-        initTheme();
-        
-        // 导航栏滚动效果
-        window.addEventListener('scroll', function() {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 50) {
-                nav.classList.add('nav-scrolled');
-            } else {
-                nav.classList.remove('nav-scrolled');
+            
+            // �ƶ��˲˵��߼� - ���ζ���ʵ��
+            const openMenuBtn = document.getElementById('openMenu');
+            const menuOverlay = document.getElementById('menuOverlay');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+            
+            if (openMenuBtn && mobileMenu && menuOverlay) {
+                // �˵���ť��������
+                function positionMenu() {
+                    if (!openMenuBtn) return;
+                    
+                    // ��ȡ��ť��λ����Ϣ
+                    const btnRect = openMenuBtn.getBoundingClientRect();
+                    
+                    // �˵����Ͻ��밴ť����
+                    mobileMenu.style.top = `${btnRect.top}px`;
+                    mobileMenu.style.right = `${window.innerWidth - btnRect.right}px`;
+                }
+                
+                // ��ʼ��λ
+                positionMenu();
+                
+                // �������ڴ�С�仯������λ��
+                window.addEventListener('resize', positionMenu);
+                
+                // �˵���ť������� - ���ζ���
+                function toggleMenu() {
+                    if (mobileMenu.classList.contains('active')) {
+                        closeMenu();
+                    } else {
+                        openMenu();
+                    }
+                }
+                
+                function openMenu() {
+                    // �ȸ���λ������ʾ
+                    positionMenu();
+                    
+                    // ��ť�Ŵ����Ϊ�˵����Ķ���
+                    mobileMenu.classList.add('active');
+                    menuOverlay.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                    
+                    // ����ԭ��ť
+                    setTimeout(() => {
+                        openMenuBtn.classList.add('hidden');
+                    }, 200);
+                    
+                    // ȷ���˵���ʱӦ����ȷ��������ʽ
+                    updateMenuDarkMode(document.body.classList.contains('dark-mode'));
+                }
+                
+                function closeMenu() {
+                    mobileMenu.classList.remove('active');
+                    menuOverlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                    openMenuBtn.classList.remove('hidden');
+                }
+                
+                // �󶨰�ť����¼�
+                openMenuBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    toggleMenu();
+                });
+                
+                // ������ֹرղ˵�
+                menuOverlay.addEventListener('click', closeMenu);
+                
+                // ����˵���رղ˵�����ת
+                mobileLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        closeMenu();
+                        
+                        const targetId = this.getAttribute('href');
+                        const targetElement = document.querySelector(targetId);
+                        
+                        if (targetElement) {
+                            setTimeout(() => {
+                                window.scrollTo({
+                                    top: targetElement.offsetTop - 80,
+                                    behavior: 'smooth'
+                                });
+                            }, 300);
+                        }
+                    });
+                });
+                
+                // ��ֹ����˵��ڲ��رղ˵�
+                mobileMenu.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                });
             }
-        });
-        
-        // 移动端菜单功能
-        const openMenu = document.getElementById('openMenu');
-        const mobileMenu = document.getElementById('mobileMenu');
-        const menuOverlay = document.getElementById('menuOverlay');
-        
-        function toggleMobileMenu() {
-            mobileMenu.classList.toggle('active');
-            menuOverlay.classList.toggle('active');
-            openMenu.classList.toggle('hidden');
-        }
-        
-        openMenu?.addEventListener('click', toggleMobileMenu);
-        menuOverlay?.addEventListener('click', toggleMobileMenu);
-        
-        // 移动端菜单链接点击后关闭菜单
-        document.querySelectorAll('.mobile-link').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-                menuOverlay.classList.remove('active');
-                openMenu.classList.remove('hidden');
+            
+            // ƽ������
+            document.querySelectorAll('a[href^="#"]:not(.mobile-link)').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
             });
-        });
-        
-        // 平滑滚动
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
+            
+            // �����ͣ����Ч��ʵ��
+            document.querySelectorAll('.mouse-reflector').forEach(element => {
+                // ��ȡÿ��Ԫ���ڵķ���Ч��Ԫ��
+                const mouseLight = element.querySelector('.mouse-light');
+                
+                if (mouseLight) {
+                    // ��������ƶ��¼����÷���������
+                    element.addEventListener('mousemove', (e) => {
+                        // ��ȡԪ��������ӿڵ�λ��
+                        const rect = element.getBoundingClientRect();
+                        
+                        // ���������Ԫ���ڵ����λ��
+                        const x = e.clientX - rect.left;
+                        const y = e.clientY - rect.top;
+                        
+                        // ���÷���Ч����λ��
+                        mouseLight.style.left = `${x}px`;
+                        mouseLight.style.top = `${y}px`;
                     });
                 }
             });
-        });
-        
-        // 鼠标光效
-        document.querySelectorAll('.mouse-reflector').forEach(element => {
-            element.addEventListener('mousemove', function(e) {
-                const rect = this.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                const light = this.querySelector('.mouse-light');
-                if (light) {
-                    light.style.left = x + 'px';
-                    light.style.top = y + 'px';
+            
+            // �������л�ʱ��ȷ���˵������ʽ��ȷ����
+            document.addEventListener('darkModeToggled', function() {
+                if (mobileMenu && mobileMenu.classList.contains('active')) {
+                    updateMenuDarkMode(document.body.classList.contains('dark-mode'));
                 }
             });
         });
