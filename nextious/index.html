@@ -251,41 +251,38 @@
         /* 移动端菜单 - 玻璃态 */
         .mobile-menu {
             position: fixed;
-            top: 4rem; /* 导航栏下方，按钮正下方 */
-            right: 0.75rem; /* 与菜单按钮右侧对齐 */
-            width: 260px;
-            border-radius: 1rem;
+            top: 64px; /* 导航栏高度约64px，紧贴导航栏底部 */
+            left: 16px; /* 靠左对齐，与左侧边缘保持16px间距 */
+            width: 280px;
+            max-width: calc(100vw - 32px); /* 确保不会超出屏幕 */
+            border-radius: 12px;
             z-index: 999;
-            transform-origin: top right;
-            transform: scale(0.9) translateY(-5px);
+            transform-origin: top left;
+            transform: scale(0.8) translateY(-10px);
             opacity: 0;
             visibility: hidden;
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-            max-height: calc(100vh - 5rem);
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            max-height: calc(100vh - 80px);
             overflow-y: auto;
             
-            /* 优化的玻璃态模糊效果 */
-            backdrop-filter: blur(20px) saturate(120%);
-            -webkit-backdrop-filter: blur(20px) saturate(120%);
+            /* 玻璃态效果 */
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
             
-            /* 半透明背景 */
-            background: rgba(255, 255, 255, 0.95);
-            
-            /* 边框和阴影 */
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            
-            /* 内部边距 */
-            padding: 1rem;
+            /* 内边距 */
+            padding: 16px;
         }
         
         /* 深色模式下的菜单背景 */
         body.dark-mode .mobile-menu {
-            background: rgba(15, 23, 42, 0.95);
-            backdrop-filter: blur(20px) saturate(140%);
-            -webkit-backdrop-filter: blur(20px) saturate(140%);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
         
         /* 添加折射光边缘效果 */
@@ -369,7 +366,7 @@
                 transparent);
         }
         
-        /* 菜单激活状态 - 优雅展开 */
+        /* 菜单激活状态 - 从左上角优雅展开 */
         .mobile-menu.active {
             transform: scale(1) translateY(0);
             opacity: 1;
