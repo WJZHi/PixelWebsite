@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nextious - ������ͨ�����ļ�����������</title>
-    <!-- �����ⲿ��Դ -->
+    <title>Nextious - 局域网通信与文件传输解决方案</title>
+    <!-- 引入外部资源 -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
     
-    <!-- ����Tailwind -->
+    <!-- 配置Tailwind -->
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -39,7 +39,7 @@
         }
     </script>
     
-    <!-- �Զ��幤���� -->
+    <!-- 自定义工具类 -->
     <style type="text/tailwindcss">
         @layer utilities {
             .content-auto {
@@ -123,7 +123,7 @@
                 position: relative;
                 overflow: hidden;
             }
-            /* �˵���ťͳһ��ʽ */
+            /* 菜单按钮统一样式 */
             .menu-button {
                 display: flex;
                 align-items: center;
@@ -139,7 +139,7 @@
                 flex-shrink: 0;
                 text-align: center;
             }
-            /* ���Կ�Ƭ��ʽ */
+            /* 特性卡片样式 */
             .feature-card {
                 transition: transform 0.3s ease, box-shadow 0.3s ease;
             }
@@ -150,7 +150,7 @@
     </style>
     
     <style>
-        /* ������ʽ */
+        /* 基础样式 */
         body {
             overflow-x: hidden;
             transition: background-color 0.4s ease, color 0.4s ease;
@@ -160,7 +160,7 @@
             scroll-behavior: smooth;
         }
         
-        /* ��ɫģʽ��ʽ */
+        /* 深色模式样式 */
         body.dark-mode {
             background-color: #0F172A;
             color: #E2E8F0;
@@ -186,7 +186,7 @@
             color: #F8FAFC !important;
         }
         
-        /* ����Ч�� */
+        /* 动画效果 */
         @keyframes pulse-dot {
             0%, 100% { opacity: 1; }
             50% { opacity: 0.5; }
@@ -214,7 +214,7 @@
             background-color: rgba(59, 130, 246, 0.1);
         }
         
-        /* ����������Ч�� */
+        /* 导航栏滚动效果 */
         .nav-scrolled {
             padding-top: 0.5rem !important;
             padding-bottom: 0.5rem !important;
@@ -223,7 +223,7 @@
             font-size: 0.875rem !important;
         }
         
-        /* �ƶ��˲˵���ʽ */
+        /* 移动端菜单样式 */
         .menu-overlay {
             position: fixed;
             top: 0;
@@ -248,7 +248,7 @@
             visibility: visible;
         }
         
-        /* �˵���� - ������ */
+        /* 菜单面板 - 紧凑设计 */
         .mobile-menu {
             position: fixed;
             top: 0;
@@ -264,22 +264,22 @@
             max-height: calc(100vh - 2rem);
             overflow-y: auto;
             
-            /* �Ż��ĸ�˹ģ������ */
+            /* 优化的高斯模糊背景 */
             backdrop-filter: blur(20px) saturate(120%);
             -webkit-backdrop-filter: blur(20px) saturate(120%);
             
-            /* �������� - ȷ�����ݿɶ��� */
+            /* 基础背景 - 确保内容可读性 */
             background: rgba(255, 255, 255, 0.1);
             
-            /* �߿����Ӱ��ǿ�����ʸ� */
+            /* 边框和阴影增强玻璃质感 */
             border: 1px solid rgba(255, 255, 255, 0.15);
             box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
             
-            /* ��յ��ڲ��߾� */
+            /* 紧凑的内部边距 */
             padding: 1rem;
         }
         
-        /* ��ɫģʽ�µĲ˵���� */
+        /* 深色模式下的菜单面板 */
         body.dark-mode .mobile-menu {
             background: rgba(15, 23, 42, 0.85);
             backdrop-filter: blur(20px) saturate(140%);
@@ -288,7 +288,7 @@
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
         }
         
-        /* ���������ԵЧ�� */
+        /* 玻璃折射边缘效果 */
         .mobile-menu::before,
         .mobile-menu::after,
         .mobile-menu .refraction-left,
@@ -298,7 +298,7 @@
             pointer-events: none;
         }
         
-        /* �ϱ�Ե���� */
+        /* 上边缘折射 */
         .mobile-menu::before {
             top: 0;
             left: 0;
@@ -310,7 +310,7 @@
                 transparent);
         }
         
-        /* �±�Ե���� */
+        /* 下边缘折射 */
         .mobile-menu::after {
             bottom: 0;
             left: 0;
@@ -322,7 +322,7 @@
                 transparent);
         }
         
-        /* ���Ե���� */
+        /* 左边缘折射 */
         .mobile-menu .refraction-left {
             top: 0;
             left: 0;
@@ -334,7 +334,7 @@
                 transparent);
         }
         
-        /* �ұ�Ե���� */
+        /* 右边缘折射 */
         .mobile-menu .refraction-right {
             top: 0;
             right: 0;
@@ -346,7 +346,7 @@
                 transparent);
         }
         
-        /* ��ɫģʽ�µı�Ե������� */
+        /* 深色模式下的边缘折射调整 */
         body.dark-mode .mobile-menu::before {
             background: linear-gradient(90deg, 
                 transparent, 
@@ -369,14 +369,14 @@
                 transparent);
         }
         
-        /* �˵�����״̬ - ���ζ��� */
+        /* 菜单激活状态 - 变形动画 */
         .mobile-menu.active {
             transform: scale(1);
             opacity: 1;
             visibility: visible;
         }
         
-        /* �˵���ť��ʽ����ζ��� */
+        /* 菜单按钮样式与变形动画 */
         #openMenu {
             position: fixed;
             top: 1.5rem;
@@ -394,7 +394,7 @@
             pointer-events: none;
         }
         
-        /* ��ɫģʽ�л���ť���� */
+        /* 深色模式切换按钮动画 */
         .theme-toggle {
             transition: transform 0.3s ease;
         }
@@ -403,7 +403,7 @@
             transform: rotate(180deg);
         }
         
-        /* Һ̬������ť��������ʽ */
+        /* 液态玻璃按钮的特殊样式 */
         .glass-btn {
             background: rgba(255, 255, 255, 0.6);
             backdrop-filter: blur(10px);
@@ -434,7 +434,7 @@
             background: rgba(59, 130, 246, 0.9);
         }
         
-        /* ��ɫģʽ�µİ�ť��ʽ */
+        /* 深色模式下的按钮样式 */
         body.dark-mode .glass-btn {
             background: rgba(30, 41, 59, 0.8);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -463,7 +463,7 @@
             box-shadow: 0 8px 30px rgba(59, 130, 246, 0.35);
         }
         
-        /* ��ɫģʽ�µĲ���Ч����Ƭ */
+        /* 深色模式下的玻璃效果卡片 */
         body.dark-mode .glass-effect {
             background: rgba(30, 41, 59, 0.8);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -474,7 +474,7 @@
             border: 1px solid rgba(255, 255, 255, 0.08);
         }
         
-        /* ��ɫģʽ�µ�������ɫ */
+        /* 深色模式下的链接颜色 */
         body.dark-mode a {
             color: #93C5FD;
         }
@@ -487,13 +487,13 @@
             border-top-color: rgba(255, 255, 255, 0.08);
         }
         
-        /* �����л�ƽ������ */
+        /* 主题切换平滑过渡 */
         .glass-effect, .glass-btn, .glass-btn-primary, 
         img, a, .border-t, .mobile-menu {
             transition: all 0.4s ease;
         }
         
-        /* �����ͣ����Ч�� */
+        /* 鼠标悬停反光效果 */
         .mouse-light {
             position: absolute;
             pointer-events: none;
@@ -510,7 +510,7 @@
             z-index: 50;
         }
         
-        /* ��ɫģʽ�µ���귴����� */
+        /* 深色模式下的鼠标反光调整 */
         body.dark-mode .mouse-light {
             background: radial-gradient(circle, 
                 rgba(255, 255, 255, 0.2) 0%, 
@@ -518,97 +518,97 @@
                 rgba(255, 255, 255, 0) 100%);
         }
         
-        /* �������Ԫ����ʱ��ʾ���� */
+        /* 当鼠标在元素上时显示反光 */
         .mouse-reflector:hover .mouse-light {
             opacity: 1;
         }
         
-        /* �˵����ı�����ɫģʽ�µ���ɫ */
+        /* 菜单内文本在深色模式下的颜色 */
         body.dark-mode .mobile-menu a,
         body.dark-mode .mobile-menu span {
             color: #E2E8F0 !important;
         }
         
-        /* ��ɫģʽ�²˵�ͼ�����ɫ */
+        /* 深色模式下菜单图标的颜色 */
         body.dark-mode .mobile-menu i {
             color: #93C5FD !important;
         }
     </style>
 </head>
 <body class="bg-white text-dark">
-    <!-- ����װ�� -->
+    <!-- 背景装饰 -->
     <div class="fixed -top-40 -right-40 w-96 h-96 bg-primary/5 liquid-shape float-animation z-0"></div>
     <div class="fixed -bottom-20 -left-20 w-72 h-72 bg-primary/5 liquid-shape-2 float-animation-delay z-0"></div>
     
-    <!-- �ƶ��˲˵����ǲ� -->
+    <!-- 移动端菜单覆盖层 -->
     <div class="menu-overlay" id="menuOverlay"></div>
     
-    <!-- �ƶ��˲˵� - ������ -->
+    <!-- 移动端菜单 - 紧凑设计 -->
     <div class="mobile-menu shadow-glass refraction-edge mouse-reflector" id="mobileMenu">
-        <!-- ��귴��Ч��Ԫ�� -->
+        <!-- 鼠标反光效果元素 -->
         <div class="mouse-light"></div>
         
-        <!-- ���������Ե -->
+        <!-- 左右折射边缘 -->
         <div class="refraction-left"></div>
         <div class="refraction-right"></div>
         
-        <!-- ͳһ����Ĳ˵���ť���� -->
+        <!-- 统一对齐的菜单按钮布局 -->
         <ul class="pt-1 pb-1 space-y-2 relative z-10">
             <li><a href="index.html#about" class="mobile-link glass-btn menu-button text-sm rounded-full mouse-reflector">
                 <div class="mouse-light"></div>
                 <i class="fa fa-users menu-icon text-primary"></i>
-                �����Ŷ�
+                关于团队
             </a></li>
             <li><a href="index.html#project" class="mobile-link glass-btn menu-button text-sm rounded-full mouse-reflector">
                 <div class="mouse-light"></div>
                 <i class="fa fa-cube menu-icon text-primary"></i>
-                ��Ŀ����
+                项目介绍
             </a></li>
             <li><a href="index.html#docs" class="mobile-link glass-btn menu-button text-sm rounded-full mouse-reflector">
                 <div class="mouse-light"></div>
                 <i class="fa fa-book menu-icon text-primary"></i>
-                �����ĵ�
+                技术文档
             </a></li>
             <li><a href="index.html#links" class="mobile-link glass-btn menu-button text-sm rounded-full mouse-reflector">
                 <div class="mouse-light"></div>
                 <i class="fa fa-link menu-icon text-primary"></i>
-                ��Ҫ����
+                重要链接
             </a></li>
-            <!-- �ƶ�����ɫģʽ�л� - ��������ť���� -->
+            <!-- 移动端深色模式切换 - 与其他按钮对齐 -->
             <li>
                 <button id="mobileThemeToggle" class="glass-btn menu-button text-sm rounded-full mouse-reflector">
                     <div class="mouse-light"></div>
                     <i class="fa fa-moon-o menu-icon text-primary theme-toggle"></i>
-                    <span id="mobileThemeText">ǳɫģʽ</span>
+                    <span id="mobileThemeText">浅色模式</span>
                 </button>
             </li>
         </ul>
     </div>
     
-    <!-- ������ -->
+    <!-- 导航栏 -->
     <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center">
-                <!-- ��ࣺLogo + �Ŷ��� -->
+                <!-- 左侧：Logo + 团队名 -->
                 <div class="flex items-center gap-2">
-                    <img src="https://cdn.luogu.com.cn/upload/image_hosting/vy6i8dsm.png" alt="TeamPixel�Ŷӱ�־" class="w-8 h-8 sm:w-10 sm:h-10 rounded object-cover transition-all duration-300" id="logo">
+                    <img src="https://cdn.luogu.com.cn/upload/image_hosting/vy6i8dsm.png" alt="TeamPixel团队标志" class="w-8 h-8 sm:w-10 sm:h-10 rounded object-cover transition-all duration-300" id="logo">
                     <span class="font-semibold text-lg sm:text-xl transition-all duration-300" id="team-name">
                         <a href="index.html">TeamPixel</a>
                     </span>
                 </div>
                 
-                <!-- �Ҳࣺ�������Ӻ���ɫģʽ�л� -->
+                <!-- 右侧：导航链接和深色模式切换 -->
                 <div class="hidden md:flex items-center gap-4">
                     <nav class="glass-effect shadow-glass px-8 py-3 hover:shadow-glass-hover transition-all rounded-full mouse-reflector">
                         <div class="mouse-light"></div>
                         <ul class="flex items-center gap-6 sm:gap-8">
                             <li><a href="index.html#about" class="glass-btn px-3 py-1.5 text-gray-600 hover:text-primary text-sm sm:text-base rounded-full mouse-reflector">
                                 <div class="mouse-light"></div>
-                                �����Ŷ�
+                                关于团队
                             </a></li>
                             <li><a href="index.html#project" class="glass-btn px-3 py-1.5 text-gray-600 hover:text-primary text-sm sm:text-base rounded-full mouse-reflector">
                                 <div class="mouse-light"></div>
-                                ��Ŀ����
+                                项目介绍
                             </a></li>
                             <li><a href="nextious.html" class="glass-btn glass-btn-primary px-3 py-1.5 text-white font-medium text-sm sm:text-base rounded-full mouse-reflector">
                                 <div class="mouse-light"></div>
@@ -616,19 +616,19 @@
                             </a></li>
                             <li><a href="index.html#docs" class="glass-btn px-3 py-1.5 text-gray-600 hover:text-primary text-sm sm:text-base rounded-full mouse-reflector">
                                 <div class="mouse-light"></div>
-                                �����ĵ�
+                                技术文档
                             </a></li>
                         </ul>
                     </nav>
                     
-                    <!-- ��ɫģʽ�л���ť -->
+                    <!-- 深色模式切换按钮 -->
                     <button class="glass-btn w-10 h-10 flex items-center justify-center text-gray-600 hover:text-primary rounded-full mouse-reflector" id="themeToggle">
                         <div class="mouse-light"></div>
                         <i class="fa fa-moon-o text-lg theme-toggle"></i>
                     </button>
                 </div>
                 
-                <!-- �ƶ��˲˵���ť -->
+                <!-- 移动端菜单按钮 -->
                 <button class="md:hidden glass-btn w-10 h-10 flex items-center justify-center text-gray-600 hover:text-primary focus:outline-none rounded-full transition-all duration-300 mouse-reflector" id="openMenu">
                     <div class="mouse-light"></div>
                     <i class="fa fa-bars text-lg"></i>
@@ -637,182 +637,182 @@
         </div>
     </header>
 
-    <!-- Ӣ������ -->
+    <!-- 英雄区域 -->
     <section class="pt-32 pb-20 sm:pt-40 sm:pb-28 px-4 sm:px-6 lg:px-8 relative">
         <div class="container mx-auto max-w-4xl text-center relative z-10">
             <div class="glass-effect rounded-2xl p-6 sm:p-8 inline-block mb-10 shadow-glass mouse-reflector">
                 <div class="mouse-light"></div>
                 <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight">Nextious</h1>
-                <p class="text-xl sm:text-2xl text-gray-600 mt-4">������ͨ�����ļ�����������</p>
+                <p class="text-xl sm:text-2xl text-gray-600 mt-4">局域网通信与文件传输解决方案</p>
             </div>
             
             <div class="glass-effect rounded-xl p-6 sm:p-8 max-w-2xl mx-auto shadow-glass mb-12 mouse-reflector">
                 <div class="mouse-light"></div>
-                <h3 class="text-xl sm:text-2xl font-semibold mb-4 text-dark">������Դ</h3>
-                <p class="text-gray-600 mb-3">�ں������������ﵥ�ʵĺ��ĺ��壺</p>
+                <h3 class="text-xl sm:text-2xl font-semibold mb-4 text-dark">名称来源</h3>
+                <p class="text-gray-600 mb-3">融合了两个拉丁语单词的核心含义：</p>
                 
                 <div class="grid md:grid-cols-2 gap-6 mt-6">
                     <div class="glass-btn p-4 rounded-xl mouse-reflector">
                         <div class="mouse-light"></div>
                         <p class="text-2xl font-medium text-primary italic">Nexus</p>
-                        <p class="text-gray-600 mt-2">��Ϊ"����"</p>
+                        <p class="text-gray-600 mt-2">意为"连接"</p>
                     </div>
                     <div class="glass-btn p-4 rounded-xl mouse-reflector">
                         <div class="mouse-light"></div>
                         <p class="text-2xl font-medium text-primary italic">Nuntius</p>
-                        <p class="text-gray-600 mt-2">��Ϊ"��ʹ����Ϣ"</p>
+                        <p class="text-gray-600 mt-2">意为"信使，信息"</p>
                     </div>
                 </div>
                 
-                <p class="text-gray-600 mt-6 text-lg">�ں���������Ϣ���ݵĺ��ļ�ֵ�������Ч����������</p>
+                <p class="text-gray-600 mt-6 text-lg">融合连接与信息传递的核心价值，打造高效局域网工具</p>
                 
                 <div class="flex flex-wrap justify-center gap-3 sm:gap-4 mt-8">
                     <span class="glass-btn px-4 py-2.5 text-gray-700 text-sm sm:text-base rounded-full mouse-reflector">
                         <div class="mouse-light"></div>
-                        <i class="fa fa-graduation-cap mr-2 text-primary"></i>ѧ������
+                        <i class="fa fa-graduation-cap mr-2 text-primary"></i>学生适用
                     </span>
                     <span class="glass-btn px-4 py-2.5 text-gray-700 text-sm sm:text-base rounded-full mouse-reflector">
                         <div class="mouse-light"></div>
-                        <i class="fa fa-building mr-2 text-primary"></i>��ҵ����
+                        <i class="fa fa-building mr-2 text-primary"></i>企业适用
                     </span>
                     <span class="glass-btn px-4 py-2.5 text-gray-700 text-sm sm:text-base rounded-full mouse-reflector">
                         <div class="mouse-light"></div>
-                        <i class="fa fa-wifi mr-2 text-primary"></i>������ͨ��
+                        <i class="fa fa-wifi mr-2 text-primary"></i>局域网通信
                     </span>
                     <span class="glass-btn px-4 py-2.5 text-gray-700 text-sm sm:text-base rounded-full mouse-reflector">
                         <div class="mouse-light"></div>
-                        <i class="fa fa-lock mr-2 text-primary"></i>��ȫ����
+                        <i class="fa fa-lock mr-2 text-primary"></i>安全加密
                     </span>
                 </div>
             </div>
             
             <a href="#features" class="glass-btn glass-btn-primary inline-flex items-center px-8 py-3.5 text-white font-medium rounded-full mouse-reflector">
                 <div class="mouse-light"></div>
-                ̽�����Ĺ���
+                探索核心功能
                 <i class="fa fa-arrow-down ml-2"></i>
             </a>
         </div>
     </section>
 
-    <!-- ���Ĺ��� -->
+    <!-- 核心功能 -->
     <section id="features" class="py-16 sm:py-24 bg-neutral relative">
         <div class="container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 relative z-10">
-            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-12 sm:mb-16 text-center">���� <span class="text-primary">����</span></h2>
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-12 sm:mb-16 text-center">核心 <span class="text-primary">功能</span></h2>
             
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-                <!-- ���ܿ�Ƭ 1 -->
+                <!-- 功能卡片 1 -->
                 <div class="glass-effect rounded-2xl p-6 sm:p-8 shadow-glass feature-card mouse-reflector">
                     <div class="mouse-light"></div>
                     <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
                         <i class="fa fa-desktop text-primary text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-semibold mb-4 text-dark">�Ѻ�ͼ�λ�����</h3>
-                    <p class="text-gray-600">����������У�ֱ�۲������棬����Ҳ�ܿ������֣�����ʹ���ż���</p>
+                    <h3 class="text-xl font-semibold mb-4 text-dark">友好图形化界面</h3>
+                    <p class="text-gray-600">告别复杂命令行，直观操作界面，新手也能快速上手，降低使用门槛。</p>
                 </div>
                 
-                <!-- ���ܿ�Ƭ 2 -->
+                <!-- 功能卡片 2 -->
                 <div class="glass-effect rounded-2xl p-6 sm:p-8 shadow-glass feature-card mouse-reflector">
                     <div class="mouse-light"></div>
                     <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
                         <i class="fa fa-comments text-primary text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-semibold mb-4 text-dark">������������</h3>
-                    <p class="text-gray-600">��������ʵʱ��ͨ��֧��������Ϣ������ͨ�����Ŷ�Э����ͨ����Ч��</p>
+                    <h3 class="text-xl font-semibold mb-4 text-dark">文字语音聊天</h3>
+                    <p class="text-gray-600">局域网内实时沟通，支持文字消息与语音通话，团队协作沟通更高效。</p>
                 </div>
                 
-                <!-- ���ܿ�Ƭ 3 -->
+                <!-- 功能卡片 3 -->
                 <div class="glass-effect rounded-2xl p-6 sm:p-8 shadow-glass feature-card mouse-reflector">
                     <div class="mouse-light"></div>
                     <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
                         <i class="fa fa-file text-primary text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-semibold mb-4 text-dark">ȫ�����ļ�����</h3>
-                    <p class="text-gray-600">֧�����и�ʽ�ļ����䣬���赣���ļ��������ƣ��������ڴ����ٶȿ졣</p>
+                    <h3 class="text-xl font-semibold mb-4 text-dark">全类型文件发送</h3>
+                    <p class="text-gray-600">支持所有格式文件传输，无需担心文件类型限制，局域网内传输速度快。</p>
                 </div>
                 
-                <!-- ���ܿ�Ƭ 4 -->
+                <!-- 功能卡片 4 -->
                 <div class="glass-effect rounded-2xl p-6 sm:p-8 shadow-glass feature-card mouse-reflector">
                     <div class="mouse-light"></div>
                     <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
                         <i class="fa fa-desktop text-primary text-2xl fa-clone"></i>
                     </div>
-                    <h3 class="text-xl font-semibold mb-4 text-dark">ʵʱ��Ļ����</h3>
-                    <p class="text-gray-600">Զ�̹�����Ļ���ݣ������ڽ�ѧ��ʾ������㱨�ȳ���������Э��Ч�ʡ�</p>
+                    <h3 class="text-xl font-semibold mb-4 text-dark">实时屏幕镜像</h3>
+                    <p class="text-gray-600">远程共享屏幕内容，适用于教学演示、会议汇报等场景，提升协作效率。</p>
                 </div>
                 
-                <!-- ���ܿ�Ƭ 5 -->
+                <!-- 功能卡片 5 -->
                 <div class="glass-effect rounded-2xl p-6 sm:p-8 shadow-glass feature-card mouse-reflector">
                     <div class="mouse-light"></div>
                     <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
                         <i class="fa fa-lock text-primary text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-semibold mb-4 text-dark">�ǶԳƼ��ܼ���</h3>
-                    <p class="text-gray-600">���ø�ǿ�ȷǶԳƼ����㷨��ȷ��ͨ���������ļ����䰲ȫ����ֹ��Ϣй¶��</p>
+                    <h3 class="text-xl font-semibold mb-4 text-dark">非对称加密技术</h3>
+                    <p class="text-gray-600">采用高强度非对称加密算法，确保通信内容与文件传输安全，防止信息泄露。</p>
                 </div>
                 
-                <!-- ���ܿ�Ƭ 6 -->
+                <!-- 功能卡片 6 -->
                 <div class="glass-effect rounded-2xl p-6 sm:p-8 shadow-glass feature-card mouse-reflector">
                     <div class="mouse-light"></div>
                     <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
                         <i class="fa fa-server text-primary text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-semibold mb-4 text-dark">ȥ���Ļ�����</h3>
-                    <p class="text-gray-600">�������ķ�����������ֱ�ӵ�Ե㴫�䣬����ά���ɱ������ϵͳ�ɿ��ԡ�</p>
+                    <h3 class="text-xl font-semibold mb-4 text-dark">去中心化管理</h3>
+                    <p class="text-gray-600">无需中心服务器，数据直接点对点传输，降低维护成本，提高系统可靠性。</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ������Ⱥ -->
+    <!-- 适用人群 -->
     <section id="users" class="py-16 sm:py-24 relative">
         <div class="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 relative z-10">
-            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-12 sm:mb-16 text-center">���� <span class="text-primary">��Ⱥ</span></h2>
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-12 sm:mb-16 text-center">适用 <span class="text-primary">人群</span></h2>
             
             <div class="grid md:grid-cols-2 gap-8">
-                <!-- ѧ��Ⱥ�� -->
+                <!-- 学生群体 -->
                 <div class="glass-effect rounded-2xl p-6 sm:p-10 shadow-glass mouse-reflector">
                     <div class="mouse-light"></div>
                     <div class="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
                         <i class="fa fa-graduation-cap text-primary text-3xl"></i>
                     </div>
-                    <h3 class="text-2xl font-semibold mb-6 text-dark">ѧ��Ⱥ��</h3>
+                    <h3 class="text-2xl font-semibold mb-6 text-dark">学生群体</h3>
                     
                     <ul class="space-y-4 text-gray-600">
                         <li class="flex items-start">
                             <i class="fa fa-check-circle text-primary mt-1 mr-3 text-lg"></i>
-                            <span>�������������£�ͬѧ��ʵʱ���칵ͨ������С������</span>
+                            <span>机房无网环境下，同学间实时聊天沟通，方便小组讨论</span>
                         </li>
                         <li class="flex items-start">
                             <i class="fa fa-check-circle text-primary mt-1 mr-3 text-lg"></i>
-                            <span>���ٴ���ѧϰ���ϡ���ҵ�ļ�������U�̣���ʡʱ��</span>
+                            <span>快速传输学习资料、作业文件，无需U盘，节省时间</span>
                         </li>
                         <li class="flex items-start">
                             <i class="fa fa-check-circle text-primary mt-1 mr-3 text-lg"></i>
-                            <span>С����ĿЭ��ʱ����Ļ������˼·��ɹ������Ч��</span>
+                            <span>小组项目协作时，屏幕镜像共享思路与成果，提高效率</span>
                         </li>
                     </ul>
                 </div>
                 
-                <!-- ��ҵ�û� -->
+                <!-- 企业用户 -->
                 <div class="glass-effect rounded-2xl p-6 sm:p-10 shadow-glass mouse-reflector">
                     <div class="mouse-light"></div>
                     <div class="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
                         <i class="fa fa-building text-primary text-3xl"></i>
                     </div>
-                    <h3 class="text-2xl font-semibold mb-6 text-dark">��ҵ�û�</h3>
+                    <h3 class="text-2xl font-semibold mb-6 text-dark">企业用户</h3>
                     
                     <ul class="space-y-4 text-gray-600">
                         <li class="flex items-start">
                             <i class="fa fa-check-circle text-primary mt-1 mr-3 text-lg"></i>
-                            <span>������ȫ���죬�����ⲿ�����ط��գ�������ҵ����</span>
+                            <span>内网安全聊天，避免外部网络监控风险，保护商业机密</span>
                         </li>
                         <li class="flex items-start">
                             <i class="fa fa-check-circle text-primary mt-1 mr-3 text-lg"></i>
-                            <span>�������ҵ���ļ������ܼ����������ݰ�ȫ����ֹй¶</span>
+                            <span>传输敏感业务文件，加密技术保障数据安全，防止泄露</span>
                         </li>
                         <li class="flex items-start">
                             <i class="fa fa-check-circle text-primary mt-1 mr-3 text-lg"></i>
-                            <span>ȥ���Ļ��ܹ�������ά�����ķ�����������IT�ɱ�</span>
+                            <span>去中心化架构，无需维护中心服务器，降低IT成本</span>
                         </li>
                     </ul>
                 </div>
@@ -820,10 +820,10 @@
         </div>
     </section>
 
-    <!-- ��ȫ���� -->
+    <!-- 安全优势 -->
     <section id="security" class="py-16 sm:py-24 bg-neutral relative">
         <div class="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 relative z-10">
-            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-12 sm:mb-16 text-center">��ȫ <span class="text-primary">����</span></h2>
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-12 sm:mb-16 text-center">安全 <span class="text-primary">优势</span></h2>
             
             <div class="glass-effect rounded-2xl p-6 sm:p-10 shadow-glass max-w-3xl mx-auto mouse-reflector">
                 <div class="mouse-light"></div>
@@ -836,14 +836,14 @@
                     </div>
                     
                     <div class="md:w-2/3">
-                        <h3 class="text-2xl font-semibold mb-6 text-dark">��Ҫ��������ݰ�ȫð�գ�</h3>
+                        <h3 class="text-2xl font-semibold mb-6 text-dark">不要拿你的数据安全冒险！</h3>
                         
                         <p class="text-gray-600 mb-6 text-lg">
-                            Nextious����ȥ���Ļ��ܹ����������ݾ�ͨ����������Ե�ֱ�Ӵ��䣬�Ӳ������κε����������������׶ž�����й¶���ա�
+                            Nextious采用去中心化架构，所有数据均通过局域网点对点直接传输，从不经过任何第三方服务器，彻底杜绝数据泄露风险。
                         </p>
                         
                         <p class="text-gray-600 text-lg">
-                            ��ϷǶԳƼ��ܼ�������ʹ�ڹ��������������£�Ҳ��ȷ������������ݺ��ļ����䲻����ȡ��۸ģ�Ϊѧ��ѧϰ����ҵ�칫�ṩ���԰�ȫ��ͨ�ű��ϡ�
+                            配合非对称加密技术，即使在公共局域网环境下，也能确保你的聊天内容和文件传输不被窃取或篡改，为学生学习和企业办公提供绝对安全的通信保障。
                         </p>
                     </div>
                 </div>
@@ -853,58 +853,58 @@
                         <div class="mouse-light"></div>
                         <div class="flex items-center mb-3">
                             <i class="fa fa-random text-primary text-xl mr-3"></i>
-                            <h4 class="text-lg font-medium text-dark">��Ե㴫��</h4>
+                            <h4 class="text-lg font-medium text-dark">点对点传输</h4>
                         </div>
-                        <p class="text-gray-600 text-sm">����ֱ�����豸�䴫�䣬�������κ��м������</p>
+                        <p class="text-gray-600 text-sm">数据直接在设备间传输，不经过任何中间服务器</p>
                     </div>
                     
                     <div class="glass-btn p-5 rounded-xl mouse-reflector">
                         <div class="mouse-light"></div>
                         <div class="flex items-center mb-3">
                             <i class="fa fa-key text-primary text-xl mr-3"></i>
-                            <h4 class="text-lg font-medium text-dark">�˵��˼���</h4>
+                            <h4 class="text-lg font-medium text-dark">端到端加密</h4>
                         </div>
-                        <p class="text-gray-600 text-sm">���ø߼����ܱ�׼��ֻ�н��շ��ܽ�������</p>
+                        <p class="text-gray-600 text-sm">采用高级加密标准，只有接收方能解密内容</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- �ж��ٻ� -->
+    <!-- 行动召唤 -->
     <section class="py-16 sm:py-24 relative">
         <div class="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="glass-effect rounded-2xl p-8 sm:p-12 shadow-glass text-center max-w-3xl mx-auto mouse-reflector">
                 <div class="mouse-light"></div>
                 
-                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-6">׼����������ľ�������������</h2>
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-6">准备好提升你的局域网体验了吗？</h2>
                 
                 <p class="text-gray-600 text-lg mb-10 max-w-2xl mx-auto">
-                    ������ѧ��Ⱥ�廹����ҵ�û���Nextious����Ϊ���ṩ��ȫ����Ч�ľ�����ͨ�����ļ�������������
+                    无论是学生群体还是企业用户，Nextious都能为你提供安全、高效的局域网通信与文件传输解决方案。
                 </p>
                 
                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
                     <a href="#" class="glass-btn glass-btn-primary inline-flex items-center justify-center px-8 py-3.5 text-white font-medium rounded-full mouse-reflector">
                         <div class="mouse-light"></div>
                         <i class="fa fa-download mr-2"></i>
-                        ��������
+                        下载体验
                     </a>
                     <a href="index.html#project" class="glass-btn inline-flex items-center justify-center px-8 py-3.5 text-primary font-medium rounded-full mouse-reflector">
                         <div class="mouse-light"></div>
                         <i class="fa fa-arrow-left mr-2"></i>
-                        ������Ŀ��ҳ
+                        返回项目主页
                     </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ҳ�� -->
+    <!-- 页脚 -->
     <footer class="py-12 sm:py-16 glass-effect border-t border-white/10 relative z-10">
         <div class="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row justify-between items-center mb-8 sm:mb-12">
                 <div class="flex items-center gap-2 mb-6 md:mb-0">
-                    <img src="https://cdn.luogu.com.cn/upload/image_hosting/vy6i8dsm.png" alt="TeamPixel�Ŷӱ�־" class="w-8 h-8 rounded object-cover">
+                    <img src="https://cdn.luogu.com.cn/upload/image_hosting/vy6i8dsm.png" alt="TeamPixel团队标志" class="w-8 h-8 rounded object-cover">
                     <span class="font-semibold text-lg">TeamPixel</span>
                 </div>
                 
@@ -914,28 +914,28 @@
                             <div class="mouse-light"></div>
                             <i class="fa fa-users text-xl"></i>
                         </a>
-                        <span class="text-xs text-gray-500 mt-1">�Ŷ������ҳ</span>
+                        <span class="text-xs text-gray-500 mt-1">团队洛谷主页</span>
                     </div>
                     <div class="flex flex-col items-center">
                         <a href="https://www.luogu.com.cn/user/1017957" target="_blank" class="glass-btn w-10 h-10 flex items-center justify-center text-gray-400 hover:text-primary rounded-full mouse-reflector">
                             <div class="mouse-light"></div>
                             <i class="fa fa-user text-xl"></i>
                         </a>
-                        <span class="text-xs text-gray-500 mt-1">wujz�������ҳ</span>
+                        <span class="text-xs text-gray-500 mt-1">wujz的洛谷主页</span>
                     </div>
                     <div class="flex flex-col items-center">
                         <a href="https://www.luogu.com.cn/user/1513356" target="_blank" class="glass-btn w-10 h-10 flex items-center justify-center text-gray-400 hover:text-primary rounded-full mouse-reflector">
                             <div class="mouse-light"></div>
                             <i class="fa fa-user text-xl"></i>
                         </a>
-                        <span class="text-xs text-gray-500 mt-1">Teddyzhi0815�������ҳ</span>
+                        <span class="text-xs text-gray-500 mt-1">Teddyzhi0815的洛谷主页</span>
                     </div>
                 </div>
             </div>
             
             <div class="text-center text-gray-400 text-sm sm:text-base">
-                <p>? 2025 TeamPixel�Ŷ�. Nextious��Ŀ������.</p>
-                <p class="mt-2">����վչʾ�ŶӼ���Ŀ�����Ϣ�뼼���ĵ�</p>
+                <p>© 2025 TeamPixel团队. Nextious项目开发中.</p>
+                <p class="mt-2">本网站展示团队及项目相关信息与技术文档</p>
             </div>
         </div>
     </footer>
@@ -943,7 +943,7 @@
     <!-- JavaScript -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // ��ɫģʽ�л�
+            // 深色模式切换
             const themeToggle = document.getElementById('themeToggle');
             const mobileThemeToggle = document.getElementById('mobileThemeToggle');
             const mobileThemeText = document.getElementById('mobileThemeText');
@@ -951,13 +951,13 @@
             const mobileThemeIcon = document.querySelector('#mobileThemeToggle .theme-toggle');
             const mobileMenu = document.getElementById('mobileMenu');
             
-            // ��ʼ������
+            // 初始化主题
             if (localStorage.getItem('darkMode') === 'true' || 
                 (!localStorage.getItem('darkMode') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
                 enableDarkMode();
             }
             
-            // �������л��¼�
+            // 绑定主题切换事件
             themeToggle.addEventListener('click', toggleDarkMode);
             if (mobileThemeToggle) {
                 mobileThemeToggle.addEventListener('click', toggleDarkMode);
@@ -970,7 +970,7 @@
             function enableDarkMode() {
                 document.body.classList.add('dark-mode');
                 
-                // ������������ͼ��
+                // 更新所有主题图标
                 if (themeIcon) {
                     themeIcon.classList.remove('fa-moon-o');
                     themeIcon.classList.add('fa-sun-o', 'dark');
@@ -980,18 +980,18 @@
                     mobileThemeIcon.classList.add('fa-sun-o', 'dark');
                 }
                 
-                // �л���ť�ı�
-                if (mobileThemeText) mobileThemeText.textContent = 'ǳɫģʽ';
+                // 切换按钮文本
+                if (mobileThemeText) mobileThemeText.textContent = '浅色模式';
                 localStorage.setItem('darkMode', 'true');
                 
-                // ȷ���˵��������ɫģʽ����ȷ��ʾ
+                // 确保菜单面板在深色模式下正确显示
                 updateMenuDarkMode(true);
             }
             
             function disableDarkMode() {
                 document.body.classList.remove('dark-mode');
                 
-                // ������������ͼ��
+                // 更新所有主题图标
                 if (themeIcon) {
                     themeIcon.classList.remove('fa-sun-o', 'dark');
                     themeIcon.classList.add('fa-moon-o');
@@ -1001,30 +1001,30 @@
                     mobileThemeIcon.classList.add('fa-moon-o');
                 }
                 
-                // �л���ť�ı�
-                if (mobileThemeText) mobileThemeText.textContent = '��ɫģʽ';
+                // 切换按钮文本
+                if (mobileThemeText) mobileThemeText.textContent = '深色模式';
                 localStorage.setItem('darkMode', 'false');
                 
-                // ȷ���˵������ǳɫģʽ����ȷ��ʾ
+                // 确保菜单面板在浅色模式下正确显示
                 updateMenuDarkMode(false);
             }
             
-            // ר�����ڸ��²˵������ɫģʽ�ĺ���
+            // 专门用于更新菜单面板深色模式的函数
             function updateMenuDarkMode(isDark) {
                 if (!mobileMenu) return;
                 
-                // ǿ�Ƹ��²˵�������ʽ��ȷ����ɫ/ǳɫģʽ��ȷӦ��
+                // 强制更新菜单面板的样式，确保深色/浅色模式正确应用
                 if (isDark) {
                     mobileMenu.classList.add('dark-mode');
                 } else {
                     mobileMenu.classList.remove('dark-mode');
                 }
                 
-                // �����ػ���ȷ����ʽ��������
+                // 触发重绘以确保样式立即更新
                 void mobileMenu.offsetWidth;
             }
             
-            // ����������Ч��
+            // 导航栏滚动效果
             window.addEventListener('scroll', function() {
                 const navEllipse = document.querySelector('.glass-effect.shadow-glass.px-8');
                 const logo = document.getElementById('logo');
@@ -1050,31 +1050,31 @@
                 }
             });
             
-            // �ƶ��˲˵��߼� - ���ζ���ʵ��
+            // 移动端菜单逻辑 - 变形动画实现
             const openMenuBtn = document.getElementById('openMenu');
             const menuOverlay = document.getElementById('menuOverlay');
             const mobileLinks = document.querySelectorAll('.mobile-link');
             
             if (openMenuBtn && mobileMenu && menuOverlay) {
-                // �˵���ť��������
+                // 菜单按钮与面板对齐
                 function positionMenu() {
                     if (!openMenuBtn) return;
                     
-                    // ��ȡ��ť��λ����Ϣ
+                    // 获取按钮的位置信息
                     const btnRect = openMenuBtn.getBoundingClientRect();
                     
-                    // �˵����Ͻ��밴ť����
+                    // 菜单右上角与按钮对齐
                     mobileMenu.style.top = `${btnRect.top}px`;
                     mobileMenu.style.right = `${window.innerWidth - btnRect.right}px`;
                 }
                 
-                // ��ʼ��λ
+                // 初始定位
                 positionMenu();
                 
-                // �������ڴ�С�仯������λ��
+                // 监听窗口大小变化，更新位置
                 window.addEventListener('resize', positionMenu);
                 
-                // �˵���ť������� - ���ζ���
+                // 菜单按钮点击处理 - 变形动画
                 function toggleMenu() {
                     if (mobileMenu.classList.contains('active')) {
                         closeMenu();
@@ -1084,20 +1084,20 @@
                 }
                 
                 function openMenu() {
-                    // �ȸ���λ������ʾ
+                    // 先更新位置再显示
                     positionMenu();
                     
-                    // ��ť�Ŵ����Ϊ�˵����Ķ���
+                    // 按钮放大变形为菜单面板的动画
                     mobileMenu.classList.add('active');
                     menuOverlay.classList.add('active');
                     document.body.style.overflow = 'hidden';
                     
-                    // ����ԭ��ť
+                    // 隐藏原按钮
                     setTimeout(() => {
                         openMenuBtn.classList.add('hidden');
                     }, 200);
                     
-                    // ȷ���˵���ʱӦ����ȷ��������ʽ
+                    // 确保菜单打开时应用正确的主题样式
                     updateMenuDarkMode(document.body.classList.contains('dark-mode'));
                 }
                 
@@ -1108,16 +1108,16 @@
                     openMenuBtn.classList.remove('hidden');
                 }
                 
-                // �󶨰�ť����¼�
+                // 绑定按钮点击事件
                 openMenuBtn.addEventListener('click', function(e) {
                     e.stopPropagation();
                     toggleMenu();
                 });
                 
-                // ������ֹرղ˵�
+                // 点击遮罩关闭菜单
                 menuOverlay.addEventListener('click', closeMenu);
                 
-                // ����˵���رղ˵�����ת
+                // 点击菜单项关闭菜单并跳转
                 mobileLinks.forEach(link => {
                     link.addEventListener('click', function() {
                         closeMenu();
@@ -1136,13 +1136,13 @@
                     });
                 });
                 
-                // ��ֹ����˵��ڲ��رղ˵�
+                // 防止点击菜单内部关闭菜单
                 mobileMenu.addEventListener('click', function(e) {
                     e.stopPropagation();
                 });
             }
             
-            // ƽ������
+            // 平滑滚动
             document.querySelectorAll('a[href^="#"]:not(.mobile-link)').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
                     e.preventDefault();
@@ -1158,29 +1158,29 @@
                 });
             });
             
-            // �����ͣ����Ч��ʵ��
+            // 鼠标悬停反光效果实现
             document.querySelectorAll('.mouse-reflector').forEach(element => {
-                // ��ȡÿ��Ԫ���ڵķ���Ч��Ԫ��
+                // 获取每个元素内的反光效果元素
                 const mouseLight = element.querySelector('.mouse-light');
                 
                 if (mouseLight) {
-                    // ��������ƶ��¼����÷���������
+                    // 监听鼠标移动事件，让反光跟随鼠标
                     element.addEventListener('mousemove', (e) => {
-                        // ��ȡԪ��������ӿڵ�λ��
+                        // 获取元素相对于视口的位置
                         const rect = element.getBoundingClientRect();
                         
-                        // ���������Ԫ���ڵ����λ��
+                        // 计算鼠标在元素内的相对位置
                         const x = e.clientX - rect.left;
                         const y = e.clientY - rect.top;
                         
-                        // ���÷���Ч����λ��
+                        // 设置反光效果的位置
                         mouseLight.style.left = `${x}px`;
                         mouseLight.style.top = `${y}px`;
                     });
                 }
             });
             
-            // �������л�ʱ��ȷ���˵������ʽ��ȷ����
+            // 当主题切换时，确保菜单面板样式正确更新
             document.addEventListener('darkModeToggled', function() {
                 if (mobileMenu && mobileMenu.classList.contains('active')) {
                     updateMenuDarkMode(document.body.classList.contains('dark-mode'));
