@@ -530,8 +530,12 @@
 </head>
 <body class="bg-white text-dark">
     <!-- 背景装饰 -->
-    <div class="fixed -top-40 -right-40 w-96 h-96 bg-primary/5 liquid-shape float-animation z-0"></div>
-    <div class="fixed -bottom-20 -left-20 w-72 h-72 bg-primary/5 liquid-shape-2 float-animation-delay z-0"></div>
+	<!-- 静态背景图片 -->
+	<img 
+	  src="https://cdn.luogu.com.cn/upload/image_hosting/gasv822s.png" 
+	  class="fixed inset-0 z-0 object-cover opacity-20 pointer-events-none" 
+	  alt="Background decoration"
+	>
     
     <!-- 移动端菜单覆盖层 -->
     <div class="menu-overlay" id="menuOverlay"></div>
@@ -627,73 +631,38 @@
             </div>
         </div>
     </header>
-
+	
     <!-- 英雄区域 -->
-    <section class="pt-32 pb-20 sm:pt-40 sm:pb-28 px-4 sm:px-6 lg:px-8 relative">
+	<section class="pt-0 pb-0 sm:pt-0 sm:pb-4 px-4 sm:px-6 lg:px-8 relative">
         <div class="container mx-auto max-w-4xl text-center relative z-10">
             <div class="glass-effect rounded-2xl p-6 sm:p-8 inline-block mb-10 shadow-glass mouse-reflector">
                 <div class="mouse-light"></div>
                 <img src="https://cdn.luogu.com.cn/upload/image_hosting/vy6i8dsm.png" alt="TeamPixel团队标志" class="w-20 h-20 sm:w-24 sm:h-24 rounded object-cover mx-auto mb-4">
                 <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight">TeamPixel</h1>
             </div>
-            
-            <div class="flex items-center justify-center gap-2 mb-6 text-lg sm:text-xl text-gray-600">
-                <span>Nextious开发</span>
-                <span class="w-2 h-2 rounded-full bg-primary pulse-dot"></span>
-                <span class="w-2 h-2 rounded-full bg-primary pulse-dot pulse-delay-1"></span>
-                <span class="w-2 h-2 rounded-full bg-primary pulse-dot pulse-delay-2"></span>
-            </div>
-            
-            <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-12">Nextious</h2>
-            
-            <a href="#project" class="glass-btn glass-btn-primary inline-flex items-center px-8 py-3.5 text-white font-medium rounded-full mouse-reflector">
-                <div class="mouse-light"></div>
-                了解项目详情
-                <i class="fa fa-arrow-right ml-2"></i>
-            </a>
         </div>
     </section>
-
-    <!-- 关于团队 -->
-    <section id="about" class="py-16 sm:py-24 bg-neutral relative">
+	
+	<!-- 关于团队 -->
+    <section id="about" class="py-1 sm:py-1 bg-neutral relative">
         <div class="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 relative z-10">
             <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-12 sm:mb-16 text-center">关于 <span class="text-primary">TeamPixel</span></h2>
             
             <div class="glass-effect rounded-2xl p-6 sm:p-10 shadow-glass max-w-3xl mx-auto mouse-reflector">
                 <div class="mouse-light"></div>
-                <img src="https://cdn.luogu.com.cn/upload/image_hosting/vy6i8dsm.png" alt="TeamPixel团队标志" class="w-24 h-24 sm:w-32 sm:h-32 rounded object-cover mx-auto mb-8">
                 
                 <div class="text-gray-600 text-base sm:text-lg leading-relaxed">
                     <p class="mb-6">
-                        TeamPixel是一个专注于软件开发与技术研究的团队，我们致力于通过创新的技术解决方案解决实际问题。团队成员拥有丰富的开发经验和强烈的探索精神。
-                    </p>
+                      TeamPixel是由wujz和Teddyzhi于2025年8月22日成立的团队。我们打算开发从应用程序，到人工智能，再到Minecraft模组的各种软件。
+                  </p>
                     <p class="mb-8">
-                        我们注重技术积累与知识分享，坚持高标准的开发规范，追求代码质量与用户体验的平衡。通过协作开发，我们不断提升团队能力，完成一个又一个具有挑战性的项目。
+                        我们目前完成了一个五子棋应用程序和围棋应用程序。
                     </p>
-                    
-                    <div class="flex flex-wrap gap-3 sm:gap-4 justify-center">
-                        <span class="glass-btn px-4 py-2.5 text-gray-700 text-sm sm:text-base rounded-full mouse-reflector">
-                            <div class="mouse-light"></div>
-                            <i class="fa fa-code mr-2 text-primary"></i>专业开发
-                        </span>
-                        <span class="glass-btn px-4 py-2.5 text-gray-700 text-sm sm:text-base rounded-full mouse-reflector">
-                            <div class="mouse-light"></div>
-                            <i class="fa fa-users mr-2 text-primary"></i>团队协作
-                        </span>
-                        <span class="glass-btn px-4 py-2.5 text-gray-700 text-sm sm:text-base rounded-full mouse-reflector">
-                            <div class="mouse-light"></div>
-                            <i class="fa fa-lightbulb-o mr-2 text-primary"></i>技术创新
-                        </span>
-                        <span class="glass-btn px-4 py-2.5 text-gray-700 text-sm sm:text-base rounded-full mouse-reflector">
-                            <div class="mouse-light"></div>
-                            <i class="fa fa-book mr-2 text-primary"></i>知识分享
-                        </span>
-                    </div>
                 </div>
             </div>
         </div>
     </section>
-
+    
     <!-- 项目介绍 -->
     <section id="project" class="py-16 sm:py-24 relative">
         <div class="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 relative z-10">
@@ -739,16 +708,63 @@
                         <a href="https://tpixel.qzz.io/nextious" target="_blank" class="glass-btn glass-btn-primary inline-flex items-center px-8 py-3.5 text-white font-medium rounded-full mouse-reflector">
                             <div class="mouse-light"></div>
                             详细了解
-                            <i class="fa fa-external-link ml-2"></i>
+							<i class="fa fa-arrow-right ml-2"></i>
                         </a>
                     </div>
                 </div>
             </div>
             
-            <h3 class="text-xl sm:text-2xl font-bold mb-8 text-center">已完成的命令行软件</h3>
+            <h3 class="text-xl sm:text-2xl font-bold mb-8 text-center">已完成的项目</h3>
+			
+			<div class="glass-effect rounded-2xl p-6 sm:p-10 shadow-glass max-w-3xl mx-auto mb-12 mouse-reflector">
+              <div class="mouse-light"></div>
+                <div class="flex flex-col md:flex-row gap-8">
+                    <div class="md:w-1/2">
+                        <h4 class="text-xl sm:text-2xl font-semibold mb-4 flex items-center">
+                            <i class="fa fa-chess-board text-primary mr-3"></i>
+                            Minecraft2D-Online
+                        </h4>
+                        
+                        <p class="text-gray-600 mb-6">
+                            网页版的我的世界
+                        </p>
+                        
+                        <h5 class="font-medium text-dark mb-3">核心功能：</h5>
+                        <ul class="space-y-2 text-gray-600 mb-6">
+                            <li class="flex items-start">
+                                <i class="fa fa-check text-primary mt-1 mr-2"></i>
+                                <span>生成地形</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-check text-primary mt-1 mr-2"></i>
+                                <span>生成生物</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-check text-primary mt-1 mr-2"></i>
+                                <span>放置和打破方块</span>
+                            </li>
+                        </ul>
+                        
+                        <div class="flex flex-wrap gap-3">
+                            <a href="https://tpixel.qzz.io/mc" class="glass-btn px-4 py-2 text-primary font-medium rounded-full mouse-reflector">
+                                <div class="mouse-light"></div>
+                                <i></i>访问
+								<i class="fa fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="md:w-1/2">
+                        <div class="glass-effect rounded-xl overflow-hidden border border-white/30 h-full flex items-center justify-center min-h-[240px]">
+                            <img src="https://cdn.luogu.com.cn/upload/image_hosting/e5kgjab4.png" alt="围棋软件界面截图" class="w-full h-full object-contain p-4">
+                        </div>
+                        <p class="text-center text-sm text-gray-500 mt-3">围棋软件界面截图</p>
+                    </div>
+                </div>
+            </div>
             
             <div class="glass-effect rounded-2xl p-6 sm:p-10 shadow-glass max-w-3xl mx-auto mb-12 mouse-reflector">
-                <div class="mouse-light"></div>
+              <div class="mouse-light"></div>
                 <div class="flex flex-col md:flex-row gap-8">
                     <div class="md:w-1/2">
                         <h4 class="text-xl sm:text-2xl font-semibold mb-4 flex items-center">
@@ -785,7 +801,7 @@
                         </ul>
                         
                         <div class="flex flex-wrap gap-3">
-                            <a href="#" class="glass-btn px-4 py-2 text-primary font-medium rounded-full mouse-reflector">
+                            <a href="https://raw.gitcode.com/WJZHi/TPixel/blobs/693e78d7d77bd2d77896332bd773a79a4056fed6/Go-250829.cpp" class="glass-btn px-4 py-2 text-primary font-medium rounded-full mouse-reflector">
                                 <div class="mouse-light"></div>
                                 <i class="fa fa-code mr-2"></i>源代码
                             </a>
@@ -837,7 +853,7 @@
                 </ul>
                 
                 <div class="flex flex-wrap gap-3">
-                    <a href="#" class="glass-btn px-4 py-2 text-primary font-medium rounded-full mouse-reflector">
+                    <a href="https://raw.gitcode.com/WJZHi/TPixel/blobs/668069a5b0ea8905fd72d62ddcc754c7ab1c1389/Five-in-a-row.cpp" class="glass-btn px-4 py-2 text-primary font-medium rounded-full mouse-reflector">
                         <div class="mouse-light"></div>
                         <i class="fa fa-code mr-2"></i>源代码
                     </a>
@@ -845,112 +861,7 @@
             </div>
         </div>
     </section>
-
-    <!-- 重要链接 -->
-    <section id="links" class="py-16 sm:py-24 bg-neutral relative">
-        <div class="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 relative z-10">
-            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-12 sm:mb-16 text-center">重要 <span class="text-primary">链接</span></h2>
-            
-            <div class="grid md:grid-cols-2 gap-6 sm:gap-8">
-                <a href="https://gitee.com/wjzhi/article/blob/master/Nextious%20%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83%E4%B8%8E%E5%9B%A2%E9%98%9F%E5%88%86%E5%B7%A5.md" 
-                   target="_blank" 
-                   class="block glass-effect rounded-xl p-6 sm:p-8 h-full shadow-glass hover:shadow-glass-hover transition-all mouse-reflector">
-                    <div class="mouse-light"></div>
-                    <div class="w-12 h-12 bg-primary/10 rounded-md flex items-center justify-center mb-4">
-                        <i class="fa fa-book text-primary text-xl"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-3 text-dark">开发规范与团队分工</h3>
-                    <p class="text-gray-600 mb-4">了解Nextious项目的开发规范、代码标准和团队成员分工情况。</p>
-                    <span class="text-primary font-medium">查看文档 <i class="fa fa-external-link ml-1"></i></span>
-                </a>
-                
-                <a href="https://gitee.com/wjzhi/article/blob/master/%E5%B1%80%E5%9F%9F%E7%BD%91%E5%86%85%E6%96%87%E4%BB%B6%E4%BC%A0%E8%BE%93%E5%8E%9F%E7%90%86%EF%BC%9ATCP%20%E4%B8%8E%20UDP%20%E8%AF%A6%E8%A7%A3%E5%8F%8A%20C++%20%E5%AE%9E%E7%8E%B0.md" 
-                   target="_blank" 
-                   class="block glass-effect rounded-xl p-6 sm:p-8 h-full shadow-glass hover:shadow-glass-hover transition-all mouse-reflector">
-                    <div class="mouse-light"></div>
-                    <div class="w-12 h-12 bg-primary/10 rounded-md flex items-center justify-center mb-4">
-                        <i class="fa fa-sitemap text-primary text-xl"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-3 text-dark">局域网传输原理</h3>
-                    <p class="text-gray-600 mb-4">深入理解TCP与UDP协议，以及如何在C++中实现局域网内的文件传输。</p>
-                    <span class="text-primary font-medium">查看文档 <i class="fa fa-external-link ml-1"></i></span>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- 技术文档 -->
-    <section id="docs" class="py-16 sm:py-24 relative">
-        <div class="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 relative z-10">
-            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-12 sm:mb-16 text-center">技术 <span class="text-primary">文档</span></h2>
-            
-            <div class="glass-effect rounded-xl shadow-glass p-4 sm:p-6 max-w-3xl mx-auto mouse-reflector">
-                <div class="mouse-light"></div>
-                <ul class="space-y-5 sm:space-y-6">
-                    <li class="flex items-start">
-                        <a href="https://gitee.com/wjzhi/article/blob/master/SFML%20tutorial.md" 
-                           target="_blank" 
-                           class="glass-btn flex items-start w-full p-3 sm:p-4 rounded-full hover:bg-white/50 transition-colors mouse-reflector">
-                            <div class="mouse-light"></div>
-                            <div class="flex-shrink-0 w-8 h-8 bg-primary/10 rounded-md flex items-center justify-center text-primary mt-0.5">
-                                <i class="fa fa-gamepad"></i>
-                            </div>
-                            <div class="ml-4">
-                                <span class="text-lg font-medium text-dark">SFML tutorial.md</span>
-                                <p class="text-gray-600 mt-1 text-sm sm:text-base">SFML库的使用教程文档</p>
-                            </div>
-                        </a>
-                    </li>
-                    
-                    <li class="flex items-start">
-                        <a href="https://blog.csdn.net/wangyuhan2010/article/details/130477415" 
-                           target="_blank" 
-                           class="glass-btn flex items-start w-full p-3 sm:p-4 rounded-full hover:bg-white/50 transition-colors mouse-reflector">
-                            <div class="mouse-light"></div>
-                            <div class="flex-shrink-0 w-8 h-8 bg-primary/10 rounded-md flex items-center justify-center text-primary mt-0.5">
-                                <i class="fa fa-cube"></i>
-                            </div>
-                            <div class="ml-4">
-                                <span class="text-lg font-medium text-dark">用c++实现3d引擎-超详细(附源码)</span>
-                                <p class="text-gray-600 mt-1 text-sm sm:text-base">C++实现3D引擎的详细教程及源代码</p>
-                            </div>
-                        </a>
-                    </li>
-                    
-                    <li class="flex items-start">
-                        <a href="https://gitee.com/wjzhi/article/blob/master/%E5%B1%80%E5%9F%9F%E7%BD%91%E5%86%85%E6%96%87%E4%BB%B6%E4%BC%A0%E8%BE%93%E5%8E%9F%E7%90%86%EF%BC%9ATCP%20%E4%B8%8E%20UDP%20%E8%AF%A6%E8%A7%A3%E5%8F%8A%20C++%20%E5%AE%9E%E7%8E%B0.md" 
-                           target="_blank" 
-                           class="glass-btn flex items-start w-full p-3 sm:p-4 rounded-full hover:bg-white/50 transition-colors mouse-reflector">
-                            <div class="mouse-light"></div>
-                            <div class="flex-shrink-0 w-8 h-8 bg-primary/10 rounded-md flex items-center justify-center text-primary mt-0.5">
-                                <i class="fa fa-exchange"></i>
-                            </div>
-                            <div class="ml-4">
-                                <span class="text-lg font-medium text-dark">局域网内文件传输原理：TCP 与 UDP 详解及 C++ 实现</span>
-                                <p class="text-gray-600 mt-1 text-sm sm:text-base">详细解析TCP与UDP协议在局域网文件传输中的应用</p>
-                            </div>
-                        </a>
-                    </li>
-                    
-                    <li class="flex items-start">
-                        <a href="https://gitee.com/wjzhi/article/blob/master/C++%20%E5%B1%80%E5%9F%9F%E7%BD%91%E4%BC%A0%E8%BE%93%E6%96%87%E4%BB%B6%E3%80%81%E5%AD%97%E7%AC%A6%E7%9A%84%E5%8E%9F%E7%90%86%E8%AF%A6%E8%A7%A3.md" 
-                           target="_blank" 
-                           class="glass-btn flex items-start w-full p-3 sm:p-4 rounded-full hover:bg-white/50 transition-colors mouse-reflector">
-                            <div class="mouse-light"></div>
-                            <div class="flex-shrink-0 w-8 h-8 bg-primary/10 rounded-md flex items-center justify-center text-primary mt-0.5">
-                                <i class="fa fa-file-text"></i>
-                            </div>
-                            <div class="ml-4">
-                                <span class="text-lg font-medium text-dark">C++ 局域网传输文件、字符的原理详解</span>
-                                <p class="text-gray-600 mt-1 text-sm sm:text-base">C++实现局域网内文件和字符传输的原理分析</p>
-                            </div>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
+    
     <!-- 页脚 -->
     <footer class="py-12 sm:py-16 glass-effect border-t border-white/10 relative z-10">
         <div class="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
