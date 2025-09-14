@@ -45,86 +45,179 @@
             .content-auto {
                 content-visibility: auto;
             }
-            .glass-effect {
-                background: rgba(240, 240, 240, 0.4);
-                backdrop-filter: blur(12px);          /* 毛玻璃效果 */
-				-webkit-backdrop-filter: blur(12px);  /* Webkit兼容 */
-				border: 1px solid rgba(220, 220, 220, 0.15); /* 边缘更透明（降低alpha值） */
-				box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); /* 可选：轻微阴影增强层次感 */
-            }
-            .glass-effect-dark {
-			  background: rgba(30, 41, 59, 0.4); /* 内部半透明（维持原值或微调） */
-			  backdrop-filter: blur(12px);        /* 毛玻璃效果 */
-			  -webkit-backdrop-filter: blur(12px);/* Webkit兼容 */
-			  border: 1px solid rgba(255, 255, 255, 0.05); /* 边缘更透明（降低alpha值） */
-			  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 可选：轻微阴影增强层次感 */
-			}
-            .liquid-shape {
-                border-radius: 28% 72% 55% 45% / 42% 45% 55% 58%;
-            }
-            .liquid-shape-2 {
-                border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%;
-            }
-            .glass-btn {
-                position: relative;
-                overflow: hidden;
-                transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-                z-index: 1;
-            }
-            .glass-btn::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: rgba(255, 255, 255, 0.2);
-                transform: translateX(-100%);
-                transition: transform 0.5s ease;
-                z-index: -1;
-            }
-            .glass-btn:hover::before {
-                transform: translateX(100%);
-            }
-            .glass-btn-primary {
-                position: relative;
-                overflow: hidden;
-                z-index: 1;
-            }
-            .glass-btn-primary::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-                transform: translateX(-100%);
-                transition: transform 0.6s ease;
-                z-index: -1;
-            }
-            .glass-btn-primary:hover::before {
-                transform: translateX(100%);
-            }
-            .refraction-edge {
-                position: relative;
-            }
-            .refraction-top {
-                background: linear-gradient(0deg, transparent, rgba(255, 255, 255, 0.1));
-            }
-            .refraction-bottom {
-                background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.05));
-            }
-            .refraction-left {
-                background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.07));
-            }
-            .refraction-right {
-                background: linear-gradient(270deg, transparent, rgba(255, 255, 255, 0.07));
-            }
-            .mouse-reflector {
-                position: relative;
-                overflow: hidden;
-            }
+            /* 基础液态玻璃：模拟通透+色彩渐变折射 */
+		.glass-effect {
+			background: linear-gradient(135deg, 
+						rgba(255, 255, 255, 0.25), 
+						rgba(240, 240, 240, 0.15), 
+						rgba(220, 220, 220, 0.1));
+			backdrop-filter: blur(16px);          /* 增强模糊，贴近液态朦胧感 */
+			-webkit-backdrop-filter: blur(16px);
+			border: 1px solid rgba(255, 255, 255, 0.1); /* 透明白边框，模拟液态边缘光泽 */
+			box-shadow: 0 8px 12px rgba(0, 0, 0, 0.03), 
+						inset 0 0 8px rgba(255, 255, 255, 0.05); /* 内部内阴影增强体积感 */
+			border-radius: 32px; /* 基础圆角，配合液态形状动态变化 */
+		}
+
+		/* 深色模式液态玻璃：调整暗色调渐变 */
+		.glass-effect-dark {
+			background: linear-gradient(135deg, 
+						rgba(30, 41, 59, 0.3), 
+						rgba(15, 23, 42, 0.4), 
+						rgba(10, 15, 30, 0.5));
+			backdrop-filter: blur(16px);
+			-webkit-backdrop-filter: blur(16px);
+			border: 1px solid rgba(255, 255, 255, 0.03); /* 深色透明边框 */
+			box-shadow: 0 8px 12px rgba(0, 0, 0, 0.08), 
+						inset 0 0 6px rgba(255, 255, 255, 0.02);
+			border-radius: 32px;
+		}
+
+		/* 液态不规则形状：更随机的比例+缓慢流动过渡 */
+		.liquid-shape {
+			border-radius: 32% 68% 45% 55% / 52% 42% 58% 48%;
+			transition: border-radius 3s ease-in-out; /* 形状缓慢变化，模拟液态流动 */
+		}
+
+		/* 另一种液态不规则形状：差异更大的比例 */
+		.liquid-shape-2 {
+			border-radius: 65% 35% 50% 50% / 48% 55% 45% 52%;
+			transition: border-radius 3.5s ease-in-out;
+		}
+
+		/*  hover时液态形状动态变化，增强流动感 */
+		.liquid-shape:hover,
+		.liquid-shape-2:hover {
+			border-radius: 55% 45% 60% 40% / 45% 58% 42% 55%;
+		}
+
+		/* 玻璃按钮：增强交互时的光线流动 */
+		.glass-btn {
+			position: relative;
+			overflow: hidden;
+			transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); /* 柔和过渡曲线 */
+			z-index: 2; /* 提升层级避免遮挡 */
+			border-radius: 24px; /* 圆润圆角 */
+		}
+
+		/* 按钮伪元素：模拟倾斜光线流动（更贴近折射感） */
+		.glass-btn::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: -100%;
+			width: 120%;
+			height: 100%;
+			background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+			transform: skewX(-15deg); /* 倾斜渐变，模拟光线折射角度 */
+			transition: transform 0.6s ease;
+			z-index: -1;
+		}
+
+		/* hover时光线流动更自然 */
+		.glass-btn:hover::before {
+			transform: skewX(-15deg) translateX(100%);
+		}
+
+		/* 主要玻璃按钮：多色渐变模拟液态色彩折射 */
+		.glass-btn-primary {
+			position: relative;
+			overflow: hidden;
+			z-index: 2;
+			border-radius: 24px;
+		}
+
+		/* 主要按钮伪元素：多色渐变增强折射层次 */
+		.glass-btn-primary::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: -100%;
+			width: 120%;
+			height: 100%;
+			background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), rgba(200, 220, 255, 0.15), transparent);
+			transform: skewX(-12deg);
+			transition: transform 0.7s ease;
+			z-index: -1;
+		}
+
+		/* hover时的流动效果 */
+		.glass-btn-primary:hover::before {
+			transform: skewX(-12deg) translateX(100%);
+		}
+
+		/* 折射边缘容器：伪元素模拟边缘光线折射 */
+		.refraction-edge {
+			position: relative;
+		}
+
+		/* 顶部折射渐变（模拟顶部光泽） */
+		.refraction-top::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 15px;
+			background: linear-gradient(0deg, transparent, rgba(255, 255, 255, 0.12), transparent);
+			pointer-events: none;
+		}
+
+		/* 底部折射渐变 */
+		.refraction-bottom::after {
+			content: '';
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			height: 15px;
+			background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.08), transparent);
+			pointer-events: none;
+		}
+
+		/* 左侧折射渐变 */
+		.refraction-left::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 12px;
+			height: 100%;
+			background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+			pointer-events: none;
+		}
+
+		/* 右侧折射渐变 */
+		.refraction-right::after {
+			content: '';
+			position: absolute;
+			top: 0;
+			right: 0;
+			width: 12px;
+			height: 100%;
+			background: linear-gradient(270deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+			pointer-events: none;
+		}
+
+		/* 鼠标反射效果：模拟光线随鼠标移动的反射（需JS配合设置--mouse-x/y变量） */
+		.mouse-reflector {
+			position: relative;
+			overflow: hidden;
+		}
+
+		.mouse-reflector::before {
+			content: '';
+			position: absolute;
+			top: var(--mouse-y, -100px);
+			left: var(--mouse-x, -100px);
+			width: 200px;
+			height: 200px;
+			border-radius: 50%;
+			background: radial-gradient(circle, rgba(255, 255, 255, 0.2), transparent);
+			transform: translate(-50%, -50%);
+			transition: all 0.2s ease;
+			pointer-events: none;
+		}
             /* 菜单按钮统一样式 */
             .menu-button {
                 display: flex;
@@ -596,30 +689,26 @@
                 
                 <!-- 右侧：导航链接和深色模式切换 -->
                 <div class="hidden md:flex items-center gap-4">
-                    <nav class="glass-effect shadow-glass px-2 py-3 hover:shadow-glass-hover transition-all rounded-full mouse-reflector">
+                    <nav class="glass-effect shadow-glass px-2 py-3  transition-all rounded-full mouse-reflector">
                         <div class="mouse-light"></div>
                         <ul class="flex items-center gap-6 sm:gap-8">
                             <li><a href="#about" class="glass-btn px-3 py-1.5 text-gray-600 hover:text-primary text-sm sm:text-base rounded-full mouse-reflector">
                                 <div class="mouse-light"></div>
                                 关于团队
                             </a></li>
+                            <li><a href="#nextious" class="glass-btn px-3 py-1.5 text-gray-600 hover:text-primary text-sm sm:text-base rounded-full mouse-reflector">
+                                <div class="mouse-light"></div>
+                                Nextious
+                            </a></li>
                             <li><a href="#project" class="glass-btn px-3 py-1.5 text-gray-600 hover:text-primary text-sm sm:text-base rounded-full mouse-reflector">
                                 <div class="mouse-light"></div>
-                                Nextious项目
-                            </a></li>
-                            <li><a href="#docs" class="glass-btn px-3 py-1.5 text-gray-600 hover:text-primary text-sm sm:text-base rounded-full mouse-reflector">
-                                <div class="mouse-light"></div>
-                                技术文档
-                            </a></li>
-                            <li><a href="#links" class="glass-btn px-3 py-1.5 text-gray-600 hover:text-primary text-sm sm:text-base rounded-full mouse-reflector">
-                                <div class="mouse-light"></div>
-                                重要链接
+                                已完成的项目
                             </a></li>
                         </ul>
                     </nav>
                     
                     <!-- 深色模式切换按钮 -->
-                    <button class="glass-btn w-10 h-10 flex items-center justify-center text-gray-600 hover:text-primary rounded-full mouse-reflector" id="themeToggle">
+                    <button class="glass-btn w-11 h-11 flex items-center justify-center text-gray-600 hover:text-primary rounded-full mouse-reflector" id="themeToggle">
                         <div class="mouse-light"></div>
                         <i class="fa fa-moon-o text-lg theme-toggle"></i>
                     </button>
@@ -635,6 +724,7 @@
     </header>
 	
     <!-- 英雄区域 -->
+	<!-- 关于团队 -->
 	<section class="pt-0 pb-0 sm:pt-0 sm:pb-4 px-4 sm:px-6 lg:px-8 relative">
         <div class="container mx-auto max-w-4xl text-center relative z-10">
             <div class="glass-effect rounded-2xl p-6 sm:p-8 inline-block mb-10 shadow-glass mouse-reflector">
@@ -645,7 +735,6 @@
         </div>
     </section>
 	
-	<!-- 关于团队 -->
     <section id="about" class="py-1 sm:py-1 bg-neutral relative">
         <div class="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 relative z-10">
             <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-12 sm:mb-16 text-center">关于 <span class="text-primary">TeamPixel</span></h2>
@@ -666,7 +755,7 @@
     </section>
     
     <!-- 项目介绍 -->
-    <section id="project" class="py-16 sm:py-24 relative">
+    <section id="nextious" class="py-16 sm:py-24 relative">
         <div class="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 relative z-10">
             <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-12 sm:mb-16 text-center">我们的项目: <span class="text-primary">Nextious</span></h2>
             
@@ -715,8 +804,12 @@
                     </div>
                 </div>
             </div>
-            
-            <h3 class="text-xl sm:text-2xl font-bold mb-8 text-center">已完成的项目</h3>
+		</div>
+    </section>
+	
+    <section id="project" class="py-16 sm:py-24 relative">
+        <div class="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 relative z-10">
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-12 sm:mb-16 text-center">已完成的项目</h2>
 			
 			<div class="glass-effect rounded-2xl p-6 sm:p-10 shadow-glass max-w-3xl mx-auto mb-12 mouse-reflector">
               <div class="mouse-light"></div>
@@ -863,7 +956,6 @@
             </div>
         </div>
     </section>
-    
     <!-- 页脚 -->
     <footer class="py-12 sm:py-16 glass-effect border-t border-white/10 relative z-10">
         <div class="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
