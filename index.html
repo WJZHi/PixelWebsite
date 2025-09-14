@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TeamPixel - Nextious项目</title>
+    <title>TeamPixel - 官方网站</title>
     <!-- 引入外部资源 -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -46,17 +46,19 @@
                 content-visibility: auto;
             }
             .glass-effect {
-                background: rgba(240, 240, 240, 0.6);
-                backdrop-filter: blur(12px);
-                -webkit-backdrop-filter: blur(12px);
-                border: 1px solid rgba(220, 220, 220, 0.3);
+                background: rgba(240, 240, 240, 0.4);
+                backdrop-filter: blur(12px);          /* 毛玻璃效果 */
+				-webkit-backdrop-filter: blur(12px);  /* Webkit兼容 */
+				border: 1px solid rgba(220, 220, 220, 0.15); /* 边缘更透明（降低alpha值） */
+				box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); /* 可选：轻微阴影增强层次感 */
             }
             .glass-effect-dark {
-                background: rgba(30, 41, 59, 0.8);
-                backdrop-filter: blur(12px);
-                -webkit-backdrop-filter: blur(12px);
-                border: 1px solid rgba(255, 255, 255, 0.1);
-            }
+			  background: rgba(30, 41, 59, 0.4); /* 内部半透明（维持原值或微调） */
+			  backdrop-filter: blur(12px);        /* 毛玻璃效果 */
+			  -webkit-backdrop-filter: blur(12px);/* Webkit兼容 */
+			  border: 1px solid rgba(255, 255, 255, 0.05); /* 边缘更透明（降低alpha值） */
+			  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 可选：轻微阴影增强层次感 */
+			}
             .liquid-shape {
                 border-radius: 28% 72% 55% 45% / 42% 45% 55% 58%;
             }
@@ -533,7 +535,7 @@
 	<!-- 静态背景图片 -->
 	<img 
 	  src="https://cdn.luogu.com.cn/upload/image_hosting/gasv822s.png" 
-	  class="fixed inset-0 z-0 object-cover opacity-20 pointer-events-none" 
+	  class="fixed inset-0 z-0 object-cover w-full h-full opacity-20 pointer-events-none" 
 	  alt="Background decoration"
 	>
     
@@ -594,7 +596,7 @@
                 
                 <!-- 右侧：导航链接和深色模式切换 -->
                 <div class="hidden md:flex items-center gap-4">
-                    <nav class="glass-effect shadow-glass px-8 py-3 hover:shadow-glass-hover transition-all rounded-full mouse-reflector">
+                    <nav class="glass-effect shadow-glass px-2 py-3 hover:shadow-glass-hover transition-all rounded-full mouse-reflector">
                         <div class="mouse-light"></div>
                         <ul class="flex items-center gap-6 sm:gap-8">
                             <li><a href="#about" class="glass-btn px-3 py-1.5 text-gray-600 hover:text-primary text-sm sm:text-base rounded-full mouse-reflector">
@@ -726,7 +728,7 @@
                         </h4>
                         
                         <p class="text-gray-600 mb-6">
-                            网页版的我的世界
+                            我的世界网页版
                         </p>
                         
                         <h5 class="font-medium text-dark mb-3">核心功能：</h5>
@@ -740,8 +742,8 @@
                                 <span>生成生物</span>
                             </li>
                             <li class="flex items-start">
-                                <i class="fa fa-check text-primary mt-1 mr-2"></i>
-                                <span>放置和打破方块</span>
+								<i class="fa fa-exclamation-triangle text-primary mt-1 mr-2" />
+                                <span>游戏加载可能需要等待</span>
                             </li>
                         </ul>
                         
@@ -756,9 +758,9 @@
                     
                     <div class="md:w-1/2">
                         <div class="glass-effect rounded-xl overflow-hidden border border-white/30 h-full flex items-center justify-center min-h-[240px]">
-                            <img src="https://cdn.luogu.com.cn/upload/image_hosting/e5kgjab4.png" alt="围棋软件界面截图" class="w-full h-full object-contain p-4">
+                            <img src="https://cdn.luogu.com.cn/upload/image_hosting/jsnfua5g.png" alt="我的世界网页版截图" class="w-full h-full object-contain p-4">
                         </div>
-                        <p class="text-center text-sm text-gray-500 mt-3">围棋软件界面截图</p>
+                        <p class="text-center text-sm text-gray-500 mt-3">我的世界网页版截图</p>
                     </div>
                 </div>
             </div>
