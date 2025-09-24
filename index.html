@@ -7,6 +7,8 @@
     <!-- 引入外部资源 -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	<!-- Font Awesome 5.0.13 -->
+	<link href="https://cdn.jsdelivr.net/npm/font-awesome@5.0.13/css/all.min.css" rel="stylesheet">
     
     <!-- 配置Tailwind -->
     <script>
@@ -651,20 +653,20 @@
                 <i class="fa fa-users menu-icon text-primary"></i>
                 关于团队
             </a></li>
-            <li><a href="#project" class="mobile-link glass-btn menu-button text-sm rounded-full mouse-reflector">
+            <li><a href="#nextious" class="mobile-link glass-btn menu-button text-sm rounded-full mouse-reflector">
                 <div class="mouse-light"></div>
                 <i class="fa fa-cube menu-icon text-primary"></i>
-                Nextious项目
+                Nextious
             </a></li>
-            <li><a href="#docs" class="mobile-link glass-btn menu-button text-sm rounded-full mouse-reflector">
+            <button class="mobile-link glass-btn menu-button text-sm rounded-full mouse-reflector" id="aiModalTrigger">
+			  <div class="mouse-light"></div>
+			  <i class="fa fa-book menu-icon text-primary"></i>
+			  AI
+			</button>
+			<li><a href="#project" class="mobile-link glass-btn menu-button text-sm rounded-full mouse-reflector">
                 <div class="mouse-light"></div>
                 <i class="fa fa-book menu-icon text-primary"></i>
-                技术文档
-            </a></li>
-            <li><a href="#links" class="mobile-link glass-btn menu-button text-sm rounded-full mouse-reflector">
-                <div class="mouse-light"></div>
-                <i class="fa fa-link menu-icon text-primary"></i>
-                重要链接
+                已完成的项目
             </a></li>
             <!-- 移动端深色模式切换 - 与其他按钮对齐 -->
             <li>
@@ -689,7 +691,7 @@
                 
                 <!-- 右侧：导航链接和深色模式切换 -->
                 <div class="hidden md:flex items-center gap-4">
-                    <nav class="glass-effect shadow-glass px-2 py-3  transition-all rounded-full mouse-reflector">
+                    <nav class="glass-effect shadow-glass px-3 py-2  transition-all rounded-full mouse-reflector">
                         <div class="mouse-light"></div>
                         <ul class="flex items-center gap-6 sm:gap-8">
                             <li><a href="#about" class="glass-btn px-3 py-1.5 text-gray-600 hover:text-primary text-sm sm:text-base rounded-full mouse-reflector">
@@ -700,14 +702,18 @@
                                 <div class="mouse-light"></div>
                                 Nextious
                             </a></li>
+							
+							<button class="glass-btn px-3 py-1.5 text-gray-600 hover:text-primary text-sm sm sm:text-base rounded-full mouse-reflector" id="aiModalTriggerDesktop">
+							  <div class="mouse-light"></div>
+							  AI
+							</button>
                             <li><a href="#project" class="glass-btn px-3 py-1.5 text-gray-600 hover:text-primary text-sm sm:text-base rounded-full mouse-reflector">
                                 <div class="mouse-light"></div>
                                 已完成的项目
                             </a></li>
                         </ul>
                     </nav>
-                    
-                    <!-- 深色模式切换按钮 -->
+                  <!-- 深色模式切换按钮 -->
                     <button class="glass-btn w-11 h-11 flex items-center justify-center text-gray-600 hover:text-primary rounded-full mouse-reflector" id="themeToggle">
                         <div class="mouse-light"></div>
                         <i class="fa fa-moon-o text-lg theme-toggle"></i>
@@ -722,8 +728,43 @@
             </div>
         </div>
     </header>
-	
-    <!-- 英雄区域 -->
+	<!-- AI弹窗 -->
+	<!-- 弹窗容器 -->
+<div id="aiModal" class="fixed inset-0 z-50 flex items-center justify-center hidden">
+		<!-- 背景遮罩 -->
+		<div class="absolute inset-0 bg-black/50 backdrop-blur-sm" id="modalBackdrop"></div>
+
+  <!-- 弹窗内容 -->
+		<div class="relative glass-effect rounded-2xl shadow-glass max-w-3xl w-full mx-4 transform transition-all duration-300 scale-95 opacity-0 mouse-reflector" id="modalContent">
+			<!-- 鼠标光效元素 -->
+			<div class="mouse-light"></div>
+
+			<!-- 弹窗头部 -->
+			<div class="p-6 sm:p-10 border-b border-white/10 flex justify-between items-center">
+				<h3 class="text-lg font-semibold text-white">AI功能介绍</h3>
+			  <button class="glass-btn px-3 py-1.5 text-gray-600 hover:text-primary text-sm sm sm:text-base rounded-full mouse-reflector" id="closeModal">
+			  <div class="mouse-light"></div>
+				  <i class="fa fa-times"></i>
+				</button>
+			</div>
+
+			<!-- 弹窗内容区 -->
+			<div class="p-6 sm:p-10">
+				<p class="text-white/90">AI功能很快将会整合至TeamPixel网页中</p>
+				<p class="mt-3 text-white/80">点击确定或外部区域关闭弹窗。</p>
+			</div>
+
+			<!-- 弹窗底部 -->
+			<div class="text-center pb-6 sm:pb-10">
+				<a href="https://tpixel.qzz.io/AI" target="_blank" class="glass-btn glass-btn-primary inline-flex items-center px-8 py-3.5 text-white font-medium rounded-full mouse-reflector">
+					<div class="mouse-light"></div>
+					访问AI
+				<i class="fa fa-arrow-right ml-2"></i>
+				</a>
+			</div>
+		</div>
+</div>
+<!-- 英雄区域 -->
 	<!-- 关于团队 -->
 	<section class="pt-0 pb-0 sm:pt-0 sm:pb-4 px-4 sm:px-6 lg:px-8 relative">
         <div class="container mx-auto max-w-4xl text-center relative z-10">
@@ -1233,7 +1274,125 @@
                     });
                 }
             });
-            
+			// 获取元素
+			const aiTrigger = document.getElementById('aiModalTrigger');
+			const modal = document.getElementById('aiModal');
+			const modalContent = document.getElementById('modalContent');
+			const closeButton = document.getElementById('closeModal');
+			const confirmButton = document.getElementById('confirmModal');
+			const backdrop = document.getElementById('modalBackdrop');
+
+			// 控制是否同时在新标签页打开链接
+			const openInNewTab = false;
+			
+			// 打开弹窗函数
+			function openModal() {
+				modal.classList.remove('hidden');
+				setTimeout(() => {
+					modalContent.classList.remove('scale-95', 'opacity-0');
+					modalContent.classList.add('scale-100', 'opacity-100');
+				}, 10);
+				document.body.style.overflow = 'hidden';
+
+				// 如果需要同时在新标签页打开链接
+				if (openInNewTab) {
+					window.open(aiTrigger.href, '_blank');
+				}
+			}
+
+			// 关闭弹窗函数
+			function closeModal() {
+				modalContent.classList.remove('scale-100', 'opacity-100');
+				modalContent.classList.add('scale-95', 'opacity-0');
+				setTimeout(() => {
+					modal.classList.add('hidden');
+					document.body.style.overflow = '';
+				}, 150);
+			}
+
+			// 绑定事件
+			aiTrigger.addEventListener('click', function(e) {
+				e.preventDefault(); // 阻止默认链接跳转
+				openModal();
+			});
+
+			// 关闭弹窗的各种方式
+			if (closeButton) closeButton.addEventListener('click', closeModal);
+			if (confirmButton) confirmButton.addEventListener('click', closeModal);
+			if (backdrop) backdrop.addEventListener('click', closeModal);
+
+			// ESC键关闭弹窗
+			document.addEventListener('keydown', (e) => {
+				if (e.key === 'Escape' && modal && !modal.classList.contains('hidden')) {
+					closeModal();
+				}
+			});
+			
+			//DESKTOP
+		// 获取元素（全部带Desktop后缀）
+			const aiTriggerDesktop = document.getElementById('aiModalTriggerDesktop');
+			const modalDesktop = document.getElementById('aiModal');
+			const modalContentDesktop = document.getElementById('modalContent');
+			const closeButtonDesktop = document.getElementById('closeModal');
+			const confirmButtonDesktop = document.getElementById('confirmModal');
+			const backdropDesktop = document.getElementById('modalBackdrop');
+
+			// 控制是否同时在新标签页打开链接（带Desktop后缀）
+			const openInNewTabDesktop = false;
+
+			// 打开弹窗函数（带Desktop后缀）
+			function openModalDesktop() {
+				// 使用带Desktop后缀的变量
+				modalDesktop.classList.remove('hidden');
+				setTimeout(() => {
+					modalContentDesktop.classList.remove('scale-95', 'opacity-0');
+					modalContentDesktop.classList.add('scale-100', 'opacity-100');
+				}, 10);
+				document.body.style.overflow = 'hidden';
+
+				// 使用带Desktop后缀的变量
+				if (openInNewTabDesktop) {
+					window.open(aiTriggerDesktop.href, '_blank');
+				}
+			}
+
+			// 关闭弹窗函数（带Desktop后缀）
+			function closeModalDesktop() {
+				// 使用带Desktop后缀的变量
+				modalContentDesktop.classList.remove('scale-100', 'opacity-100');
+				modalContentDesktop.classList.add('scale-95', 'opacity-0');
+				setTimeout(() => {
+					modalDesktop.classList.add('hidden');
+					document.body.style.overflow = '';
+				}, 150);
+			}
+
+			// 绑定事件（使用带Desktop后缀的变量和函数）
+			 if (aiTriggerDesktop) {
+				aiTriggerDesktop.addEventListener('click', function(e) {
+					e.preventDefault(); // 阻止默认链接跳转
+					openModalDesktop(); // 调用带后缀的打开函数
+				});
+			}
+
+			// 关闭弹窗的各种方式（全部使用带Desktop后缀的变量和函数）
+			if (closeButtonDesktop) {
+				closeButtonDesktop.addEventListener('click', closeModalDesktop);
+			}
+			if (confirmButtonDesktop) {
+				confirmButtonDesktop.addEventListener('click', closeModalDesktop);
+			}
+			if (backdropDesktop) {
+				backdropDesktop.addEventListener('click', closeModalDesktop);
+			}
+
+			// ESC键关闭弹窗（使用带Desktop后缀的变量）
+			document.addEventListener('keydown', (e) => {
+				if (e.key === 'Escape' && modalDesktop && !modalDesktop.classList.contains('hidden')) {
+					closeModalDesktop();
+				}
+			});
+
             // 当主题切换时，确保菜单面板样式正确更新
             document.addEventListener('darkModeToggled', function() {
                 if (mobileMenu && mobileMenu.classList.contains('active')) {

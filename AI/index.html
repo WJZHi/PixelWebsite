@@ -4,39 +4,304 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Embedded Content Viewer with Zoom Control</title>
+    <!-- 引入外部资源 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    
+    <!-- 配置Tailwind -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4a6bdf',
+                        secondary: '#94A3B8',
+                        dark: '#1E293B',
+                        'dark-bg': '#0F172A',
+                        'dark-card': '#1E293B',
+                        'dark-hover': '#334155',
+                    },
+                    fontFamily: {
+                        sans: ['Segoe UI', 'Tahoma', 'Geneva', 'Verdana', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'glass': '0 8px 32px rgba(0, 0, 0, 0.08)',
+                        'glass-hover': '0 12px 40px rgba(0, 0, 0, 0.12)',
+                        'glass-btn': '0 4px 15px rgba(0, 0, 0, 0.05)',
+                        'glass-btn-hover': '0 8px 25px rgba(0, 0, 0, 0.1)',
+                        'glass-primary': '0 4px 20px rgba(74, 107, 223, 0.3)',
+                        'dark-glass': '0 8px 32px rgba(0, 0, 0, 0.4)',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- 自定义工具类 -->
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            /* 液态玻璃效果基础样式 */
+            .glass-effect {
+                background: linear-gradient(135deg, 
+                            rgba(255, 255, 255, 0.25), 
+                            rgba(240, 240, 240, 0.15), 
+                            rgba(220, 220, 220, 0.1));
+                backdrop-filter: blur(16px);
+                -webkit-backdrop-filter: blur(16px);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                box-shadow: 0 8px 12px rgba(0, 0, 0, 0.03), 
+                            inset 0 0 8px rgba(255, 255, 255, 0.05);
+                border-radius: 32px;
+            }
+
+            /* 深色模式液态玻璃 */
+            .glass-effect-dark {
+                background: linear-gradient(135deg, 
+                            rgba(30, 41, 59, 0.3), 
+                            rgba(15, 23, 42, 0.4), 
+                            rgba(10, 15, 30, 0.5));
+                backdrop-filter: blur(16px);
+                -webkit-backdrop-filter: blur(16px);
+                border: 1px solid rgba(255, 255, 255, 0.03);
+                box-shadow: 0 8px 12px rgba(0, 0, 0, 0.08), 
+                            inset 0 0 6px rgba(255, 255, 255, 0.02);
+                border-radius: 32px;
+            }
+
+            /* 液态不规则形状 */
+            .liquid-shape {
+                border-radius: 32% 68% 45% 55% / 52% 42% 58% 48%;
+                transition: border-radius 3s ease-in-out;
+            }
+
+            .liquid-shape:hover {
+                border-radius: 55% 45% 60% 40% / 45% 58% 42% 55%;
+            }
+
+            /* 玻璃按钮样式 */
+            .glass-btn {
+                position: relative;
+                overflow: hidden;
+                transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+                z-index: 2;
+                border-radius: 24px;
+            }
+
+            .glass-btn::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 120%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+                transform: skewX(-15deg);
+                transition: transform 0.6s ease;
+                z-index: -1;
+            }
+
+            .glass-btn:hover::before {
+                transform: skewX(-15deg) translateX(100%);
+            }
+
+            /* 主要玻璃按钮 */
+            .glass-btn-primary {
+                position: relative;
+                overflow: hidden;
+                z-index: 2;
+                border-radius: 24px;
+            }
+
+            .glass-btn-primary::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 120%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), rgba(200, 220, 255, 0.15), transparent);
+                transform: skewX(-12deg);
+                transition: transform 0.7s ease;
+                z-index: -1;
+            }
+
+            .glass-btn-primary:hover::before {
+                transform: skewX(-12deg) translateX(100%);
+            }
+
+            /* 鼠标反射效果 */
+            .mouse-reflector {
+                position: relative;
+                overflow: hidden;
+            }
+
+            .mouse-reflector::before {
+                content: '';
+                position: absolute;
+                top: var(--mouse-y, -100px);
+                left: var(--mouse-x, -100px);
+                width: 200px;
+                height: 200px;
+                border-radius: 50%;
+                background: radial-gradient(circle, rgba(255, 255, 255, 0.2), transparent);
+                transform: translate(-50%, -50%);
+                transition: all 0.2s ease;
+                pointer-events: none;
+            }
+        }
+    </style>
+    
     <style>
+        /* 基础样式 */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            overflow-x: hidden;
+            transition: background-color 0.4s ease, color 0.4s ease;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
             padding: 20px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             color: #333;
+			padding-top: 150px;
         }
         
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* 深色模式样式 */
+        body.dark-mode {
+            background: #0F172A;
+            color: #E2E8F0;
+        }
+        
+        body.dark-mode .text-gray-600 {
+            color: #94A3B8 !important;
+        }
+        
+        body.dark-mode .text-gray-500 {
+            color: #94A3B8 !important;
+        }
+        
+        body.dark-mode .text-dark {
+            color: #F8FAFC !important;
+        }
+        
+        /* 动画效果 */
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .pulse-dot {
+            animation: pulse-dot 2.5s infinite;
+        }
+        
+        /* 玻璃按钮基础样式 */
+        .glass-btn {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .glass-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.8);
+        }
+        
+        .glass-btn-primary {
+            background: rgba(74, 107, 223, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 20px rgba(74, 107, 223, 0.3);
+            transition: all 0.3s ease;
+            color: white;
+        }
+        
+        .glass-btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(74, 107, 223, 0.4);
+            background: rgba(74, 107, 223, 0.9);
+        }
+        
+        /* 深色模式下的按钮样式 */
+        body.dark-mode .glass-btn {
+            background: rgba(30, 41, 59, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            color: #F8FAFC;
+        }
+        
+        body.dark-mode .glass-btn:hover {
+            background: rgba(51, 65, 85, 0.9);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+            color: #FFFFFF;
+        }
+        
+        body.dark-mode .glass-btn::before {
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        body.dark-mode .glass-btn-primary {
+            background: rgba(74, 107, 223, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 4px 20px rgba(74, 107, 223, 0.25);
+        }
+        
+        body.dark-mode .glass-btn-primary:hover {
+            background: rgba(74, 107, 223, 0.9);
+            box-shadow: 0 8px 30px rgba(74, 107, 223, 0.35);
+        }
+        
+        /* 深色模式下的玻璃效果卡片 */
+        body.dark-mode .glass-effect {
+            background: rgba(30, 41, 59, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* 深色模式下的链接颜色 */
+        body.dark-mode a {
+            color: #93C5FD;
+        }
+        
+        body.dark-mode a:hover {
+            color: #BFDBFE;
+        }
+        
+        /* 主题切换平滑过渡 */
+        .glass-effect, .glass-btn, .glass-btn-primary, 
+        img, a, .border-t {
+            transition: all 0.4s ease;
+        }
+        
+        /* 页面组件样式 */
         .container {
             width: 100%;
             max-width: 1200px;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            margin-top: 30px;
+            margin: 30px auto 0;
+            position: relative;
+            z-index: 10;
         }
         
         header {
-            background: #4a6bdf;
             color: white;
             padding: 25px;
             text-align: center;
+            margin-bottom: 20px;
         }
         
         h1 {
@@ -53,7 +318,7 @@
         
         .search-section {
             padding: 30px;
-            border-bottom: 1px solid #eaeaea;
+            margin-bottom: 20px;
         }
         
         .input-group {
@@ -66,10 +331,18 @@
             flex: 1;
             padding: 15px 20px;
             font-size: 1.1rem;
-            border: 2px solid #ddd;
-            border-radius: 8px 0 0 8px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px 0 0 12px;
             outline: none;
             transition: border-color 0.3s;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(8px);
+        }
+        
+        body.dark-mode #search-input {
+            background: rgba(30, 41, 59, 0.7);
+            border-color: rgba(255, 255, 255, 0.1);
+            color: white;
         }
         
         #search-input:focus {
@@ -77,19 +350,12 @@
         }
         
         #search-btn {
-            background: #4a6bdf;
-            color: white;
-            border: none;
             padding: 0 25px;
             font-size: 1.1rem;
             font-weight: 600;
-            border-radius: 0 8px 8px 0;
+            border-radius: 0 12px 12px 0;
             cursor: pointer;
-            transition: background 0.3s;
-        }
-        
-        #search-btn:hover {
-            background: #3a5bc7;
+            border: none;
         }
         
         .controls {
@@ -103,14 +369,11 @@
         .zoom-controls {
             display: flex;
             align-items: center;
-            background: #f0f4ff;
             padding: 10px 15px;
             border-radius: 8px;
         }
         
         .zoom-btn {
-            background: #4a6bdf;
-            color: white;
             width: 36px;
             height: 36px;
             border: none;
@@ -130,18 +393,11 @@
         }
         
         .reset-btn {
-            background: #6c757d;
-            color: white;
-            border: none;
             padding: 10px 15px;
             border-radius: 8px;
             cursor: pointer;
             font-weight: 600;
-            transition: background 0.3s;
-        }
-        
-        .reset-btn:hover {
-            background: #5a6268;
+            border: none;
         }
         
         .results-section {
@@ -155,9 +411,15 @@
             width: 100%;
             height: 100%;
             overflow: auto;
-            border: 1px solid #eaeaea;
+            border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 8px;
-            background: #f9fafc;
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(8px);
+        }
+        
+        body.dark-mode .iframe-container {
+            background: rgba(30, 41, 59, 0.5);
+            border-color: rgba(255, 255, 255, 0.1);
         }
         
         #results-frame {
@@ -178,15 +440,21 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            background: #f9fafc;
-            color: #6b7280;
             border-radius: 8px;
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(8px);
+            color: #6b7280;
+        }
+        
+        body.dark-mode .placeholder {
+            background: rgba(30, 41, 59, 0.5);
+            color: #94A3B8;
         }
         
         .placeholder i {
             font-size: 4rem;
             margin-bottom: 20px;
-            color: #c3cfe2;
+            color: #4a6bdf;
         }
         
         .placeholder p {
@@ -197,12 +465,15 @@
         }
         
         .info-box {
-            background: #f8f9fa;
-            border-left: 4px solid #4a6bdf;
             padding: 15px;
             margin: 20px auto 0;
             max-width: 700px;
-            border-radius: 4px;
+            border-radius: 8px;
+            border-left: 4px solid #4a6bdf;
+        }
+        
+        body.dark-mode .info-box {
+            border-left-color: #60a5fa;
         }
         
         .info-box h3 {
@@ -227,6 +498,10 @@
             margin-top: 20px;
         }
         
+        body.dark-mode footer {
+            color: #94A3B8;
+        }
+        
         .loading {
             display: none;
             text-align: center;
@@ -236,16 +511,53 @@
         .loading-spinner {
             width: 40px;
             height: 40px;
-            border: 4px solid #f3f3f3;
+            border: 4px solid rgba(255, 255, 255, 0.3);
             border-top: 4px solid #4a6bdf;
             border-radius: 50%;
             animation: spin 1s linear infinite;
             margin: 0 auto 15px;
         }
         
+        body.dark-mode .loading-spinner {
+            border-color: rgba(255, 255, 255, 0.1);
+            border-top-color: #60a5fa;
+        }
+        
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
+        }
+        
+        /* 深色模式切换按钮 */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+        
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+        
+        /* 背景装饰 */
+        .bg-decoration {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.15;
+            pointer-events: none;
         }
         
         @media (max-width: 768px) {
@@ -274,55 +586,101 @@
     </style>
 </head>
 <body>
+    <img 
+        src="https://cdn.luogu.com.cn/upload/image_hosting/gasv822s.png" 
+        class="fixed inset-0 z-0 object-cover w-full h-full opacity-20 pointer-events-none" 
+        alt="Background decoration"
+    >
+	<!-- 导航栏 -->
+    <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center">
+                <!-- 左侧：Logo + 团队名 -->
+                <div class="flex items-center gap-2">
+                    <img src="https://cdn.luogu.com.cn/upload/image_hosting/vy6i8dsm.png" alt="TeamPixel团队标志" class="w-8 h-8 sm:w-10 sm:h-10 rounded object-cover transition-all duration-300" id="logo">
+                    <span class="font-semibold text-lg sm:text-xl transition-all duration-300" id="team-name">
+                        <a href="index.html">TeamPixel</a>
+                    </span>
+                </div>
+                
+                <!-- 右侧：导航链接和深色模式切换 -->
+                <div class="hidden md:flex items-center gap-4">
+                    <nav class="glass-effect shadow-glass px-2 py-3 hover:shadow-glass-hover transition-all rounded-full mouse-reflector">
+                        <div class="mouse-light"></div>
+                        <ul class="flex items-center gap-6 sm:gap-8">
+                            <li><a href="https://tpixel.qzz.io/" class="glass-btn px-3 py-1.5 text-gray-600 hover:text-primary text-sm sm:text-base rounded-full mouse-reflector">
+                                <div class="mouse-light"></div>
+								<i class="fa fa-arrow-left ml-2"></i>
+                                返回主页								
+                            </a></li>
+                        </ul>
+                    </nav>
+                    
+                    <!-- 深色模式切换按钮 -->
+                    <button class="glass-btn w-10 h-10 flex items-center justify-center text-gray-600 hover:text-primary rounded-full mouse-reflector" id="themeToggle">
+                        <div class="mouse-light"></div>
+                        <i class="fa fa-moon-o text-lg theme-toggle"></i>
+                    </button>
+                </div>
+                
+                <!-- 移动端菜单按钮 -->
+                <button class="md:hidden glass-btn w-10 h-10 flex items-center justify-center text-gray-600 hover:text-primary focus:outline-none rounded-full transition-all duration-300 mouse-reflector" id="openMenu">
+                    <div class="mouse-light"></div>
+                    <i class="fa fa-bars text-lg"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+  
     <div class="container">
-        <header>
-            <h1>Embedded Content Viewer</h1>
-            <p class="description">Search and view web content directly within this page with zoom controls</p>
+        <header class="glass-effect shadow-glass mouse-reflector">
+            <h1>嵌入式内容查看器</h1>
+            <p class="description">通过缩放控制，直接在此页面内搜索和查看网页内容</p>
         </header>
         
-        <section class="search-section">
+        <section class="search-section glass-effect shadow-glass mouse-reflector">
             <div class="input-group">
-                <input type="text" id="search-input" placeholder="Enter your search term...">
-                <button id="search-btn">Search</button>
+                <input type="text" id="search-input" placeholder="输入您的搜索词...">
+                <button id="search-btn" class="glass-btn-primary">搜索</button>
             </div>
             
             <div class="controls">
-                <div class="zoom-controls">
-                    <button class="zoom-btn" id="zoom-out">-</button>
+                <div class="zoom-controls glass-effect">
+                    <button class="zoom-btn glass-btn" id="zoom-out">-</button>
                     <span class="zoom-value" id="zoom-value">100%</span>
-                    <button class="zoom-btn" id="zoom-in">+</button>
+                    <button class="zoom-btn glass-btn" id="zoom-in">+</button>
                 </div>
-                <button class="reset-btn" id="reset-btn">Reset Zoom</button>
+                <button class="reset-btn glass-btn" id="reset-btn">重置缩放</button>
             </div>
             
-            <div class="info-box">
-                <h3>Why does embedded content sometimes appear zoomed incorrectly?</h3>
+            <div class="info-box glass-effect">
+                <h3>为什么嵌入的内容有时会出现错误的缩放情况？</h3>
                 <ul>
-                    <li>Websites may have responsive design that behaves differently in iframes</li>
-                    <li>Some sites detect mobile devices and adjust layout accordingly</li>
-                    <li>The embedded site might have fixed viewport settings</li>
-                    <li>Use the zoom controls above to adjust the display</li>
+                    <li>网站可能采用响应式设计，这种设计在iframe中表现会有所不同。</li>
+                    <li>一些网站会检测移动设备并相应地调整布局</li>
+                    <li>嵌入的网站可能有固定的视口设置</li>
+                    <li>使用上方的缩放控制来调整显示</li>
                 </ul>
             </div>
         </section>
         
         <div class="loading">
             <div class="loading-spinner"></div>
-            <p>Loading results, please wait...</p>
+            <p>加载结果中，请稍候...</p>
         </div>
         
-        <section class="results-section">
+        <section class="results-section glass-effect shadow-glass mouse-reflector">
             <div class="placeholder">
-                <i>🔍</i>
-                <p>Your search results will appear here after you enter a term and click Search</p>
+                <i class="fa fa-search"></i>
+                <p>输入术语并点击“搜索”后，您的搜索结果将显示在这里</p>
             </div>
             <div class="iframe-container">
                 <iframe id="results-frame" style="display: none;"></iframe>
             </div>
         </section>
         
-        <footer>
-            <p>© 2023 Embedded Content Viewer | Powered by Baidu Chat</p>
+        <footer class="glass-effect shadow-glass py-4 px-6 mt-20 mouse-reflector">
+            <p>© 2025 TeamPixel | Powered by Baidu Chat</p>
         </footer>
     </div>
 
@@ -337,13 +695,48 @@
             const zoomOutBtn = document.getElementById('zoom-out');
             const resetBtn = document.getElementById('reset-btn');
             const zoomValue = document.getElementById('zoom-value');
+            const themeToggle = document.getElementById('themeToggle');
+            const themeIcon = themeToggle.querySelector('i');
             
             let currentZoom = 1;
             
-            // Focus on input when page loads
+            // 初始化深色模式
+            if (localStorage.getItem('darkMode') === 'true' || 
+                (window.matchMedia('(prefers-color-scheme: dark)').matches && !localStorage.getItem('darkMode'))) {
+                document.body.classList.add('dark-mode');
+                themeIcon.classList.remove('fa-moon-o');
+                themeIcon.classList.add('fa-sun-o');
+            }
+            
+            // 鼠标反射效果
+            document.querySelectorAll('.mouse-reflector').forEach(el => {
+                el.addEventListener('mousemove', e => {
+                    const rect = el.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    el.style.setProperty('--mouse-x', `${x}px`);
+                    el.style.setProperty('--mouse-y', `${y}px`);
+                });
+            });
+            
+            // 深色模式切换
+            themeToggle.addEventListener('click', () => {
+                document.body.classList.toggle('dark-mode');
+                if (document.body.classList.contains('dark-mode')) {
+                    themeIcon.classList.remove('fa-moon-o');
+                    themeIcon.classList.add('fa-sun-o');
+                    localStorage.setItem('darkMode', 'true');
+                } else {
+                    themeIcon.classList.remove('fa-sun-o');
+                    themeIcon.classList.add('fa-moon-o');
+                    localStorage.setItem('darkMode', 'false');
+                }
+            });
+            
+            // 聚焦输入框
             searchInput.focus();
             
-            // Function to update zoom
+            // 更新缩放
             function updateZoom() {
                 resultsFrame.style.transform = `scale(${currentZoom})`;
                 resultsFrame.style.width = `${100 / currentZoom}%`;
@@ -351,7 +744,7 @@
                 zoomValue.textContent = `${Math.round(currentZoom * 100)}%`;
             }
             
-            // Zoom in function
+            // 放大
             zoomInBtn.addEventListener('click', function() {
                 if (currentZoom < 2) {
                     currentZoom += 0.1;
@@ -359,7 +752,7 @@
                 }
             });
             
-            // Zoom out function
+            // 缩小
             zoomOutBtn.addEventListener('click', function() {
                 if (currentZoom > 0.5) {
                     currentZoom -= 0.1;
@@ -367,13 +760,13 @@
                 }
             });
             
-            // Reset zoom function
+            // 重置缩放
             resetBtn.addEventListener('click', function() {
                 currentZoom = 1;
                 updateZoom();
             });
             
-            // Function to perform search
+            // 执行搜索
             function performSearch() {
                 const searchTerm = searchInput.value.trim();
                 
@@ -382,33 +775,33 @@
                     return;
                 }
                 
-                // Show loading indicator
+                // 显示加载状态
                 placeholder.style.display = 'none';
                 loading.style.display = 'block';
                 resultsFrame.style.display = 'none';
                 
-                // Encode the search term for URL
+                // 编码搜索词
                 const encodedTerm = encodeURIComponent(searchTerm);
                 
-                // Construct the URL
+                // 构建URL
                 const url = `https://chat.baidu.com/search?word=${encodedTerm}`;
                 
-                // Set iframe source after a short delay to show loading animation
+                // 延迟加载以显示动画
                 setTimeout(() => {
                     resultsFrame.src = url;
                     resultsFrame.style.display = 'block';
                     loading.style.display = 'none';
                     
-                    // Reset zoom to default when new content loads
+                    // 重置缩放
                     currentZoom = 1;
                     updateZoom();
                 }, 1000);
             }
             
-            // Event listener for search button
+            // 搜索按钮事件
             searchBtn.addEventListener('click', performSearch);
             
-            // Event listener for Enter key in input field
+            // 回车搜索
             searchInput.addEventListener('keypress', function(e) {
                 if (e.key === 'Enter') {
                     performSearch();
