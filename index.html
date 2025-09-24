@@ -47,7 +47,6 @@
             }
             /* 基础液态玻璃：模拟通透+色彩渐变折射 */
 		.glass-effect {
-		
 			background: linear-gradient(135deg, 
 						rgba(255, 255, 255, 0.25), 
 						rgba(240, 240, 240, 0.15), 
@@ -55,7 +54,8 @@
 			backdrop-filter: blur(16px);          /* 增强模糊，贴近液态朦胧感 */
 			-webkit-backdrop-filter: blur(16px);
 			border: 1px solid rgba(255, 255, 255, 0.1); /* 透明白边框，模拟液态边缘光泽 */
-			box-shadow: 0 8px 12px rgba(0, 0, 0, 0.03) ; /* 内部内阴影增强体积感 */
+			box-shadow: 0 8px 12px rgba(0, 0, 0, 0.03), 
+						inset 0 0 8px rgba(255, 255, 255, 0.05); /* 内部内阴影增强体积感 */
 			border-radius: 32px; /* 基础圆角，配合液态形状动态变化 */
 		}
 
@@ -199,6 +199,25 @@
 			pointer-events: none;
 		}
 
+		/* 鼠标反射效果：模拟光线随鼠标移动的反射（需JS配合设置--mouse-x/y变量） */
+		.mouse-reflector {
+			position: relative;
+			overflow: hidden;
+		}
+
+		.mouse-reflector::before {
+			content: '';
+			position: absolute;
+			top: var(--mouse-y, -100px);
+			left: var(--mouse-x, -100px);
+			width: 200px;
+			height: 200px;
+			border-radius: 50%;
+			background: radial-gradient(circle, rgba(255, 255, 255, 0.2), transparent);
+			transform: translate(-50%, -50%);
+			transition: all 0.2s ease;
+			pointer-events: none;
+		}
             /* 菜单按钮统一样式 */
             .menu-button {
                 display: flex;
@@ -483,6 +502,8 @@
         }
         
         .glass-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
             background: rgba(255, 255, 255, 0.8);
         }
         
@@ -491,11 +512,13 @@
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3);
             transition: all 0.3s ease;
         }
         
         .glass-btn-primary:hover {
             transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(59, 130, 246, 0.4);
             background: rgba(59, 130, 246, 0.9);
         }
         
@@ -503,11 +526,13 @@
         body.dark-mode .glass-btn {
             background: rgba(30, 41, 59, 0.8);
             border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
             color: #F8FAFC;
         }
         
         body.dark-mode .glass-btn:hover {
             background: rgba(51, 65, 85, 0.9);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
             color: #FFFFFF;
         }
         
@@ -556,6 +581,36 @@
             transition: all 0.4s ease;
         }
         
+        /* 鼠标悬停反光效果 */
+        .mouse-light {
+            position: absolute;
+            pointer-events: none;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle, 
+                rgba(255, 255, 255, 0.3) 0%, 
+                rgba(255, 255, 255, 0.05) 70%, 
+                rgba(255, 255, 255, 0) 100%);
+            opacity: 0;
+            transition: opacity 0.2s ease;
+            z-index: 50;
+        }
+        
+        /* 深色模式下的鼠标反光调整 */
+        body.dark-mode .mouse-light {
+            background: radial-gradient(circle, 
+                rgba(255, 255, 255, 0.2) 0%, 
+                rgba(255, 255, 255, 0.03) 70%, 
+                rgba(255, 255, 255, 0) 100%);
+        }
+        
+        /* 当鼠标在元素上时显示反光 */
+        .mouse-reflector:hover .mouse-light {
+            opacity: 1;
+        }
+        
         /* 菜单内文本在深色模式下的颜色 */
         body.dark-mode .mobile-menu a,
         body.dark-mode .mobile-menu span {
@@ -581,7 +636,7 @@
     <div class="menu-overlay" id="menuOverlay"></div>
     
     <!-- 移动端菜单 - 紧凑设计 -->
-    <div class="mobile-menu shadow-glass refraction-edge" id="mobileMenu">
+    <div class="mobile-menu shadow-glass refraction-edge mouse-reflector" id="mobileMenu">
         <!-- 鼠标反光效果元素 -->
         <div class="mouse-light"></div>
         
@@ -591,25 +646,30 @@
         
         <!-- 统一对齐的菜单按钮布局 -->
         <ul class="pt-1 pb-1 space-y-2 relative z-10">
-            <li><a href="#about" class="mobile-link glass-btn menu-button text-sm rounded-full">
+            <li><a href="#about" class="mobile-link glass-btn menu-button text-sm rounded-full mouse-reflector">
+                <div class="mouse-light"></div>
                 <i class="fa fa-users menu-icon text-primary"></i>
                 关于团队
             </a></li>
-            <li><a href="#project" class="mobile-link glass-btn menu-button text-sm rounded-full">
+            <li><a href="#project" class="mobile-link glass-btn menu-button text-sm rounded-full mouse-reflector">
+                <div class="mouse-light"></div>
                 <i class="fa fa-cube menu-icon text-primary"></i>
                 Nextious项目
             </a></li>
-            <li><a href="#docs" class="mobile-link glass-btn menu-button text-sm rounded-full">
+            <li><a href="#docs" class="mobile-link glass-btn menu-button text-sm rounded-full mouse-reflector">
+                <div class="mouse-light"></div>
                 <i class="fa fa-book menu-icon text-primary"></i>
                 技术文档
             </a></li>
-            <li><a href="#links" class="mobile-link glass-btn menu-button text-sm rounded-full">
+            <li><a href="#links" class="mobile-link glass-btn menu-button text-sm rounded-full mouse-reflector">
+                <div class="mouse-light"></div>
                 <i class="fa fa-link menu-icon text-primary"></i>
                 重要链接
             </a></li>
             <!-- 移动端深色模式切换 - 与其他按钮对齐 -->
             <li>
-                <button id="mobileThemeToggle" class="glass-btn menu-button text-sm rounded-full">
+                <button id="mobileThemeToggle" class="glass-btn menu-button text-sm rounded-full mouse-reflector">
+                    <div class="mouse-light"></div>
                     <i class="fa fa-moon-o menu-icon text-primary theme-toggle"></i>
                     <span id="mobileThemeText">浅色模式</span>
                 </button>
@@ -629,34 +689,34 @@
                 
                 <!-- 右侧：导航链接和深色模式切换 -->
                 <div class="hidden md:flex items-center gap-4">
-					<nav class="glass-effect shadow-glass px-2 py-3 transition-all rounded-full">
-						<ul class="flex items-center gap-6 sm:gap-8">
-							<li>
-								<a href="#about" class="glass-btn px-3 py-1.5 text-gray-600 hover:text-primary text-sm sm:text-base rounded-full">
-									关于团队
-								</a>
-							</li>
-							<li>
-								<a href="#nextious" class="glass-btn px-3 py-1.5 text-gray-600 hover:text-primary text-sm sm:text-base rounded-full">
-									Nextious
-								</a>
-							</li>
-							<li>
-								<a href="#project" class="glass-btn px-3 py-1.5 text-gray-600 hover:text-primary text-sm sm:text-base rounded-full">
-									已完成的项目
-								</a>
-							</li>
-						</ul>
-					</nav>
-					<!-- 深色模式切换按钮（移出 nav，独立存在） -->
-					<button class="glass-btn w-11 h-11 flex items-center justify-center text-gray-600 hover:text-primary rounded-full" 
-							id="themeToggle" aria-label="Toggle dark mode">
-						<i class="fa fa-moon-o text-lg theme-toggle"></i>
-					</button>
-				</div>
+                    <nav class="glass-effect shadow-glass px-2 py-3  transition-all rounded-full mouse-reflector">
+                        <div class="mouse-light"></div>
+                        <ul class="flex items-center gap-6 sm:gap-8">
+                            <li><a href="#about" class="glass-btn px-3 py-1.5 text-gray-600 hover:text-primary text-sm sm:text-base rounded-full mouse-reflector">
+                                <div class="mouse-light"></div>
+                                关于团队
+                            </a></li>
+                            <li><a href="#nextious" class="glass-btn px-3 py-1.5 text-gray-600 hover:text-primary text-sm sm:text-base rounded-full mouse-reflector">
+                                <div class="mouse-light"></div>
+                                Nextious
+                            </a></li>
+                            <li><a href="#project" class="glass-btn px-3 py-1.5 text-gray-600 hover:text-primary text-sm sm:text-base rounded-full mouse-reflector">
+                                <div class="mouse-light"></div>
+                                已完成的项目
+                            </a></li>
+                        </ul>
+                    </nav>
+                    
+                    <!-- 深色模式切换按钮 -->
+                    <button class="glass-btn w-11 h-11 flex items-center justify-center text-gray-600 hover:text-primary rounded-full mouse-reflector" id="themeToggle">
+                        <div class="mouse-light"></div>
+                        <i class="fa fa-moon-o text-lg theme-toggle"></i>
+                    </button>
+                </div>
                 
                 <!-- 移动端菜单按钮 -->
-                <button class="md:hidden glass-btn w-10 h-10 flex items-center justify-center text-gray-600 hover:text-primary focus:outline-none rounded-full transition-all duration-300" id="openMenu">
+                <button class="md:hidden glass-btn w-10 h-10 flex items-center justify-center text-gray-600 hover:text-primary focus:outline-none rounded-full transition-all duration-300 mouse-reflector" id="openMenu">
+                    <div class="mouse-light"></div>
                     <i class="fa fa-bars text-lg"></i>
                 </button>
             </div>
@@ -667,7 +727,7 @@
 	<!-- 关于团队 -->
 	<section class="pt-0 pb-0 sm:pt-0 sm:pb-4 px-4 sm:px-6 lg:px-8 relative">
         <div class="container mx-auto max-w-4xl text-center relative z-10">
-            <div class="glass-effect rounded-2xl p-6 sm:p-8 inline-block mb-10 shadow-glass">
+            <div class="glass-effect rounded-2xl p-6 sm:p-8 inline-block mb-10 shadow-glass mouse-reflector">
                 <div class="mouse-light"></div>
                 <img src="https://cdn.luogu.com.cn/upload/image_hosting/vy6i8dsm.png" alt="TeamPixel团队标志" class="w-20 h-20 sm:w-24 sm:h-24 rounded object-cover mx-auto mb-4">
                 <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight">TeamPixel</h1>
@@ -679,7 +739,7 @@
         <div class="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 relative z-10">
             <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-12 sm:mb-16 text-center">关于 <span class="text-primary">TeamPixel</span></h2>
             
-            <div class="glass-effect rounded-2xl p-6 sm:p-10 shadow-glass max-w-3xl mx-auto">
+            <div class="glass-effect rounded-2xl p-6 sm:p-10 shadow-glass max-w-3xl mx-auto mouse-reflector">
                 <div class="mouse-light"></div>
                 
                 <div class="text-gray-600 text-base sm:text-lg leading-relaxed">
@@ -696,16 +756,10 @@
     
     <!-- 项目介绍 -->
     <section id="nextious" class="py-16 sm:py-24 relative">
-        <div class="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 relative z-10">
             <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-12 sm:mb-16 text-center">我们的项目: <span class="text-primary">Nextious</span></h2>
-            
-<<<<<<< HEAD
-            <div class="glass-effect rounded-xl p-6 sm:p-8 max-w-3xl mx-auto text-gray-600 text-base sm:text-lg mb-12 leading-relaxed shadow-glass">
-              <div class="mouse-light"></div>
-=======
+            <div class="mouse-light"></div>
             <div class="glass-effect rounded-xl p-6 sm:p-8 max-w-3xl mx-auto text-gray-600 text-base sm:text-lg mb-12 leading-relaxed shadow-glass mouse-reflector">
                 <div class="mouse-light"></div>
->>>>>>> parent of b5f5555 (Update index.html)
                 <h3 class="text-xl sm:text-2xl font-semibold mb-4 text-dark text-center">项目名称释义</h3>
                 <p class="mb-3 text-center">这个名字来源于拉丁语单词</p>
                 <p class="text-xl sm:text-2xl font-medium text-dark my-3 text-center"><span class="italic">Nexus</span> (意为连接)</p>
@@ -713,8 +767,7 @@
                 <p class="text-xl sm:text-2xl font-medium text-dark my-3 text-center"><span class="italic">Nuntius</span> (意为信使,信息)</p>
                 <p class="text-center mt-4">体现了项目在信息传递与连接方面的核心价值</p>
             </div>
-            
-            <div class="glass-effect rounded-2xl p-6 sm:p-10 shadow-glass max-w-3xl mx-auto mb-16">
+		<div class="glass-effect rounded-xl p-6 sm:p-8 max-w-3xl mx-auto text-gray-600 text-base sm:text-lg mb-12 leading-relaxed shadow-glass mouse-reflector">
                 <div class="mouse-light"></div>
                 <div class="text-gray-600 text-base sm:text-lg leading-relaxed">
                     <p class="mb-6">
@@ -722,33 +775,32 @@
                     </p>
                     
                     <div class="flex flex-wrap gap-3 sm:gap-4 justify-center mb-8">
-                        <span class="glass-btn px-4 py-2.5 text-gray-700 text-sm sm:text-base rounded-full">
+                        <span class="glass-btn px-4 py-2.5 text-gray-700 text-sm sm:text-base rounded-full mouse-reflector">
                             <div class="mouse-light"></div>
                             <i class="fa fa-code mr-2 text-primary"></i>C++ 开发
                         </span>
-                        <span class="glass-btn px-4 py-2.5 text-gray-700 text-sm sm:text-base rounded-full">
+                        <span class="glass-btn px-4 py-2.5 text-gray-700 text-sm sm:text-base rounded-full mouse-reflector">
                             <div class="mouse-light"></div>
                             <i class="fa fa-exchange mr-2 text-primary"></i>网络传输
                         </span>
-                        <span class="glass-btn px-4 py-2.5 text-gray-700 text-sm sm:text-base rounded-full">
+                        <span class="glass-btn px-4 py-2.5 text-gray-700 text-sm sm:text-base rounded-full mouse-reflector">
                             <div class="mouse-light"></div>
                             <i class="fa fa-file-text mr-2 text-primary"></i>文件共享
                         </span>
-                        <span class="glass-btn px-4 py-2.5 text-gray-700 text-sm sm:text-base rounded-full">
+                        <span class="glass-btn px-4 py-2.5 text-gray-700 text-sm sm:text-base rounded-full mouse-reflector">
                             <div class="mouse-light"></div>
                             <i class="fa fa-wifi mr-2 text-primary"></i>局域网
                         </span>
                     </div>
                     
                     <div class="text-center">
-                        <a href="https://tpixel.qzz.io/nextious" target="_blank" class="glass-btn glass-btn-primary inline-flex items-center px-8 py-3.5 text-white font-medium rounded-full">
+                        <a href="https://tpixel.qzz.io/nextious" target="_blank" class="glass-btn glass-btn-primary inline-flex items-center px-8 py-3.5 text-white font-medium rounded-full mouse-reflector">
                             <div class="mouse-light"></div>
                             详细了解
 							<i class="fa fa-arrow-right ml-2"></i>
                         </a>
                     </div>
-                </div>
-            </div>
+				</div>
 		</div>
     </section>
 	
@@ -756,7 +808,7 @@
         <div class="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 relative z-10">
             <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-12 sm:mb-16 text-center">已完成的项目</h2>
 			
-			<div class="glass-effect rounded-2xl p-6 sm:p-10 shadow-glass max-w-3xl mx-auto mb-12">
+			<div class="glass-effect rounded-2xl p-6 sm:p-10 shadow-glass max-w-3xl mx-auto mb-12 mouse-reflector">
               <div class="mouse-light"></div>
                 <div class="flex flex-col md:flex-row gap-8">
                     <div class="md:w-1/2">
@@ -786,7 +838,7 @@
                         </ul>
                         
                         <div class="flex flex-wrap gap-3">
-                            <a href="https://tpixel.qzz.io/mc" class="glass-btn px-4 py-2 text-primary font-medium rounded-full">
+                            <a href="https://tpixel.qzz.io/mc" class="glass-btn px-4 py-2 text-primary font-medium rounded-full mouse-reflector">
                             <div class="mouse-light"></div>
                                 <i></i>访问
 								<i class="fa fa-arrow-right ml-2"></i>
@@ -803,7 +855,7 @@
                 </div>
             </div>
             
-            <div class="glass-effect rounded-2xl p-6 sm:p-10 shadow-glass max-w-3xl mx-auto mb-12">
+            <div class="glass-effect rounded-2xl p-6 sm:p-10 shadow-glass max-w-3xl mx-auto mb-12 mouse-reflector">
               <div class="mouse-light"></div>
                 <div class="flex flex-col md:flex-row gap-8">
                     <div class="md:w-1/2">
@@ -841,7 +893,7 @@
                         </ul>
                         
                         <div class="flex flex-wrap gap-3">
-                            <a href="https://raw.gitcode.com/WJZHi/TPixel/blobs/693e78d7d77bd2d77896332bd773a79a4056fed6/Go-250829.cpp" class="glass-btn px-4 py-2 text-primary font-medium rounded-full">
+                            <a href="https://raw.gitcode.com/WJZHi/TPixel/blobs/693e78d7d77bd2d77896332bd773a79a4056fed6/Go-250829.cpp" class="glass-btn px-4 py-2 text-primary font-medium rounded-full mouse-reflector">
                                 <div class="mouse-light"></div>
                                 <i class="fa fa-code mr-2"></i>源代码
                             </a>
@@ -857,7 +909,7 @@
                 </div>
             </div>
             
-            <div class="glass-effect rounded-2xl p-6 sm:p-10 shadow-glass max-w-3xl mx-auto">
+            <div class="glass-effect rounded-2xl p-6 sm:p-10 shadow-glass max-w-3xl mx-auto mouse-reflector">
                 <div class="mouse-light"></div>
                 <h4 class="text-xl sm:text-2xl font-semibold mb-4 flex items-center">
                     <i class="fa fa-th text-primary mr-3"></i>
@@ -893,7 +945,7 @@
                 </ul>
                 
                 <div class="flex flex-wrap gap-3">
-                    <a href="https://raw.gitcode.com/WJZHi/TPixel/blobs/668069a5b0ea8905fd72d62ddcc754c7ab1c1389/Five-in-a-row.cpp" class="glass-btn px-4 py-2 text-primary font-medium rounded-full">
+                    <a href="https://raw.gitcode.com/WJZHi/TPixel/blobs/668069a5b0ea8905fd72d62ddcc754c7ab1c1389/Five-in-a-row.cpp" class="glass-btn px-4 py-2 text-primary font-medium rounded-full mouse-reflector">
                         <div class="mouse-light"></div>
                         <i class="fa fa-code mr-2"></i>源代码
                     </a>
@@ -912,20 +964,21 @@
                 
                 <div class="flex gap-6 sm:gap-8">
                     <div class="flex flex-col items-center">
-                        <a href="https://www.luogu.com.cn/team/112080" target="_blank" class="glass-btn w-10 h-10 flex items-center justify-center text-gray-400 hover:text-primary rounded-full">
+                        <a href="https://www.luogu.com.cn/team/112080" target="_blank" class="glass-btn w-10 h-10 flex items-center justify-center text-gray-400 hover:text-primary rounded-full mouse-reflector">
+                            <div class="mouse-light"></div>
                             <i class="fa fa-users text-xl"></i>
                         </a>
                         <span class="text-xs text-gray-500 mt-1">团队洛谷主页</span>
                     </div>
                     <div class="flex flex-col items-center">
-                        <a href="https://www.luogu.com.cn/user/1017957" target="_blank" class="glass-btn w-10 h-10 flex items-center justify-center text-gray-400 hover:text-primary rounded-full">
+                        <a href="https://www.luogu.com.cn/user/1017957" target="_blank" class="glass-btn w-10 h-10 flex items-center justify-center text-gray-400 hover:text-primary rounded-full mouse-reflector">
                             <div class="mouse-light"></div>
                             <i class="fa fa-user text-xl"></i>
                         </a>
                         <span class="text-xs text-gray-500 mt-1">wujz的洛谷主页</span>
                     </div>
                     <div class="flex flex-col items-center">
-                        <a href="https://www.luogu.com.cn/user/1513356" target="_blank" class="glass-btn w-10 h-10 flex items-center justify-center text-gray-400 hover:text-primary rounded-full">
+                        <a href="https://www.luogu.com.cn/user/1513356" target="_blank" class="glass-btn w-10 h-10 flex items-center justify-center text-gray-400 hover:text-primary rounded-full mouse-reflector">
                             <div class="mouse-light"></div>
                             <i class="fa fa-user text-xl"></i>
                         </a>
