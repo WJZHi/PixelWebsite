@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Animation Simulation</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .chat-container {
+            position: relative;
+            width: 300px;
+            height: 400px;
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .chat-image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .menu {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 40px;
+            height: 40px;
+            background: none;
+            border: 1px solid #ccc;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 
+                width 0.1s ease-out, /* 展开/缩小 100ms */
+                height 0.1s ease-out,
+                border-radius 0.1s ease-out,
+                background-color 0.1s ease-out;
+            overflow: hidden;
+        }
+
+        .menu.fall {
+            animation: bounce-down 0.1s ease-out forwards; /* 下移回弹 100ms */
+        }
+
+        .menu.expand {
+            width: 200px;
+            height: 280px;
+            border-radius: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            display: block;
+        }
+
+        .menu.lift {
+            animation: bounce-up 0.1s ease-out forwards; /* 上移回弹 100ms */
+        }
+
+        .menu.shrink {
+            animation: bounce-shrink 0.1s ease-out forwards; /* 缩小回弹 100ms */
+        }
+
+        @keyframes bounce-down {
+            0% { transform: translateY(0); }
+            60% { transform: translateY(25px); } /* 轻微超调 */
+            100% { transform: translateY(20px); }
+        }
+
+        @keyframes bounce-up {
+            0% { transform: translateY(20px); }
+            60% { transform: translateY(-5px); } /* 轻微超调 */
+            100% { transform: translateY(0); }
+        }
+
+        @keyframes bounce-shrink {
+            0% { width: 200px; height: 280px; border-radius: 20px; }
+            60% { width: 30px; height: 30px; border-radius: 50px; } /* 超调后回弹 */
+            100% { width: 40px; height: 40px; border-radius: 50%; }
+        }
+
+        .menu-button-content {
+            transition: opacity 0.05s ease-out; /* 快速淡出 */
+        }
+
+        .menu.expand .menu-button-content {
+            opacity: 0;
+        }
+
+        .menu-list {
+            list-style: none;
+            margin: 0;
+            padding: 10px;
+            opacity: 0;
+            transition: opacity 0.1s ease-out 0.2s; /* 延迟到下移后显示 */
+            pointer-events: none;
+        }
+
+        .menu.expand .menu-list {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .menu-item {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            color: #333;
+            cursor: pointer;
+        }
+
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+
+        .menu-item::before {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        /* 移除了所有emoji，用文本描述替代 */
+        .menu-item.forward::before {
+            content: '>';
+        }
+
+        .menu-item.copy::before {
+            content: 'C';
+        }
+
+        .menu-item.hide::before {
+            content: 'H';
+        }
+
+        .menu-item.show-all::before {
+            content: 'S';
+        }
+
+        .menu-item.save-video::before {
+            content: 'V';
+        }
+
+        .menu-item.add-album::before {
+            content: 'A';
+        }
+
+        .menu-item.adjust-time::before {
+            content: 'T';
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="menu">
+            <span class="menu-button-content">...</span>
+            <ul class="menu-list">
+                <li class="menu-item forward">转发</li>
+                <li class="menu-item copy">复制</li>
+                <li class="menu-item hide">隐藏</li>
+                <li class="menu-item show-all">在所有聊天中显示</li>
+                <li class="menu-item save-video">保存为视频</li>
+                <li class="menu-item add-album">添加到相册</li>
+                <li class="menu-item adjust-time">调整日期与时间</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        const menu = document.querySelector('.menu');
+
+        menu.addEventListener('click', () => {
+            if (menu.classList.contains('expand')) return;
+            menu.classList.add('fall'); // 1. 下移回弹 (100ms)
+            setTimeout(() => {
+                menu.classList.add('expand'); // 2. 展开 (100ms)
+                setTimeout(() => {
+                    menu.classList.add('lift'); // 3. 上移回弹 (100ms)
+                    menu.style.pointerEvents = 'none';
+                    setTimeout(() => {
+                        menu.style.pointerEvents = 'auto';
+                    }, 300); // 总延迟匹配
+                }, 100); // 展开时间
+            }, 100); // 下移时间
+        });
+
+        // 点击外部关闭菜单
+        document.addEventListener('click', (event) => {
+            if (!menu.contains(event.target) && menu.classList.contains('expand')) {
+                menu.classList.remove('lift'); // 1. 移除上移，触发下移回弹 (100ms)
+                setTimeout(() => {
+                    menu.classList.add('shrink'); // 2. 缩小回弹 (100ms)
+                    setTimeout(() => {
+                        menu.classList.remove('fall', 'expand', 'shrink'); // 3. 上移回弹 (100ms)
+                    }, 100); // 缩小时间
+                }, 100); // 下移时间
+            }
+        });
+    </script>
+</body>
+</html>
