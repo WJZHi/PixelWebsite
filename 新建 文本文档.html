@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu Animation Simulation</title>
+    <title>Menu Animation with Glass Effect</title>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <style>
         body {
             font-family: sans-serif;
@@ -13,6 +14,7 @@
             align-items: center;
             height: 100vh;
             margin: 0;
+            transition: background-color 0.4s ease;
         }
 
         .chat-container {
@@ -31,14 +33,14 @@
             display: block;
         }
 
-        .menu {
+        #mobileMenu {
             position: absolute;
             top: 10px;
             right: 10px;
             width: 40px;
             height: 40px;
             background: none;
-            border: 1px solid #ccc;
+            border: 1px solid rgba(255, 255, 255, 0.3);
             border-radius: 50%;
             cursor: pointer;
             color: #333;
@@ -46,16 +48,21 @@
             align-items: center;
             justify-content: center;
             overflow: hidden;
+            /* 玻璃效果基础属性 */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: all 0.4s ease;
+            z-index: 10;
         }
 
-        .menu.opening {
-            animation: bounce-open 0.3s ease-out forwards; /* 下移+展开并行，300ms，最终回原位 */
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        #mobileMenu.opening {
+            animation: bounce-open 0.3s ease-out forwards;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
             display: block;
         }
 
-        .menu.closing {
-            animation: bounce-close 0.3s ease-out forwards; /* 缩小+上移并行，300ms */
+        #mobileMenu.closing {
+            animation: bounce-close 0.3s ease-out forwards;
         }
 
         @keyframes bounce-open {
@@ -64,45 +71,45 @@
                 width: 40px;
                 height: 40px;
                 border-radius: 50%;
-                background-color: transparent;
+                background: rgba(255, 255, 255, 0.6);
             }
             60% {
-                transform: translateY(25px); /* 下移超调 */
-                width: 220px; /* 展开超调 */
+                transform: translateY(25px);
+                width: 220px;
                 height: 300px;
                 border-radius: 25px;
-                background-color: rgba(255, 255, 255, 0.95);
+                background: rgba(255, 255, 255, 0.85);
             }
             100% {
-                transform: translateY(0); /* 最终回原位，对齐按钮位置 */
+                transform: translateY(0);
                 width: 200px;
                 height: 280px;
                 border-radius: 20px;
-                background-color: rgba(255, 255, 255, 0.9);
+                background: rgba(255, 255, 255, 0.8);
             }
         }
 
         @keyframes bounce-close {
             0% {
-                transform: translateY(0); /* 从原位开始 */
+                transform: translateY(0);
                 width: 200px;
                 height: 280px;
                 border-radius: 20px;
-                background-color: rgba(255, 255, 255, 0.9);
+                background: rgba(255, 255, 255, 0.8);
             }
             60% {
-                transform: translateY(-10px); /* 上移超调（负值表示向上） */
-                width: 30px; /* 缩小超调 */
+                transform: translateY(-10px);
+                width: 30px;
                 height: 30px;
                 border-radius: 50px;
-                background-color: rgba(255, 255, 255, 0.5);
+                background: rgba(255, 255, 255, 0.6);
             }
             100% {
-                transform: translateY(0); /* 回原位 */
+                transform: translateY(0);
                 width: 40px;
                 height: 40px;
                 border-radius: 50%;
-                background-color: transparent;
+                background: rgba(255, 255, 255, 0.6);
             }
         }
 
@@ -130,8 +137,8 @@
             transition: all 0.3s ease;
         }
 
-        .menu.opening .menu-hamburger,
-        .menu.closing .menu-hamburger {
+        #mobileMenu.opening .menu-hamburger,
+        #mobileMenu.closing .menu-hamburger {
             display: none;
         }
 
@@ -140,92 +147,187 @@
             margin: 0;
             padding: 10px;
             opacity: 0;
-            transition: opacity 0.2s ease-out 0.1s; /* 延迟到并行动画中显示 */
+            transition: opacity 0.2s ease-out 0.1s;
             pointer-events: none;
         }
 
-        .menu.opening .menu-list {
+        #mobileMenu.opening .menu-list {
             opacity: 1;
             pointer-events: auto;
         }
 
         .menu-item {
             padding: 10px;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             display: flex;
             align-items: center;
             font-size: 16px;
             color: #333;
             cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+        }
+
+        .menu-item:hover {
+            background: rgba(255, 255, 255, 0.4);
         }
 
         .menu-item:last-child {
             border-bottom: none;
         }
 
-        .menu-item::before {
-            content: '';
-            display: inline-block;
-            width: 20px;
-            height: 20px;
+        .menu-item i {
             margin-right: 10px;
-            background-size: contain;
-            background-repeat: no-repeat;
+            color: #3B82F6;
+            width: 16px;
+            text-align: center;
         }
 
-        .menu-item.forward::before {
-            content: '➡️';
+        /* 折射边缘效果 */
+        #mobileMenu::before,
+        #mobileMenu::after {
+            content: '';
+            position: absolute;
+            pointer-events: none;
         }
 
-        .menu-item.copy::before {
-            content: '📋';
+        /* 上边缘折射 */
+        #mobileMenu::before {
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.2), 
+                transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
-        .menu-item.hide::before {
-            content: '🙈';
+        /* 下边缘折射 */
+        #mobileMenu::after {
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.1), 
+                transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
-        .menu-item.show-all::before {
-            content: '📺';
+        #mobileMenu.opening::before,
+        #mobileMenu.opening::after {
+            opacity: 1;
         }
 
-        .menu-item.save-video::before {
-            content: '💾';
+        /* 左右折射边缘 */
+        .refraction-left,
+        .refraction-right {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
-        .menu-item.add-album::before {
-            content: '🖼️';
+        .refraction-left {
+            left: 0;
+            background: linear-gradient(0deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.15), 
+                transparent);
         }
 
-        .menu-item.adjust-time::before {
-            content: '⏰';
+        .refraction-right {
+            right: 0;
+            background: linear-gradient(0deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.15), 
+                transparent);
+        }
+
+        #mobileMenu.opening .refraction-left,
+        #mobileMenu.opening .refraction-right {
+            opacity: 1;
+        }
+
+        /* 鼠标悬停反光效果 */
+        .mouse-light {
+            position: absolute;
+            pointer-events: none;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle, 
+                rgba(255, 255, 255, 0.3) 0%, 
+                rgba(255, 255, 255, 0.05) 70%, 
+                rgba(255, 255, 255, 0) 100%);
+            opacity: 0;
+            transition: opacity 0.2s ease;
+            z-index: -1;
+        }
+
+        .menu-item:hover .mouse-light {
+            opacity: 1;
         }
     </style>
 </head>
 <body>
     <div class="chat-container">
-        <img class="chat-image" src="https://via.placeholder.com/300x400?text=Yellow+Fruit+Image" alt="Yellow Fruit">
-        <div class="menu">
-            <!-- 独立的三条杠按钮 -->
+        <div id="mobileMenu" class="menu glass-effect">
+            <!-- 折射边缘元素 -->
+            <div class="refraction-left"></div>
+            <div class="refraction-right"></div>
+            
+            <!-- 三条杠按钮 -->
             <div class="menu-hamburger">
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
+            
             <ul class="menu-list">
-                <li class="menu-item forward">转发</li>
-                <li class="menu-item copy">复制</li>
-                <li class="menu-item hide">隐藏</li>
-                <li class="menu-item show-all">在所有聊天中显示</li>
-                <li class="menu-item save-video">保存为视频</li>
-                <li class="menu-item add-album">添加到相册</li>
-                <li class="menu-item adjust-time">调整日期与时间</li>
+                <li class="menu-item mouse-reflector">
+                    <div class="mouse-light"></div>
+                    <i class="fa fa-share-alt"></i>转发
+                </li>
+                <li class="menu-item mouse-reflector">
+                    <div class="mouse-light"></div>
+                    <i class="fa fa-copy"></i>复制
+                </li>
+                <li class="menu-item mouse-reflector">
+                    <div class="mouse-light"></div>
+                    <i class="fa fa-eye-slash"></i>隐藏
+                </li>
+                <li class="menu-item mouse-reflector">
+                    <div class="mouse-light"></div>
+                    <i class="fa fa-comments"></i>在所有聊天中显示
+                </li>
+                <li class="menu-item mouse-reflector">
+                    <div class="mouse-light"></div>
+                    <i class="fa fa-video-camera"></i>保存为视频
+                </li>
+                <li class="menu-item mouse-reflector">
+                    <div class="mouse-light"></div>
+                    <i class="fa fa-picture-o"></i>添加到相册
+                </li>
+                <li class="menu-item mouse-reflector">
+                    <div class="mouse-light"></div>
+                    <i class="fa fa-clock-o"></i>调整日期与时间
+                </li>
             </ul>
         </div>
     </div>
 
     <script>
-        const menu = document.querySelector('.menu');
+        const menu = document.querySelector('#mobileMenu');
         const menuHamburger = document.querySelector('.menu-hamburger');
 
         // 点击三条杠按钮
@@ -264,6 +366,21 @@
             if (menu.classList.contains('opening')) {
                 event.stopPropagation();
             }
+        });
+
+        // 鼠标移动时的反光效果
+        document.querySelectorAll('.menu-item').forEach(item => {
+            item.addEventListener('mousemove', (e) => {
+                const light = item.querySelector('.mouse-light');
+                if (light) {
+                    const rect = item.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    light.style.left = `${x}px`;
+                    light.style.top = `${y}px`;
+                }
+            });
         });
     </script>
 </body>
