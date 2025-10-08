@@ -451,26 +451,42 @@
         /* 移植菜单的样式（整合原菜单功能） */
         /* -------------------------- */
         #customMobileMenu {
-            position: absolute;
-            top: 50%    ;
-            right: 10px;
-            transform: translateY(-50%); /* 垂直居中导航栏 */
-            width: 40px;
-            height: 40px;
-            background: none;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            cursor: pointer;
-            color: #333;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            transition: all 0.4s ease;
-            z-index: 1001; /* 确保在最上层 */
-        }
+			position: absolute;
+			top: 14px; /* 固定顶部距离（根据导航栏高度微调，确保初始居中） */
+			right: 10px;
+			transform: none; /* 移除初始位移，避免与动画冲突 */
+			width: 40px;
+			height: 40px;
+			background: none;
+			border: 1px solid rgba(255, 255, 255, 0.3);
+			border-radius: 50%;
+			cursor: pointer;
+			color: #333;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			overflow: hidden;
+			backdrop-filter: blur(10px);
+			-webkit-backdrop-filter: blur(10px);
+			transition: all 0.4s ease;
+			z-index: 1001;
+    		display: none; /* 默认隐藏 */
+		}
+		
+		/* 在小屏幕（手机）上显示菜单 */
+		@media (max-width: 767px) {
+			#customMobileMenu {
+				display: flex; /* 手机上显示 */
+			}
+		}
+
+		/* 确保大屏幕上彻底隐藏 */
+		@media (min-width: 768px) {
+			#customMobileMenu {
+				display: none !important;
+				visibility: hidden; /* 双重保险 */
+			}
+		}
 
         /* 展开动画：调整高度以容纳所有选项（原280px→400px） */
         #customMobileMenu.opening {
@@ -483,70 +499,67 @@
             animation: bounce-close 0.3s ease-out forwards;
         }
 
-        /* 调整展开后的高度，确保所有选项显示完整 */
-        @keyframes bounce-open {
-            0% { 
-                transform: translateY(0); /* 初始位置 */
-                width: 40px; 
-                height: 40px; 
-                border-radius: 50%; 
-                background: rgba(255, 255, 255, 0.6); 
-            }
-            60% { 
-                transform: translateY(25px); /* 下坠到最低点 */
-                width: 240px; 
-                height: 420px; 
-                border-radius: 25px; 
-                background: rgba(255, 255, 255, 0.85); 
-            }
-            100% { 
-                transform: translateY(0); /* 回弹到原位置 */
-                width: 220px; 
-                height: 400px; 
-                border-radius: 20px; 
-                background: rgba(255, 255, 255, 0.8); 
-            }
-        }
+        /* 展开动画：下坠后回弹到基础位置 */
+		@keyframes bounce-open {
+			0% { 
+				transform: translateY(0); /* 与基础样式位置一致 */
+				width: 40px; 
+				height: 40px; 
+				border-radius: 50%; 
+				background: rgba(255, 255, 255, 0.6); 
+			}
+			60% { 
+				transform: translateY(25px); /* 下坠动画（基于基础位置向下25px） */
+				width: 240px; 
+				height: 420px; 
+				border-radius: 25px; 
+			}
+			100% { 
+				transform: translateY(0); /* 回弹到基础位置 */
+				width: 220px; 
+				height: 400px; 
+				border-radius: 20px; 
+			}
+		}
 
-        @keyframes bounce-close {
-            0% { 
-                transform: translateY(0); /* 初始位置 */
-                width: 220px; 
-                height: 400px; 
-                border-radius: 20px; 
-                background: rgba(255, 255, 255, 0.8); 
-            }
-            60% { 
-                transform: translateY(-10px); /* 上移 */
-                width: 30px; 
-                height: 30px; 
-                border-radius: 50px; 
-                background: rgba(255, 255, 255, 0.6); 
-            }
-            100% { 
-                transform: translateY(0); /* 回弹到原位置 */
-                width: 40px; 
-                height: 40px; 
-                border-radius: 50%; 
-                background: rgba(255, 255, 255, 0.6); 
-            }
-        }
+		/* 关闭动画：上移后回弹到基础位置 */
+		@keyframes bounce-close {
+			0% { 
+				transform: translateY(0); /* 与展开状态的最终位置一致 */
+				width: 220px; 
+				height: 400px; 
+				border-radius: 20px; 
+			}
+			60% { 
+				transform: translateY(-10px); /* 上移动画（基于当前位置向上10px） */
+				width: 30px; 
+				height: 30px; 
+				border-radius: 50px; 
+			}
+			100% { 
+				transform: translateY(0); /* 最终对齐基础位置（汉堡按钮初始位置） */
+				width: 40px; 
+				height: 40px; 
+				border-radius: 50%; 
+				background: rgba(255, 255, 255, 0.6); 
+			}
+		}
 
 
-        /* 汉堡按钮：移植菜单专用 */
-        .custom-menu-hamburger {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 24px;
-            height: 18px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            cursor: pointer;
-            z-index: 10;
-        }
+				/* 汉堡按钮：移植菜单专用 */
+				.custom-menu-hamburger {
+			position: absolute;
+			top: 50%; /* 汉堡按钮顶部对齐菜单垂直中点 */
+			left: 50%; /* 汉堡按钮左侧对齐菜单水平中点 */
+			transform: translate(-50%, -50%); /* 自身居中（抵消50%位移） */
+			width: 24px;
+			height: 18px;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			cursor: pointer;
+			z-index: 10;
+		}
 
         .custom-menu-hamburger span {
             display: block;
@@ -670,13 +683,14 @@
     <!-- 移除原菜单的HTML（#menuOverlay和#mobileMenu容器） -->
     
     <!-- 导航栏：添加relative，确保移植菜单位置正确 -->
-    <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4 relative">
+    <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4 w-full">
+	
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center">
                 <!-- 左侧：Logo + 团队名 -->
                 <div class="flex items-center gap-2">
                     <img src="https://cdn.luogu.com.cn/upload/image_hosting/vy6i8dsm.png" alt="TeamPixel团队标志" class="w-8 h-8 sm:w-10 sm:h-10 rounded object-cover transition-all duration-300" id="logo">
-                    <span class="font-semibold text-lg sm:text-xl transition-all duration-300" id="team-name">TeamPixel</span>
+                    <span class="font-semibold text-lg sm:text-xl transition-all duration-300" id="team-name">Pixel</span>
                 </div>
                 
                 <!-- 右侧：导航链接和深色模式切换 -->
@@ -799,7 +813,7 @@
 	</div>
 
 	<!-- 英雄区域 -->
-	<section class="pt-0 pb-0 sm:pt-0 sm:pb-4 px-4 sm:px-6 lg:px-8 relative">
+	<section class="pt-0 pb-0 sm:pt-24 sm:pb-32 px-4 sm:px-6 lg:px-8 relative">
         <div class="container mx-auto max-w-4xl text-center relative z-10">
             <div class="glass-effect rounded-2xl p-6 sm:p-8 inline-block mb-10 shadow-glass mouse-reflector">
                 <div class="mouse-light"></div>
