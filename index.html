@@ -6,10 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pixel - 官方网站</title>
     <!-- 引入外部资源 -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
-	<!-- 只保留一个Font Awesome版本（避免冲突） -->
-	<link href="https://cdn.jsdelivr.net/npm/font-awesome@5.0.13/css/all.min.css" rel="stylesheet">
     
     <!-- 配置Tailwind -->
     <script>
@@ -44,6 +42,7 @@
     
     <!-- 自定义工具类 -->
     <style type="text/tailwindcss">
+		@import "https://cdn.tailwindcss.com";
         @layer utilities {
             .content-auto {
                 content-visibility: auto;
@@ -54,7 +53,7 @@
 						rgba(255, 255, 255, 0.25), 
 						rgba(240, 240, 240, 0.15), 
 						rgba(220, 220, 220, 0.1));
-			backdrop-filter: blur(16px);          /* 增强模糊，贴近液态朦胧感 */
+			-webkit-backdrop-filter: blur(16px);          /* 增强模糊，贴近液态朦胧感 */
 			-webkit-backdrop-filter: blur(16px);
 			border: 1px solid rgba(255, 255, 255, 0.1); /* 透明白边框，模拟液态边缘光泽 */
 			box-shadow: 0 8px 12px rgba(0, 0, 0, 0.03), 
@@ -68,7 +67,7 @@
 						rgba(30, 41, 59, 0.3), 
 						rgba(15, 23, 42, 0.4), 
 						rgba(10, 15, 30, 0.5));
-			backdrop-filter: blur(16px);
+			-webkit-backdrop-filter: blur(16px);
 			-webkit-backdrop-filter: blur(16px);
 			border: 1px solid rgba(255, 255, 255, 0.03); /* 深色透明边框 */
 			box-shadow: 0 8px 12px rgba(0, 0, 0, 0.08), 
@@ -319,7 +318,7 @@
         /* 液态玻璃按钮的特殊样式 */
         .glass-btn {
             background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.3);
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
@@ -334,7 +333,7 @@
         
         .glass-btn-primary {
             background: rgba(59, 130, 246, 0.8);
-            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.3);
             box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3);
@@ -466,7 +465,7 @@
 			align-items: center;
 			justify-content: center;
 			overflow: hidden;
-			backdrop-filter: blur(10px);
+			-webkit-backdrop-filter: blur(10px);
 			-webkit-backdrop-filter: blur(10px);
 			transition: all 0.4s ease;
 			z-index: 1001;
@@ -1213,17 +1212,23 @@
             
             // 鼠标悬停反光效果（保留原功能，适配移植菜单）
             document.querySelectorAll('.mouse-reflector').forEach(element => {
-                const mouseLight = element.querySelector('.mouse-light');
-                if (mouseLight) {
-                    element.addEventListener('mousemove', (e) => {
-                        const rect = element.getBoundingClientRect();
-                        const x = e.clientX - rect.left;
-                        const y = e.clientY - rect.top;
-                        mouseLight.style.left = `${x}px`;
-                        mouseLight.style.top = `${y}px`;
-                    });
-                }
-            });
+		        const mouseLight = element.querySelector('.mouse-light');
+		        if (mouseLight) {
+		            element.addEventListener('mousemove', (e) => {
+		                const rect = element.getBoundingClientRect();
+		                const x = e.clientX - rect.left; // 鼠标在元素内的X坐标
+		                const y = e.clientY - rect.top;  // 鼠标在元素内的Y坐标
+		
+		                // 1. 为现有反光效果设置位置（原逻辑保留）
+		                mouseLight.style.left = `${x}px`;
+		                mouseLight.style.top = `${y}px`;
+		
+		                // 2. 新增：为CSS变量 --mouse-x 和 --mouse-y 赋值
+		                element.style.setProperty('--mouse-x', `${x}px`);
+		                element.style.setProperty('--mouse-y', `${y}px`);
+		            });
+		        }
+		    });
 
 			// AI弹窗功能（保留原功能）
 			const aiTrigger = document.getElementById('aiModalTrigger');
