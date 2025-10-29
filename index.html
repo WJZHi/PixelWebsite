@@ -42,7 +42,6 @@
     
     <!-- 自定义工具类 -->
     <style type="text/tailwindcss">
-		@import "https://cdn.tailwindcss.com";
         @layer utilities {
             .content-auto {
                 content-visibility: auto;
@@ -1287,46 +1286,44 @@
 			});
         });
 
+		// 找到移植菜单和汉堡按钮
+		const customMenu = document.querySelector('#customMobileMenu');
+		const customMenuHamburger = document.querySelector('.custom-menu-hamburger');
 
-        <!-- 移植菜单的JS逻辑（控制展开/关闭，整合原菜单交互） -->
-            // 找到移植菜单和汉堡按钮
-            const customMenu = document.querySelector('#customMobileMenu');
-            const customMenuHamburger = document.querySelector('.custom-menu-hamburger');
+		// 点击汉堡按钮展开菜单
+		customMenuHamburger.addEventListener('click', (event) => {
+			event.stopPropagation();
+			customMenuHamburger.style.display = 'none'; // 隐藏汉堡按钮
+			customMenu.classList.add('opening');
+			customMenu.classList.remove('closing');
+			customMenu.style.pointerEvents = 'none'; // 动画期间禁止点击
+			
+			// 动画结束后恢复点击
+			setTimeout(() => {
+				customMenu.style.pointerEvents = 'auto';
+			}, 300);
+		});
 
-            // 点击汉堡按钮展开菜单
-            customMenuHamburger.addEventListener('click', (event) => {
-                event.stopPropagation();
-                customMenuHamburger.style.display = 'none'; // 隐藏汉堡按钮
-                customMenu.classList.add('opening');
-                customMenu.classList.remove('closing');
-                customMenu.style.pointerEvents = 'none'; // 动画期间禁止点击
-                
-                // 动画结束后恢复点击
-                setTimeout(() => {
-                    customMenu.style.pointerEvents = 'auto';
-                }, 300);
-            });
+		// 点击页面外部关闭菜单
+		document.addEventListener('click', (event) => {
+			if (!customMenu.contains(event.target) && customMenu.classList.contains('opening')) {
+				customMenu.classList.remove('opening');
+				customMenu.classList.add('closing');
+				
+				// 动画结束后恢复汉堡按钮
+				setTimeout(() => {
+					customMenu.classList.remove('closing');
+					customMenuHamburger.style.display = 'flex';
+				}, 300);
+			}
+		});
 
-            // 点击页面外部关闭菜单
-            document.addEventListener('click', (event) => {
-                if (!customMenu.contains(event.target) && customMenu.classList.contains('opening')) {
-                    customMenu.classList.remove('opening');
-                    customMenu.classList.add('closing');
-                    
-                    // 动画结束后恢复汉堡按钮
-                    setTimeout(() => {
-                        customMenu.classList.remove('closing');
-                        customMenuHamburger.style.display = 'flex';
-                    }, 300);
-                }
-            });
-
-            // 点击菜单内部不关闭
-            customMenu.addEventListener('click', (event) => {
-                if (customMenu.classList.contains('opening')) {
-                    event.stopPropagation();
-                }
-            });
-        </script>
+		// 点击菜单内部不关闭
+		customMenu.addEventListener('click', (event) => {
+			if (customMenu.classList.contains('opening')) {
+				event.stopPropagation();
+			}
+		});
+	</script>
 </body>
 </html>
