@@ -470,19 +470,11 @@
 			z-index: 1001;
     		display: none; /* 默认隐藏 */
 		}
-		
+	
 		/* 在小屏幕（手机）上显示菜单 */
 		@media (max-width: 767px) {
 			#customMobileMenu {
 				display: flex; /* 手机上显示 */
-			}
-		}
-
-		/* 确保大屏幕上彻底隐藏 */
-		@media (min-width: 768px) {
-			#customMobileMenu {
-				display: none !important;
-				visibility: hidden; /* 双重保险 */
 			}
 		}
 
@@ -1324,6 +1316,7 @@
 				event.stopPropagation();
 			}
 		});
+	}); // 添加这行来闭合 DOMContentLoaded 事件
 	</script>
 </body>
 </html>
