@@ -1,44 +1,46 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-	<link rel="icon" href="/favicon..ico" type="image/x-icon">
+	<link rel="icon" href="/logo.ico" type="image/x-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pixel - 官方网站</title>
     <!-- 引入外部资源 -->
     <script src="https://cdn.tailwindcss.com"></script>
-	<script>
-		tailwind.config = {
-			darkMode: 'class',
-			theme: {
-				extend: {
-					colors: {
-						primary: '#3B82F6',
-						secondary: '#94A3B8',
-						dark: '#1E293B',
-						'dark-bg': '#0F172A',
-						'dark-card': '#1E293B',
-						'dark-hover': '#334155',
-					},
-					fontFamily: {
-						sans: ['Inter', 'system-ui', 'sans-serif'],
-					},
-					boxShadow: {
-						'glass': '0 8px 32px rgba(0, 0, 0, 0.08)',
-						'glass-hover': '0 12px 40px rgba(0, 0, 0, 0.12)',
-						'glass-btn': '0 4px 15px rgba(0, 0, 0, 0.05)',
-						'glass-btn-hover': '0 8px 25px rgba(0, 0, 0, 0.1)',
-						'glass-primary': '0 4px 20px rgba(59, 130, 246, 0.3)',
-						'dark-glass': '0 8px 32px rgba(0, 0, 0, 0.4)',
-						'refraction': '0 0 20px rgba(255, 255, 255, 0.15)',
-					}
-				}
-			}
-		}
-	</script>
-
-	
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	<!-- 只保留一个Font Awesome版本（避免冲突） -->
+	<link href="https://cdn.jsdelivr.net/npm/font-awesome@5.0.13/css/all.min.css" rel="stylesheet">
+    
+    <!-- 配置Tailwind -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3B82F6',
+                        secondary: '#94A3B8',
+                        dark: '#1E293B',
+                        'dark-bg': '#0F172A',
+                        'dark-card': '#1E293B',
+                        'dark-hover': '#334155',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'glass': '0 8px 32px rgba(0, 0, 0, 0.08)',
+                        'glass-hover': '0 12px 40px rgba(0, 0, 0, 0.12)',
+                        'glass-btn': '0 4px 15px rgba(0, 0, 0, 0.05)',
+                        'glass-btn-hover': '0 8px 25px rgba(0, 0, 0, 0.1)',
+                        'glass-primary': '0 4px 20px rgba(59, 130, 246, 0.3)',
+                        'dark-glass': '0 8px 32px rgba(0, 0, 0, 0.4)',
+                        'refraction': '0 0 20px rgba(255, 255, 255, 0.15)',
+                    }
+                }
+            }
+        }
+    </script>
     
     <!-- 自定义工具类 -->
     <style type="text/tailwindcss">
@@ -52,7 +54,7 @@
 						rgba(255, 255, 255, 0.25), 
 						rgba(240, 240, 240, 0.15), 
 						rgba(220, 220, 220, 0.1));
-			-webkit-backdrop-filter: blur(16px);          /* 增强模糊，贴近液态朦胧感 */
+			backdrop-filter: blur(16px);          /* 增强模糊，贴近液态朦胧感 */
 			-webkit-backdrop-filter: blur(16px);
 			border: 1px solid rgba(255, 255, 255, 0.1); /* 透明白边框，模拟液态边缘光泽 */
 			box-shadow: 0 8px 12px rgba(0, 0, 0, 0.03), 
@@ -66,7 +68,7 @@
 						rgba(30, 41, 59, 0.3), 
 						rgba(15, 23, 42, 0.4), 
 						rgba(10, 15, 30, 0.5));
-			-webkit-backdrop-filter: blur(16px);
+			backdrop-filter: blur(16px);
 			-webkit-backdrop-filter: blur(16px);
 			border: 1px solid rgba(255, 255, 255, 0.03); /* 深色透明边框 */
 			box-shadow: 0 8px 12px rgba(0, 0, 0, 0.08), 
@@ -317,7 +319,7 @@
         /* 液态玻璃按钮的特殊样式 */
         .glass-btn {
             background: rgba(255, 255, 255, 0.6);
-            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.3);
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
@@ -332,7 +334,7 @@
         
         .glass-btn-primary {
             background: rgba(59, 130, 246, 0.8);
-            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.3);
             box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3);
@@ -464,17 +466,25 @@
 			align-items: center;
 			justify-content: center;
 			overflow: hidden;
-			-webkit-backdrop-filter: blur(10px);
+			backdrop-filter: blur(10px);
 			-webkit-backdrop-filter: blur(10px);
 			transition: all 0.4s ease;
 			z-index: 1001;
     		display: none; /* 默认隐藏 */
 		}
-	
+		
 		/* 在小屏幕（手机）上显示菜单 */
 		@media (max-width: 767px) {
 			#customMobileMenu {
 				display: flex; /* 手机上显示 */
+			}
+		}
+
+		/* 确保大屏幕上彻底隐藏 */
+		@media (min-width: 768px) {
+			#customMobileMenu {
+				display: none !important;
+				visibility: hidden; /* 双重保险 */
 			}
 		}
 
@@ -1203,28 +1213,19 @@
             
             // 鼠标悬停反光效果（保留原功能，适配移植菜单）
             document.querySelectorAll('.mouse-reflector').forEach(element => {
-		        const mouseLight = element.querySelector('.mouse-light');
-		        if (mouseLight) {
-		            element.addEventListener('mousemove', (e) => {
-		                const rect = element.getBoundingClientRect();
-		                const x = e.clientX - rect.left; // 鼠标在元素内的X坐标
-		                const y = e.clientY - rect.top;  // 鼠标在元素内的Y坐标
-		
-		                // 1. 为现有反光效果设置位置（原逻辑保留）
-		                mouseLight.style.left = `${x}px`;
-		                mouseLight.style.top = `${y}px`;
-		
-		                // 2. 新增：为CSS变量 --mouse-x 和 --mouse-y 赋值
-		                element.style.setProperty('--mouse-x', `${x}px`);
-		                element.style.setProperty('--mouse-y', `${y}px`);
-		            });
-		        }
-		    });
+                const mouseLight = element.querySelector('.mouse-light');
+                if (mouseLight) {
+                    element.addEventListener('mousemove', (e) => {
+                        const rect = element.getBoundingClientRect();
+                        const x = e.clientX - rect.left;
+                        const y = e.clientY - rect.top;
+                        mouseLight.style.left = `${x}px`;
+                        mouseLight.style.top = `${y}px`;
+                    });
+                }
+            });
 
-			
-        });
-
-		// AI弹窗功能（保留原功能）
+			// AI弹窗功能（保留原功能）
 			const aiTrigger = document.getElementById('aiModalTrigger');
 			const aiTriggerDesktop = document.getElementById('aiModalTriggerDesktop');
 			const modal = document.getElementById('aiModal');
@@ -1279,45 +1280,48 @@
 					closeModal();
 				}
 			});
-		
-		// 找到移植菜单和汉堡按钮
-		const customMenu = document.querySelector('#customMobileMenu');
-		const customMenuHamburger = document.querySelector('.custom-menu-hamburger');
+        });
 
-		// 点击汉堡按钮展开菜单
-		customMenuHamburger.addEventListener('click', (event) => {
-			event.stopPropagation();
-			customMenuHamburger.style.display = 'none'; // 隐藏汉堡按钮
-			customMenu.classList.add('opening');
-			customMenu.classList.remove('closing');
-			customMenu.style.pointerEvents = 'none'; // 动画期间禁止点击
-			
-			// 动画结束后恢复点击
-			setTimeout(() => {
-				customMenu.style.pointerEvents = 'auto';
-			}, 300);
-		});
 
-		// 点击页面外部关闭菜单
-		document.addEventListener('click', (event) => {
-			if (!customMenu.contains(event.target) && customMenu.classList.contains('opening')) {
-				customMenu.classList.remove('opening');
-				customMenu.classList.add('closing');
-				
-				// 动画结束后恢复汉堡按钮
-				setTimeout(() => {
-					customMenu.classList.remove('closing');
-					customMenuHamburger.style.display = 'flex';
-				}, 300);
-			}
-		});
+        <!-- 移植菜单的JS逻辑（控制展开/关闭，整合原菜单交互） -->
+            // 找到移植菜单和汉堡按钮
+            const customMenu = document.querySelector('#customMobileMenu');
+            const customMenuHamburger = document.querySelector('.custom-menu-hamburger');
 
-		// 点击菜单内部不关闭
-		customMenu.addEventListener('click', (event) => {
-			if (customMenu.classList.contains('opening')) {
-				event.stopPropagation();
-			}
-		});
-	</script>
+            // 点击汉堡按钮展开菜单
+            customMenuHamburger.addEventListener('click', (event) => {
+                event.stopPropagation();
+                customMenuHamburger.style.display = 'none'; // 隐藏汉堡按钮
+                customMenu.classList.add('opening');
+                customMenu.classList.remove('closing');
+                customMenu.style.pointerEvents = 'none'; // 动画期间禁止点击
+                
+                // 动画结束后恢复点击
+                setTimeout(() => {
+                    customMenu.style.pointerEvents = 'auto';
+                }, 300);
+            });
+
+            // 点击页面外部关闭菜单
+            document.addEventListener('click', (event) => {
+                if (!customMenu.contains(event.target) && customMenu.classList.contains('opening')) {
+                    customMenu.classList.remove('opening');
+                    customMenu.classList.add('closing');
+                    
+                    // 动画结束后恢复汉堡按钮
+                    setTimeout(() => {
+                        customMenu.classList.remove('closing');
+                        customMenuHamburger.style.display = 'flex';
+                    }, 300);
+                }
+            });
+
+            // 点击菜单内部不关闭
+            customMenu.addEventListener('click', (event) => {
+                if (customMenu.classList.contains('opening')) {
+                    event.stopPropagation();
+                }
+            });
+        </script>
 </body>
 </html>
